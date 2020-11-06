@@ -13,5 +13,6 @@ public class authActivity extends AppCompatActivity {
     }
     private void setup(){
         String title = "Autenticación";
+
     }
 }

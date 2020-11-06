@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\freestyle meeting\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-te\\values-te.xml",
+            "outputFile": "D:\\Android_freestylemeeting\\practica-final\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-te\\values-te.xml",
             "map": [
                 {
                     "source": "C:\\Users\\rauljimenezbores\\.gradle\\caches\\transforms-2\\files-2.1\\a8235920046dd925bdec8b6748f129a4\\jetified-play-services-base-17.1.0\\res\\values-te\\values.xml",

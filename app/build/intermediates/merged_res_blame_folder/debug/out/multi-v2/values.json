@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\freestyle meeting\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values\\values.xml",
+            "outputFile": "D:\\Android_freestylemeeting\\practica-final\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values\\values.xml",
             "map": [
                 {
                     "source": "C:\\Users\\rauljimenezbores\\.gradle\\caches\\transforms-2\\files-2.1\\bad9b51902a30e33c793c0d30fab732f\\jetified-viewpager2-1.0.0\\res\\values\\values.xml",
@@ -20,23 +20,6 @@
                         "endLines": "7655",
                         "endColumns": "24",
                         "endOffsets": "491616"
-                    }
-                },
-                {
-                    "source": "D:\\freestyle meeting\\app\\src\\main\\res\\values\\strings.xml",
-                    "from": {
-                        "startLines": "1",
-                        "startColumns": "4",
-                        "startOffsets": "17",
-                        "endColumns": "54",
-                        "endOffsets": "67"
-                    },
-                    "to": {
-                        "startLines": "990",
-                        "startColumns": "4",
-                        "startOffsets": "57442",
-                        "endColumns": "54",
-                        "endOffsets": "57492"
                     }
                 },
                 {
@@ -188,20 +171,20 @@
                     }
                 },
                 {
-                    "source": "D:\\freestyle meeting\\app\\src\\main\\res\\values\\colors.xml",
+                    "source": "D:\\Android_freestylemeeting\\practica-final\\app\\src\\main\\res\\values\\strings.xml",
                     "from": {
-                        "startLines": "9,10,12,13,7,14,15,11,2,3,4,5,6,8",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "379,424,510,551,293,598,640,466,57,105,153,201,247,336",
-                        "endColumns": "43,40,39,45,41,40,38,42,46,46,46,44,44,41",
-                        "endOffsets": "418,460,545,592,330,634,674,504,99,147,195,241,287,373"
+                        "startLines": "1",
+                        "startColumns": "4",
+                        "startOffsets": "17",
+                        "endColumns": "54",
+                        "endOffsets": "67"
                     },
                     "to": {
-                        "startLines": "383,384,387,388,393,414,458,481,492,493,494,505,506,509",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "18174,18217,18417,18456,18820,20423,23432,24843,25605,25652,25699,26443,26488,26654",
-                        "endColumns": "42,39,38,44,41,39,38,41,46,46,46,44,44,41",
-                        "endOffsets": "18212,18252,18451,18496,18857,20458,23466,24880,25647,25694,25741,26483,26528,26691"
+                        "startLines": "990",
+                        "startColumns": "4",
+                        "startOffsets": "57442",
+                        "endColumns": "54",
+                        "endOffsets": "57492"
                     }
                 },
                 {
@@ -224,26 +207,7 @@
                     }
                 },
                 {
-                    "source": "D:\\freestyle meeting\\app\\src\\main\\res\\values\\themes.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "102",
-                        "endLines": "14",
-                        "endColumns": "12",
-                        "endOffsets": "830"
-                    },
-                    "to": {
-                        "startLines": "3587",
-                        "startColumns": "4",
-                        "startOffsets": "236255",
-                        "endLines": "3599",
-                        "endColumns": "12",
-                        "endOffsets": "236969"
-                    }
-                },
-                {
-                    "source": "D:\\freestyle meeting\\app\\build\\generated\\res\\google-services\\debug\\values\\values.xml",
+                    "source": "D:\\Android_freestylemeeting\\practica-final\\app\\build\\generated\\res\\google-services\\debug\\values\\values.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9",
                         "startColumns": "4,4,4,4,4,4,4,4",
@@ -279,6 +243,25 @@
                     }
                 },
                 {
+                    "source": "D:\\Android_freestylemeeting\\practica-final\\app\\src\\main\\res\\values\\themes.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "102",
+                        "endLines": "14",
+                        "endColumns": "12",
+                        "endOffsets": "830"
+                    },
+                    "to": {
+                        "startLines": "3587",
+                        "startColumns": "4",
+                        "startOffsets": "236255",
+                        "endLines": "3599",
+                        "endColumns": "12",
+                        "endOffsets": "236969"
+                    }
+                },
+                {
                     "source": "C:\\Users\\rauljimenezbores\\.gradle\\caches\\transforms-2\\files-2.1\\dd4ba36f6332a41d58236c8817f5cfd8\\cardview-1.0.0\\res\\values\\values.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,35,36,37,38,45,47,50,7",
@@ -295,6 +278,23 @@
                         "endLines": "24,402,403,404,405,590,591,592,1118,2954,2957,2960,5647",
                         "endColumns": "51,60,61,61,63,58,56,53,12,12,12,12,24",
                         "endOffsets": "1181,19559,19621,19683,19747,32174,32231,32285,72984,192949,193075,193203,362928"
+                    }
+                },
+                {
+                    "source": "D:\\Android_freestylemeeting\\practica-final\\app\\src\\main\\res\\values\\colors.xml",
+                    "from": {
+                        "startLines": "9,10,12,13,7,14,15,11,2,3,4,5,6,8",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "379,424,510,551,293,598,640,466,57,105,153,201,247,336",
+                        "endColumns": "43,40,39,45,41,40,38,42,46,46,46,44,44,41",
+                        "endOffsets": "418,460,545,592,330,634,674,504,99,147,195,241,287,373"
+                    },
+                    "to": {
+                        "startLines": "383,384,387,388,393,414,458,481,492,493,494,505,506,509",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "18174,18217,18417,18456,18820,20423,23432,24843,25605,25652,25699,26443,26488,26654",
+                        "endColumns": "42,39,38,44,41,39,38,41,46,46,46,44,44,41",
+                        "endOffsets": "18212,18252,18451,18496,18857,20458,23466,24880,25647,25694,25741,26483,26528,26691"
                     }
                 }
             ]
