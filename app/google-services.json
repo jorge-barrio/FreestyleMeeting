@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "556530768738",
+    "firebase_url": "https://freestyle-meeting.firebaseio.com",
+    "project_id": "freestyle-meeting",
+    "storage_bucket": "freestyle-meeting.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:556530768738:android:ad9a1cf0eab18869d3aa3b",
+        "android_client_info": {
+          "package_name": "com.example.freestylemeeting"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "556530768738-6cvifq18tqm2crdharstaqsqo14kshio.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBz3XocDCP6y99ezFK72UYvl2iWIY-wA3s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "556530768738-6cvifq18tqm2crdharstaqsqo14kshio.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
