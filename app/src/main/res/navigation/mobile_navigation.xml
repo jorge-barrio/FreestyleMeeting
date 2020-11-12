@@ -7,8 +7,8 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.example.freestylemeeting.ui.home.HomeFragment"
-        android:label="@string/menu_home"
+        android:name="com.example.freestylemeeting.HomeFragment"
+        android:label="@string/app_name"
         tools:layout="@layout/fragment_home" />
 
     <fragment
