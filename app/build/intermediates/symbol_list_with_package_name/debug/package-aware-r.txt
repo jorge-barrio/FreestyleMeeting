@@ -894,6 +894,11 @@ bool abc_action_bar_embed_tabs
 bool abc_allow_stacked_button_bar
 bool abc_config_actionMenuItemAllCaps
 bool mtrl_btn_textappearance_all_caps
+color AzulClaro
+color AzulClaro2
+color AzulOscuro1
+color AzulOscuro2
+color AzulOscuro3
 color abc_background_cache_hint_selector_material_dark
 color abc_background_cache_hint_selector_material_light
 color abc_btn_colored_borderless_text_material
@@ -1592,6 +1597,7 @@ drawable ic_mtrl_checked_circle
 drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
+drawable iconsnow
 drawable material_ic_calendar_black_24dp
 drawable material_ic_clear_black_24dp
 drawable material_ic_edit_black_24dp
@@ -1719,7 +1725,6 @@ id cancel_button
 id center
 id center_horizontal
 id center_vertical
-id cerrrarSesion
 id chain
 id chains
 id checkbox
@@ -1772,6 +1777,10 @@ id dropdown_menu
 id easeIn
 id easeInOut
 id easeOut
+id editTextEmail
+id editTextName
+id editTextNombreCompleto
+id editTextPassword
 id edit_query
 id email
 id emailEditText
@@ -1810,6 +1819,7 @@ id ifRoom
 id ignore
 id ignoreRequest
 id image
+id imageView
 id info
 id invisible
 id italic
@@ -1826,6 +1836,7 @@ id line3
 id linear
 id listMode
 id list_item
+id logOut
 id masked
 id message
 id middle
@@ -1891,6 +1902,7 @@ id provider
 id radio
 id ratio
 id rectangles
+id registerButton
 id reverseSawtooth
 id right
 id right_icon
@@ -1971,6 +1983,7 @@ id textSpacerNoButtons
 id textSpacerNoTitle
 id textStart
 id textView
+id textView2
 id text_input_end_icon
 id text_input_start_icon
 id textinput_counter
@@ -2071,6 +2084,7 @@ layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_auth
 layout activity_home
+layout activity_register
 layout custom_dialog
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog

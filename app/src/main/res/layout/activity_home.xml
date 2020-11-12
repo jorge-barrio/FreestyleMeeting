@@ -37,13 +37,13 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/cerrrarSesion"
+                android:id="@+id/logOut"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:backgroundTint="@color/naranja"
+                android:backgroundTint="@color/azulOscuro"
                 android:text="Cerrar sesión"
-                android:textColor="@color/black" />
+                android:textColor="@color/white" />
 
         </LinearLayout>
     </LinearLayout>

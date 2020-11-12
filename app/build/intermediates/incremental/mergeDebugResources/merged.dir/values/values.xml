@@ -374,6 +374,11 @@
     <bool name="abc_allow_stacked_button_bar">false</bool>
     <bool name="abc_config_actionMenuItemAllCaps">true</bool>
     <bool name="mtrl_btn_textappearance_all_caps">true</bool>
+    <color name="AzulClaro">#8EA8C3</color>
+    <color name="AzulClaro2">#CBF7ED</color>
+    <color name="AzulOscuro1">#161925</color>
+    <color name="AzulOscuro2">#23395B</color>
+    <color name="AzulOscuro3">#406E8E</color>
     <color name="abc_decor_view_status_guard">#ff000000</color>
     <color name="abc_decor_view_status_guard_light">#ffffffff</color>
     <color name="abc_search_url_text_normal">#7fa87f</color>
@@ -3587,8 +3592,8 @@
   </style>
     <style name="Theme.FreestyleMeeting" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/amarillo</item>
-        <item name="colorPrimaryVariant">@color/ambar</item>
+        <item name="colorPrimary">@color/AzulClaro</item>
+        <item name="colorPrimaryVariant">@color/AzulOscuro2</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/azul</item>
