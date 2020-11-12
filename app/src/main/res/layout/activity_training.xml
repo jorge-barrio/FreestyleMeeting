@@ -75,7 +75,7 @@
                         android:text="Esqui Freestyle" />
 
                     <Button
-                        android:id="@+id/intermedioButton"
+                        android:id="@+id/snowboardButton"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Snowboard" />
@@ -87,7 +87,7 @@
                         android:text="Kilometro lanzado" />
 
                     <Button
-                        android:id="@+id/expertoButton"
+                        android:id="@+id/esquiFondoButton"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Esqui de Fondo" />
@@ -107,7 +107,7 @@
             android:layout_marginTop="20dp">
 
             <TextView
-                android:id="@+id/escogeModalidad"
+                android:id="@+id/escogeNivel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -133,7 +133,7 @@
                     android:orientation="vertical">
 
                     <Button
-                        android:id="@+id/freestyleButton"
+                        android:id="@+id/principianteButton"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Principiante" />
