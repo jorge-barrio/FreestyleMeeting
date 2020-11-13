@@ -11,7 +11,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -35,7 +34,7 @@ public class authActivity extends AppCompatActivity {
 
 
         myAuth = FirebaseAuth.getInstance();
-        Button registerButton = (Button) findViewById(R.id.signUp);
+        Button registerButton = (Button) findViewById(R.id.registro);
         Button loginButton = (Button) findViewById(R.id.logOut);
         authActivity.this.setTitle("Inicio de Sesión");
         registerButton.setOnClickListener(new View.OnClickListener() {

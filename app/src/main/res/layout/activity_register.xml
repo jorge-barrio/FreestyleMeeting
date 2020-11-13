@@ -4,15 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="20dp"
+
     tools:context=".RegisterActivity">
+    <ImageView android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:src="@drawable/fondo"
+        android:scaleType="centerCrop"
+        >
+    </ImageView>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:padding="20dp"
         tools:layout_editor_absoluteX="137dp"
         tools:layout_editor_absoluteY="104dp">
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/skiicon"
+            android:layout_marginBottom="10dp"
+            />
         <EditText
             android:id = "@+id/editTextName"
             android:layout_width="match_parent"
@@ -35,20 +50,23 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:inputType="textPassword"
             android:hint="Contraseña"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation ="vertical">
+            android:orientation ="horizontal">
 
             <Button
-                android:id="@+id/registerButton"
-                android:layout_width="match_parent"
+                android:id="@+id/registrarse"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/btn_redondeado_register"
                 android:text="Registrarse"
-                android:textColor="@color/black"
-                android:backgroundTint="@color/AzulClaro"
-                />
+                android:textColor="@color/white"
+                app:backgroundTint="@color/azulOscuro" />
 
         </LinearLayout>
 

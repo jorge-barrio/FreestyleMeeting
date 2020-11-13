@@ -16,8 +16,20 @@
         "source": "D:\\Android_freestylemeeting\\practica-final\\app\\src\\main\\res\\layout\\activity_auth.xml"
     },
     {
+        "merged": "D:\\Android_freestylemeeting\\practica-final\\app\\build\\intermediates\\res\\merged\\debug\\drawable_facebooklogo.png.flat",
+        "source": "D:\\Android_freestylemeeting\\practica-final\\app\\src\\main\\res\\drawable\\facebooklogo.png"
+    },
+    {
         "merged": "D:\\Android_freestylemeeting\\practica-final\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_launcher_background.png.flat",
         "source": "D:\\Android_freestylemeeting\\practica-final\\app\\build\\generated\\res\\pngs\\debug\\drawable-mdpi\\ic_launcher_background.png"
+    },
+    {
+        "merged": "D:\\Android_freestylemeeting\\practica-final\\app\\build\\intermediates\\res\\merged\\debug\\drawable_btn_redondeado_white.xml.flat",
+        "source": "D:\\Android_freestylemeeting\\practica-final\\app\\src\\main\\res\\drawable\\btn_redondeado_white.xml"
+    },
+    {
+        "merged": "D:\\Android_freestylemeeting\\practica-final\\app\\build\\intermediates\\res\\merged\\debug\\drawable_circulo_image.xml.flat",
+        "source": "D:\\Android_freestylemeeting\\practica-final\\app\\src\\main\\res\\drawable\\circulo_image.xml"
     },
     {
         "merged": "D:\\Android_freestylemeeting\\practica-final\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_ic_launcher.png.flat",
@@ -28,6 +40,10 @@
         "source": "D:\\Android_freestylemeeting\\practica-final\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher_round.xml"
     },
     {
+        "merged": "D:\\Android_freestylemeeting\\practica-final\\app\\build\\intermediates\\res\\merged\\debug\\drawable_btn_redondeado_register.xml.flat",
+        "source": "D:\\Android_freestylemeeting\\practica-final\\app\\src\\main\\res\\drawable\\btn_redondeado_register.xml"
+    },
+    {
         "merged": "D:\\Android_freestylemeeting\\practica-final\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xhdpi_ic_launcher_round.png.flat",
         "source": "D:\\Android_freestylemeeting\\practica-final\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher_round.png"
     },
@@ -36,8 +52,16 @@
         "source": "D:\\Android_freestylemeeting\\practica-final\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher.xml"
     },
     {
+        "merged": "D:\\Android_freestylemeeting\\practica-final\\app\\build\\intermediates\\res\\merged\\debug\\drawable_fondo2.jpg.flat",
+        "source": "D:\\Android_freestylemeeting\\practica-final\\app\\src\\main\\res\\drawable\\fondo2.jpg"
+    },
+    {
         "merged": "D:\\Android_freestylemeeting\\practica-final\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_launcher_background.png.flat",
         "source": "D:\\Android_freestylemeeting\\practica-final\\app\\build\\generated\\res\\pngs\\debug\\drawable-xhdpi\\ic_launcher_background.png"
+    },
+    {
+        "merged": "D:\\Android_freestylemeeting\\practica-final\\app\\build\\intermediates\\res\\merged\\debug\\drawable_facebooklogo2.png.flat",
+        "source": "D:\\Android_freestylemeeting\\practica-final\\app\\src\\main\\res\\drawable\\facebooklogo2.png"
     },
     {
         "merged": "D:\\Android_freestylemeeting\\practica-final\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_ic_launcher_background.xml.flat",
@@ -50,6 +74,10 @@
     {
         "merged": "D:\\Android_freestylemeeting\\practica-final\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi_ic_launcher.png.flat",
         "source": "D:\\Android_freestylemeeting\\practica-final\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "D:\\Android_freestylemeeting\\practica-final\\app\\build\\intermediates\\res\\merged\\debug\\drawable_googlelogo.png.flat",
+        "source": "D:\\Android_freestylemeeting\\practica-final\\app\\src\\main\\res\\drawable\\googlelogo.png"
     },
     {
         "merged": "D:\\Android_freestylemeeting\\practica-final\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi_ic_launcher_round.png.flat",
@@ -68,8 +96,20 @@
         "source": "D:\\Android_freestylemeeting\\practica-final\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher_round.png"
     },
     {
+        "merged": "D:\\Android_freestylemeeting\\practica-final\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_skiicon.png.flat",
+        "source": "D:\\Android_freestylemeeting\\practica-final\\app\\src\\main\\res\\drawable-v24\\skiicon.png"
+    },
+    {
+        "merged": "D:\\Android_freestylemeeting\\practica-final\\app\\build\\intermediates\\res\\merged\\debug\\drawable_fondo.jpg.flat",
+        "source": "D:\\Android_freestylemeeting\\practica-final\\app\\src\\main\\res\\drawable\\fondo.jpg"
+    },
+    {
         "merged": "D:\\Android_freestylemeeting\\practica-final\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_ic_launcher_round.png.flat",
         "source": "D:\\Android_freestylemeeting\\practica-final\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "D:\\Android_freestylemeeting\\practica-final\\app\\build\\intermediates\\res\\merged\\debug\\drawable_input.xml.flat",
+        "source": "D:\\Android_freestylemeeting\\practica-final\\app\\src\\main\\res\\drawable\\input.xml"
     },
     {
         "merged": "D:\\Android_freestylemeeting\\practica-final\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi_ic_launcher_round.png.flat",
