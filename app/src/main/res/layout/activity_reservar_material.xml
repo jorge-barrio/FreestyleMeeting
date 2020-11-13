@@ -115,5 +115,19 @@
                 android:textSize="20dp"
                 app:backgroundTint="@color/azul" />
         </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <Button
+                android:id="@+id/reservarButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Reservar"
+                android:layout_margin="20dp"
+                android:textColorHighlight="@color/azul" />
+        </TableRow>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
