@@ -9,14 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FreestyleMeeting">
-        <activity android:name=".HomeActivity"></activity>
-        <activity android:name=".authActivity">
+        <activity android:name=".GroupActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity android:name=".CrearGruposActivity" />
+        <activity android:name=".HomeActivity" />
+        <activity android:name=".authActivity" />
     </application>
 
 </manifest>
