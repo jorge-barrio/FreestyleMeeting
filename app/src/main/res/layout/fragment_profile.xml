@@ -4,12 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ProfileFragment">
+    tools:context=".ProfileFragment"
+    android:background="@color/gris">
 
     <View
         android:layout_width="match_parent"
         android:layout_height="210dp"
-        android:background="@color/AzulClaro2" />
+        android:background="@color/AzulOscuro3" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -39,6 +40,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="85dp"
+                    android:background="@color/white"
                     app:contentPaddingTop="15dp"
                     app:contentPaddingRight="15dp"
                     app:contentPaddingLeft="15dp"
@@ -119,7 +121,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:text="Followers"
+                            android:text="Amigos"
                             android:textSize="20sp"/>
                     </LinearLayout>
                 </LinearLayout>
@@ -129,16 +131,17 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:layout_marginTop="30dp"
-                    android:weightSum="2">
+                    android:weightSum="1">
 
                     <Button
                         android:layout_width="125dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginRight="10dp"
                         android:layout_marginLeft="10dp"
-                        android:textColor="@color/white"
-                        android:background=""
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1"
+                        android:background="@color/AzulClaro"
+                        android:text="Solicitar amistad"
+                        android:textColor="@color/white" />
 
                 </LinearLayout>
             </LinearLayout>
