@@ -5,7 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".HomeActivity">
-
+    <ImageView android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:src="@drawable/fondo2"
+        android:scaleType="centerCrop"
+        ></ImageView>>
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -37,13 +41,13 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/cerrrarSesion"
+                android:id="@+id/logOut"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:backgroundTint="@color/naranja"
+                android:backgroundTint="@color/azulOscuro"
                 android:text="Cerrar sesión"
-                android:textColor="@color/black" />
+                android:textColor="@color/white" />
 
         </LinearLayout>
     </LinearLayout>

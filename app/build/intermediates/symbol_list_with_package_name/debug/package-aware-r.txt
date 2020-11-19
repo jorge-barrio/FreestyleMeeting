@@ -894,6 +894,11 @@ bool abc_action_bar_embed_tabs
 bool abc_allow_stacked_button_bar
 bool abc_config_actionMenuItemAllCaps
 bool mtrl_btn_textappearance_all_caps
+color AzulClaro
+color AzulClaro2
+color AzulOscuro1
+color AzulOscuro2
+color AzulOscuro3
 color abc_background_cache_hint_selector_material_dark
 color abc_background_cache_hint_selector_material_light
 color abc_btn_colored_borderless_text_material
@@ -1559,6 +1564,9 @@ drawable btn_radio_off_mtrl
 drawable btn_radio_off_to_on_mtrl_animation
 drawable btn_radio_on_mtrl
 drawable btn_radio_on_to_off_mtrl_animation
+drawable btn_redondeado_register
+drawable btn_redondeado_white
+drawable circulo_image
 drawable common_full_open_on_phone
 drawable common_google_signin_btn_icon_dark
 drawable common_google_signin_btn_icon_dark_focused
@@ -1584,14 +1592,21 @@ drawable design_ic_visibility
 drawable design_ic_visibility_off
 drawable design_password_eye
 drawable design_snackbar_background
+drawable facebooklogo
+drawable facebooklogo2
+drawable fondo
+drawable fondo2
 drawable googleg_disabled_color_18
 drawable googleg_standard_color_18
+drawable googlelogo
 drawable ic_launcher_background
 drawable ic_launcher_foreground
 drawable ic_mtrl_checked_circle
 drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
+drawable iconsnow
+drawable input
 drawable material_ic_calendar_black_24dp
 drawable material_ic_clear_black_24dp
 drawable material_ic_edit_black_24dp
@@ -1621,6 +1636,7 @@ drawable notification_template_icon_bg
 drawable notification_template_icon_low_bg
 drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
+drawable skiicon
 drawable test_custom_background
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
@@ -1719,7 +1735,6 @@ id cancel_button
 id center
 id center_horizontal
 id center_vertical
-id cerrrarSesion
 id chain
 id chains
 id checkbox
@@ -1772,6 +1787,10 @@ id dropdown_menu
 id easeIn
 id easeInOut
 id easeOut
+id editTextEmail
+id editTextName
+id editTextNombreCompleto
+id editTextPassword
 id edit_query
 id email
 id emailEditText
@@ -1810,6 +1829,7 @@ id ifRoom
 id ignore
 id ignoreRequest
 id image
+id imageView
 id info
 id invisible
 id italic
@@ -1826,6 +1846,7 @@ id line3
 id linear
 id listMode
 id list_item
+id logOut
 id masked
 id message
 id middle
@@ -1891,6 +1912,8 @@ id provider
 id radio
 id ratio
 id rectangles
+id registrarse
+id registro
 id reverseSawtooth
 id right
 id right_icon
@@ -1923,7 +1946,6 @@ id shortcut
 id showCustom
 id showHome
 id showTitle
-id signUp
 id sin
 id skipCollapsed
 id slide
@@ -1971,6 +1993,8 @@ id textSpacerNoButtons
 id textSpacerNoTitle
 id textStart
 id textView
+id textView2
+id textView4
 id text_input_end_icon
 id text_input_start_icon
 id textinput_counter
@@ -2071,6 +2095,7 @@ layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_auth
 layout activity_home
+layout activity_register
 layout custom_dialog
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog
