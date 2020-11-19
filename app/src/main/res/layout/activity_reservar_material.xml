@@ -44,23 +44,23 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/esquiTextView"
+                    android:id="@+id/completaCarvingTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_margin="20dp"
-                    android:padding="20dp"
-                    android:text="Esquis:"
+                    android:layout_margin="10dp"
+                    android:padding="10dp"
+                    android:text="Completa Carving/Snow:"
                     android:textSize="20dp"
                     app:backgroundTint="@color/azul" />
 
                 <EditText
-                    android:id="@+id/numberEsquisEditText"
+                    android:id="@+id/completaCarvingEditText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_margin="20dp"
-                    android:ems="10"
+                    android:gravity="right"
+                    android:layout_margin="10dp"
+                    android:ems="2"
                     android:inputType="textPersonName"
                     android:text=" " />
             </LinearLayout>
@@ -77,23 +77,23 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/tablaSnowTextView"
+                    android:id="@+id/completaGEspecialTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_margin="20dp"
-                    android:padding="20dp"
-                    android:text="Tabla Snow:"
+                    android:layout_margin="10dp"
+                    android:padding="10dp"
+                    android:text="Completa G.Especial:"
                     android:textSize="20dp"
                     app:backgroundTint="@color/azul" />
 
                 <EditText
-                    android:id="@+id/numberSnowTableEditText"
+                    android:id="@+id/completaGEspecialEditText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_margin="20dp"
-                    android:ems="15"
+                    android:gravity="center_vertical|right"
+                    android:layout_margin="10dp"
+                    android:ems="2"
                     android:inputType="textPersonName"
                     android:text=" " />
             </LinearLayout>
@@ -102,18 +102,168 @@
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="357dp">
+            android:layout_height="wrap_content" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/completaInfantiltextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:padding="10dp"
+                    android:text="Completa Infantil:"
+                    android:textSize="20dp"
+                    app:backgroundTint="@color/azul" />
+
+                <EditText
+                    android:id="@+id/completaInfantilEditText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:ems="2"
+                    android:inputType="textPersonName"
+                    android:text=" " />
+            </LinearLayout>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/esquiGMediaTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:padding="10dp"
+                    android:text="Esqui G. Media:"
+                    android:textSize="20dp"
+                    app:backgroundTint="@color/azul" />
+
+                <EditText
+                    android:id="@+id/esquiGMediaEditText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:ems="2"
+                    android:inputType="textPersonName"
+                    android:text=" " />
+            </LinearLayout>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/esquiGEspecialTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:padding="10dp"
+                    android:text="Esqui G. Especial:"
+                    android:textSize="20dp"
+                    app:backgroundTint="@color/azul" />
+
+                <EditText
+                    android:id="@+id/esquiGEspecialEditText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:ems="2"
+                    android:inputType="textPersonName"
+                    android:text=" " />
+            </LinearLayout>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/esquiGAltaTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:padding="10dp"
+                    android:text="Esqui G. Alta"
+                    android:textSize="20dp"
+                    app:backgroundTint="@color/azul" />
+
+                <EditText
+                    android:id="@+id/esquiGAltaEditText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:ems="2"
+                    android:inputType="textPersonName"
+                    android:text=" " />
+            </LinearLayout>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp">
+
+            <TextView
+                android:id="@+id/numDiasTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:padding="10dp"
+                android:text="Dias:"
+                android:textSize="20dp"
+                app:backgroundTint="@color/azul" />
+
+            <EditText
+                android:id="@+id/numDiasEditText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:ems="2"
+                android:inputType="textPersonName"
+                android:text=" " />
 
             <TextView
                 android:id="@+id/totalPrecioTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="150dp"
+                android:gravity="end|center"
                 android:padding="20dp"
                 android:text="Total: 35€"
                 android:textSize="20dp"
                 app:backgroundTint="@color/azul" />
+
         </TableRow>
 
         <TableRow
