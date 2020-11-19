@@ -9,6 +9,12 @@
         android:roundIcon="@mipmap/logo_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FreestyleMeeting">
+        <activity android:name=".authActivity" />
+        <activity android:name=".CrearGruposActivity" />
+        <activity android:name=".GroupActivity" />
+        <activity android:name=".HomeActivity" />
+        <activity android:name=".ListaPistaActivity" />
+        <activity android:name=".MyHome" />
         <activity
             android:name=".NavegationDrawerActivity"
             android:label="@string/title_activity_navegation_drawer"
@@ -18,9 +24,10 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".CrearGruposActivity" />
-        <activity android:name=".HomeActivity" />
-        <activity android:name=".authActivity" />
+        <activity android:name=".PistaActivity" />
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".ReservarMaterialActivity" />
+        <activity android:name=".TrainingActivity" />
     </application>
 
 </manifest>
