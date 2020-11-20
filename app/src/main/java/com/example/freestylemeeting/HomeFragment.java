@@ -78,7 +78,7 @@ public class HomeFragment extends Fragment {
 
         ski_trails_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v){
-                Intent intent = new Intent(getActivity(), PistaActivity.class);
+                Intent intent = new Intent(getActivity(), ListaPistaActivity.class);
                 startActivity(intent);
             }
         });

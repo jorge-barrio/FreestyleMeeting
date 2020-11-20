@@ -1,5 +1,6 @@
 package com.example.freestylemeeting.ui.slideshow;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,8 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.freestylemeeting.R;
+import com.example.freestylemeeting.ReservarMaterialActivity;
+import com.example.freestylemeeting.authActivity;
 
 public class SlideshowFragment extends Fragment {
 
@@ -30,6 +33,10 @@ public class SlideshowFragment extends Fragment {
                 textView.setText(s);
             }
         });
+
+        Intent intent = new Intent(getActivity(), authActivity.class);
+        startActivity(intent);
+
         return root;
     }
 }
