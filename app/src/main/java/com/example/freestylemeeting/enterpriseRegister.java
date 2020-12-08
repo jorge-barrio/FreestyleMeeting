@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.freestylemeeting.DAO.UserDao;
+import com.example.freestylemeeting.DAO.myCallback;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -59,7 +60,7 @@ public class enterpriseRegister extends AppCompatActivity {
                 UserEstacion estacion = new UserEstacion(name,email,password,cifEmpresa);
                 if(!name.isEmpty() && !email.isEmpty() && !cifEmpresa.isEmpty() && !password.isEmpty()){
                     if(password.length()>=6){
-                        registerUser(estacion);
+                        registerEmpresa(estacion);
                     }else{
                         Toast.makeText(enterpriseRegister.this, "El password ha de tener 6 o más caracteres",Toast.LENGTH_SHORT).show();
                     }
@@ -72,14 +73,21 @@ public class enterpriseRegister extends AppCompatActivity {
             }
         });
     }
-    private void registerUser(UserEstacion estacion){
-        if (UserDao.registerEnterprise(estacion)){
-            startActivity(new Intent(enterpriseRegister.this,authActivity.class));
-            finish();
+    private void registerEmpresa(UserEstacion estacion){
+        UserDao.registerEnterprise(estacion,new myCallback(){
+            @Override
+            public void onCallback(boolean status) {
+                if (status){
+                    startActivity(new Intent(enterpriseRegister.this,authActivity.class));
+                    finish();
+                }else{
+                    Toast.makeText(enterpriseRegister.this, "El formato del email no es el adecuado", Toast.LENGTH_SHORT).show();
+                }
 
-        }else{
-            Toast.makeText(enterpriseRegister.this, "El formato del email no es el adecuado", Toast.LENGTH_SHORT).show();
-        }
+            }
+
+        });
+
 
 
 

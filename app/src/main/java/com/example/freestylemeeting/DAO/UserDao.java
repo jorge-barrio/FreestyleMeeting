@@ -1,6 +1,7 @@
 package com.example.freestylemeeting.DAO;
 
 import android.content.Intent;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -32,10 +33,11 @@ public class UserDao {
         myAuth.signInWithEmailAndPassword(email,password);
         return myAuth.getCurrentUser();
     }
-    public static boolean registerUser(Client user){
-        status = false;
+    public static void registerUser(Client user, myCallback callback){
+
         myAuth = FirebaseAuth.getInstance();
         myDatabase = FirebaseFirestore.getInstance();
+        Log.d("ANTES","todavia no he entrado" );
         myAuth.createUserWithEmailAndPassword(user.getEmail(),user.getPassword()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -45,24 +47,27 @@ public class UserDao {
                     map.put("nombreCompleto",user.getNombreCompleto());
                     map.put("email",user.getEmail());
                     map.put("password",user.getPassword());
-
+                    Log.d("entrada dao","HE ENTRADO EN EL DAO CON EXITO" );
+                    callback.onCallback(true);
                     String id = myAuth.getCurrentUser().getUid();
                     myDatabase.collection("users").document(id).set(map);
-                    status = true;
+                }else{
+                    callback.onCallback(false);
                 }
             }
         });
-        return status;
 
     }
-    public static boolean registerEnterprise(UserEstacion estacion){
+    public static void registerEnterprise(UserEstacion estacion, myCallback callback){
         status = false;
         myAuth = FirebaseAuth.getInstance();
         myDatabase = FirebaseFirestore.getInstance();
+
         myAuth.createUserWithEmailAndPassword(estacion.getEmail(),estacion.getPassword()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
+
                     System.out.println("He entrado");
                     Map<String,Object> map = new HashMap<>();
                     map.put("nombre",estacion.getName());
@@ -72,14 +77,13 @@ public class UserDao {
 
                     String id = myAuth.getCurrentUser().getUid();
                     myDatabase.collection("enterprises").document(id).set(map);
-                    status = true;
-
+                    callback.onCallback(true);
                 }else{
-
+                    callback.onCallback(false);
                 }
             }
         });
-        return status;
+
     }
     public static FirebaseUser getActualUser(){
         myAuth = FirebaseAuth.getInstance();

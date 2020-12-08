@@ -5,12 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.freestylemeeting.DAO.UserDao;
+import com.example.freestylemeeting.DAO.myCallback;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -74,11 +76,20 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
     private void registerUser(Client user){
-        if (UserDao.registerUser(user)){
-            startActivity(new Intent(RegisterActivity.this,authActivity.class));
-            finish();
-        }else{
-            Toast.makeText(RegisterActivity.this, "El formato del email no es el adecuado", Toast.LENGTH_SHORT).show();
-        }
+        UserDao.registerUser(user,new myCallback(){
+            @Override
+            public void onCallback(boolean status) {
+                if (status){
+                    startActivity(new Intent(RegisterActivity.this,authActivity.class));
+                    finish();
+                }else{
+                    Toast.makeText(RegisterActivity.this, "El formato del email no es el adecuado", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+        });
+
+
     }
 }
