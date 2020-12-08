@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.freestylemeeting.DAO.UserDao;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -72,38 +73,18 @@ public class enterpriseRegister extends AppCompatActivity {
         });
     }
     private void registerUser(UserEstacion estacion){
-        myAuth.createUserWithEmailAndPassword(estacion.getEmail(),estacion.getPassword()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
-                    System.out.println("He entrado");
-                    Map<String,Object> map = new HashMap<>();
-                    map.put("nombre",estacion.getName());
-                    map.put("CIF",estacion.getCifEmpresa());
-                    map.put("email",estacion.getEmail());
-                    map.put("password",estacion.getPassword());
+        if (UserDao.registerEnterprise(estacion)){
+            startActivity(new Intent(enterpriseRegister.this,authActivity.class));
+            finish();
 
-                    String id = myAuth.getCurrentUser().getUid();
-                    myDatabase.collection("enterprises").document(id).set(map);
-                    startActivity(new Intent(enterpriseRegister.this,authActivity.class));
-                    finish();
+        }else{
+            Toast.makeText(enterpriseRegister.this, "El formato del email no es el adecuado", Toast.LENGTH_SHORT).show();
+        }
 
-                /*add(map).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                        @Override
-                        public void onSuccess(DocumentReference documentReference) {
 
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
 
-                        }
-                    });*/
-                }else{
-                    Toast.makeText(enterpriseRegister.this, "El formato del email no es el adecuado", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+
+
 
     }
 }

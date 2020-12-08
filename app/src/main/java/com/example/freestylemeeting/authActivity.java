@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.freestylemeeting.DAO.UserDao;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -93,7 +94,15 @@ public class authActivity extends AppCompatActivity {
     }*/
     private void loginUser(String email, String password){
 
-        myAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+
+        if(UserDao.loginUser(email,password)!=null){
+            startActivity(new Intent(authActivity.this, MyHome.class));
+            finish();
+        }else{
+            Toast.makeText(authActivity.this, "No se pudo iniciar sesión", Toast.LENGTH_SHORT).show();
+        }
+
+       /* myAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
@@ -103,7 +112,7 @@ public class authActivity extends AppCompatActivity {
                             .add(R.id.container, myFragment, HomeFragment.TAG)
                             .commit();*/
 
-                    startActivity(new Intent(authActivity.this, MyHome.class));
+                    /*startActivity(new Intent(authActivity.this, MyHome.class));
                     finish();
                 }else{
                     Toast.makeText(authActivity.this, "No se pudo iniciar sesión", Toast.LENGTH_SHORT).show();
@@ -112,7 +121,7 @@ public class authActivity extends AppCompatActivity {
             }
         });
 
-
+*/
     }
     @Override
     protected void onStart() {
