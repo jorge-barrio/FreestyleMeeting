@@ -3,12 +3,15 @@ package com.example.freestylemeeting;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import Modelo.Pista;
 
@@ -66,7 +69,16 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_home, container, false);
 
-        Button training = v.findViewById(R.id.training);
+        TextView estacion = v.findViewById(R.id.textNombreEstacion);
+
+        estacion.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v){
+                Intent intent = new Intent(getActivity(), SelectEstacionActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        CardView training = v.findViewById(R.id.cardEntrenamiento);
 
         training.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v){
@@ -75,7 +87,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        Button ski_trails_button = v.findViewById(R.id.ski_trails_button);
+        CardView ski_trails_button = v.findViewById(R.id.cardPistas);
 
         ski_trails_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v){
@@ -84,7 +96,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        Button group_button = v.findViewById(R.id.groups_button);
+        CardView group_button = v.findViewById(R.id.cardGrupos);
 
         group_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v){
@@ -93,7 +105,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        Button book_material_button = v.findViewById(R.id.book_material_button);
+        CardView book_material_button = v.findViewById(R.id.cardReservar);
 
         book_material_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v){
