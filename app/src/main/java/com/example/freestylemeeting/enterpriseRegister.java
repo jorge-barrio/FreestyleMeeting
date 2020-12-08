@@ -19,14 +19,13 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 
-import Modelo.Client;
 import Modelo.User;
+import Modelo.UserEstacion;
 
-
-public class RegisterActivity extends AppCompatActivity {
+public class enterpriseRegister extends AppCompatActivity {
     private EditText editTextName;
     private EditText editTextEmail;
-    private EditText editTextNombreCompleto;
+    private EditText editTextCif;
     private EditText editTextPassword;
     private Button registerButton;
     FirebaseAuth myAuth;
@@ -35,58 +34,58 @@ public class RegisterActivity extends AppCompatActivity {
     //Variables de datos a registrar
     private String name = "";
     private String email = "";
-    private String nombreCompleto = "";
+    private String cifEmpresa = "";
     private String password = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
+        setContentView(R.layout.activity_enterprise_register);
         myAuth = FirebaseAuth.getInstance();
         myDatabase = FirebaseFirestore.getInstance();
         editTextName = (EditText) findViewById(R.id.editTextName);
         editTextEmail = (EditText) findViewById(R.id.editTextEmail);
-        editTextNombreCompleto = (EditText) findViewById(R.id.editTextNombreCompleto);
+        editTextCif = (EditText) findViewById(R.id.editTextNombreCompleto);
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
-        RegisterActivity.this.setTitle("Registro");
+        enterpriseRegister.this.setTitle("Registro para empresas");
         registerButton = (Button) findViewById(R.id.registrarse);
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 name = editTextName.getText().toString();
                 email = editTextEmail.getText().toString();
-                nombreCompleto = editTextNombreCompleto.getText().toString();
+                cifEmpresa = editTextCif.getText().toString();
                 password = editTextPassword.getText().toString();
-                Client usuario = new Client(name,email,password,nombreCompleto);
-                if(!name.isEmpty() && !email.isEmpty() && !nombreCompleto.isEmpty() && !password.isEmpty()){
+                UserEstacion estacion = new UserEstacion(name,email,password,cifEmpresa);
+                if(!name.isEmpty() && !email.isEmpty() && !cifEmpresa.isEmpty() && !password.isEmpty()){
                     if(password.length()>=6){
-                        registerUser(usuario);
+                        registerUser(estacion);
                     }else{
-                        Toast.makeText(RegisterActivity.this, "El password ha de tener 6 o más caracteres",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(enterpriseRegister.this, "El password ha de tener 6 o más caracteres",Toast.LENGTH_SHORT).show();
                     }
 
 
                 }else{
-                    Toast.makeText(RegisterActivity.this, "Se deben completar todos los campos",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(enterpriseRegister.this, "Se deben completar todos los campos",Toast.LENGTH_SHORT).show();
                 }
 
             }
         });
     }
-    private void registerUser(Client user){
-        myAuth.createUserWithEmailAndPassword(user.getEmail(),user.getPassword()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+    private void registerUser(UserEstacion estacion){
+        myAuth.createUserWithEmailAndPassword(estacion.getEmail(),estacion.getPassword()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
                     System.out.println("He entrado");
                     Map<String,Object> map = new HashMap<>();
-                    map.put("nombre",user.getName());
-                    map.put("nombreCompleto",user.getNombreCompleto());
-                    map.put("email",user.getEmail());
-                    map.put("password",user.getPassword());
+                    map.put("nombre",estacion.getName());
+                    map.put("CIF",estacion.getCifEmpresa());
+                    map.put("email",estacion.getEmail());
+                    map.put("password",estacion.getPassword());
 
                     String id = myAuth.getCurrentUser().getUid();
-                    myDatabase.collection("users").document(id).set(map);
-                    startActivity(new Intent(RegisterActivity.this,authActivity.class));
+                    myDatabase.collection("enterprises").document(id).set(map);
+                    startActivity(new Intent(enterpriseRegister.this,authActivity.class));
                     finish();
 
                 /*add(map).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
@@ -101,7 +100,7 @@ public class RegisterActivity extends AppCompatActivity {
                         }
                     });*/
                 }else{
-                    Toast.makeText(RegisterActivity.this, "El formato del email no es el adecuado", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(enterpriseRegister.this, "El formato del email no es el adecuado", Toast.LENGTH_SHORT).show();
                 }
             }
         });

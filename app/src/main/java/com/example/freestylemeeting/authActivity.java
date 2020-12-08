@@ -2,12 +2,14 @@ package com.example.freestylemeeting;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -36,13 +38,21 @@ public class authActivity extends AppCompatActivity {
         myAuth = FirebaseAuth.getInstance();
         Button registerButton = (Button) findViewById(R.id.registro);
         Button loginButton = (Button) findViewById(R.id.logOut);
+        TextView enterpriseRegister = (TextView) findViewById(R.id.enterpriseRegister);
         authActivity.this.setTitle("Inicio de Sesión");
+        enterpriseRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(authActivity.this, enterpriseRegister.class));
+            }
+        });
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(authActivity.this, RegisterActivity.class));
             }
         });
+
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -87,7 +97,13 @@ public class authActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    startActivity(new Intent(authActivity.this, HomeActivity.class));
+                    /*HomeFragment myFragment = HomeFragment.newInstance("10","10");
+                    // R.id.container - the id of a view that will hold your fragment; usually a FrameLayout
+                    getSupportFragmentManager().beginTransaction()
+                            .add(R.id.container, myFragment, HomeFragment.TAG)
+                            .commit();*/
+
+                    startActivity(new Intent(authActivity.this, MyHome.class));
                     finish();
                 }else{
                     Toast.makeText(authActivity.this, "No se pudo iniciar sesión", Toast.LENGTH_SHORT).show();
