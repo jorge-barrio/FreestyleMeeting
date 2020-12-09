@@ -5,4 +5,12 @@ public class Estacion {
     private Pista[] pistas;
     private String latitud;
     private String longitud;
+
+    public Estacion (String nombre){
+        this.nombre = nombre;
+    }
+
+    public String getNombre(){
+        return nombre;
+    }
 }

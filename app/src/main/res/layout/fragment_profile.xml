@@ -140,7 +140,7 @@
                         android:layout_marginRight="10dp"
                         android:layout_weight="1"
                         android:background="@color/AzulClaro"
-                        android:text="Solicitar amistad"
+                        android:text="Cerrar sesion"
                         android:textColor="@color/white" />
 
                 </LinearLayout>
