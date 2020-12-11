@@ -1,8 +1,11 @@
 package Modelo;
 
+import java.util.ArrayList;
+
 public class Estacion {
     private String nombre;
-    private Pista[] pistas;
+    private ArrayList<Pista> pistas;
+    private ArrayList<PackReserva> packsReserva;
     private String latitud;
     private String longitud;
 

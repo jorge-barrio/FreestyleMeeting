@@ -9,8 +9,9 @@
         android:roundIcon="@mipmap/logo_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FreestyleMeeting">
-        <activity android:name=".enterpriseRegister"></activity>
-        <activity android:name=".SelectEstacionActivity"></activity>
+        <activity android:name=".pistaActivityEnterprise"></activity>
+        <activity android:name=".enterpriseRegister" />
+        <activity android:name=".SelectEstacionActivity" />
         <activity android:name=".authActivity" />
         <activity android:name=".CrearGruposActivity" />
         <activity android:name=".GroupActivity" />

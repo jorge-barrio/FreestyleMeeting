@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,10 +14,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.freestylemeeting.DAO.UserDao;
+import com.example.freestylemeeting.DAO.myCallback;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class authActivity extends AppCompatActivity {
     private EditText editTextPassword;
@@ -93,35 +96,27 @@ public class authActivity extends AppCompatActivity {
         });
     }*/
     private void loginUser(String email, String password){
+        UserDao.loginUser(email,password,new myCallback(){
+             @Override
+             public void onCallback(boolean status) {
+                 if (status){
+                     FirebaseUser user = myAuth.getCurrentUser();
+                     if(UserDao.isEnterprise(user)){
 
+                         startActivity(new Intent(authActivity.this, pistaActivityEnterprise.class));
+                         finish();
+                     }else{
+                         startActivity(new Intent(authActivity.this, MyHome.class));
+                         finish();
+                     }
 
-        if(UserDao.loginUser(email,password)!=null){
-            startActivity(new Intent(authActivity.this, MyHome.class));
-            finish();
-        }else{
-            Toast.makeText(authActivity.this, "No se pudo iniciar sesión", Toast.LENGTH_SHORT).show();
-        }
+                 }else{
+                     Toast.makeText(authActivity.this, "El formato del email no es el adecuado", Toast.LENGTH_SHORT).show();
+                 }
 
-       /* myAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
-                    /*HomeFragment myFragment = HomeFragment.newInstance("10","10");
-                    // R.id.container - the id of a view that will hold your fragment; usually a FrameLayout
-                    getSupportFragmentManager().beginTransaction()
-                            .add(R.id.container, myFragment, HomeFragment.TAG)
-                            .commit();*/
+             }
 
-                    /*startActivity(new Intent(authActivity.this, MyHome.class));
-                    finish();
-                }else{
-                    Toast.makeText(authActivity.this, "No se pudo iniciar sesión", Toast.LENGTH_SHORT).show();
-
-                }
-            }
-        });
-
-*/
+         });
     }
     @Override
     protected void onStart() {

@@ -17,6 +17,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,10 +29,19 @@ public class UserDao {
     static FirebaseFirestore myDatabase;
     static boolean status;
 
-    public static FirebaseUser loginUser(String email, String password){
+    public static void loginUser(String email, String password, myCallback callback){
         myAuth = FirebaseAuth.getInstance();
-        myAuth.signInWithEmailAndPassword(email,password);
-        return myAuth.getCurrentUser();
+        myAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful()){
+                    callback.onCallback(true);
+                }else{
+                    callback.onCallback(false);
+                }
+            }
+        });
+
     }
     public static void registerUser(Client user, myCallback callback){
 
@@ -42,11 +52,17 @@ public class UserDao {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
+                    ArrayList <Object> entrenamientos = new ArrayList<Object>();
+                    ArrayList <Object> reservas = new ArrayList<Object>();
+
                     Map<String,Object> map = new HashMap<>();
                     map.put("nombre",user.getName());
                     map.put("nombreCompleto",user.getNombreCompleto());
                     map.put("email",user.getEmail());
                     map.put("password",user.getPassword());
+                    map.put("entrenamientos",entrenamientos);
+                    map.put("reservas",reservas);
+                    map.put("currentEstacion","");
                     Log.d("entrada dao","HE ENTRADO EN EL DAO CON EXITO" );
                     callback.onCallback(true);
                     String id = myAuth.getCurrentUser().getUid();
@@ -88,5 +104,15 @@ public class UserDao {
     public static FirebaseUser getActualUser(){
         myAuth = FirebaseAuth.getInstance();
         return myAuth.getCurrentUser();
+    }
+
+    public static boolean isEnterprise(FirebaseUser user) {
+        myDatabase = FirebaseFirestore.getInstance();
+        if(myDatabase.collection("enterprises").document(user.getUid())!=null){
+            return true;
+        }else{
+            return false;
+        }
+
     }
 }

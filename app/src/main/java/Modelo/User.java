@@ -1,12 +1,12 @@
 package Modelo;
 
 public class User {
-    private String nombre;
+    private String nickname;
     private String email;
     private String password;
 
     public String getName() {
-        return nombre;
+        return nickname;
     }
 
     public String getEmail() {
@@ -18,7 +18,7 @@ public class User {
     }
     public User(){}
     public User(String name, String email, String password) {
-        this.nombre = name;
+        this.nickname = name;
         this.email = email;
         this.password = password;
     }
