@@ -1,6 +1,7 @@
 package Modelo;
 
 public class UserEstacion extends User {
+
     private String cifEmpresa;
 
     public String getCifEmpresa() {

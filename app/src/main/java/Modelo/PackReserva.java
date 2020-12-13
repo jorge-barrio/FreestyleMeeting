@@ -4,6 +4,16 @@ public class PackReserva {
     private String id;
     private String nombre;
     private String descripcion;
+    private float precio;
+
+    public PackReserva(){ }
+
+    public PackReserva(String id, String nombre, String descripcion, float precio) {
+        this.id = id;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.precio = precio;
+    }
 
     public String getId() {
         return id;
@@ -29,9 +39,8 @@ public class PackReserva {
         this.descripcion = descripcion;
     }
 
-    public PackReserva(String id, String nombre, String descripcion) {
-        this.id = id;
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-    }
+    public float getPrecio() { return precio; }
+
+    public void setPrecio(float precio){ this.precio = precio; }
+
 }

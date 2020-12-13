@@ -7,15 +7,15 @@
     tools:context=".SelectEstacionActivity">
 
     <TextView
-            android:id="@+id/textSeleccionarEstacion"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:text="Seleccionar estacion:\n-------------------------"
-            android:textColor="@color/AzulOscuro3"
-            android:textSize="26sp"
-            android:layout_marginRight="25dp"
-            android:layout_marginLeft="25dp"/>
+        android:id="@+id/textListaDePistas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="Lista de pistas:\n-------------------------"
+        android:textColor="@color/AzulOscuro3"
+        android:textSize="26sp"
+        android:layout_marginRight="25dp"
+        android:layout_marginLeft="25dp"/>
 
     <!--
     <ListView
@@ -32,8 +32,8 @@
     </ListView>-->
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/idListViewEstaciones"
-        android:layout_below="@+id/textSeleccionarEstacion"
+        android:id="@+id/idListViewPistas"
+        android:layout_below="@+id/textListaDePistas"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="15dp"

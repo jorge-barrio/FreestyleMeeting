@@ -29,7 +29,6 @@ import Modelo.User;
 public class RegisterActivity extends AppCompatActivity {
     private EditText editTextName;
     private EditText editTextEmail;
-    private EditText editTextNombreCompleto;
     private EditText editTextPassword;
     private Button registerButton;
     FirebaseAuth myAuth;
@@ -38,7 +37,6 @@ public class RegisterActivity extends AppCompatActivity {
     //Variables de datos a registrar
     private String name = "";
     private String email = "";
-    private String nombreCompleto = "";
     private String password = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +46,6 @@ public class RegisterActivity extends AppCompatActivity {
         myDatabase = FirebaseFirestore.getInstance();
         editTextName = (EditText) findViewById(R.id.editTextName);
         editTextEmail = (EditText) findViewById(R.id.editTextEmail);
-        editTextNombreCompleto = (EditText) findViewById(R.id.editTextNombreCompleto);
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
         RegisterActivity.this.setTitle("Registro");
         registerButton = (Button) findViewById(R.id.registrarse);
@@ -57,10 +54,9 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View v) {
                 name = editTextName.getText().toString();
                 email = editTextEmail.getText().toString();
-                nombreCompleto = editTextNombreCompleto.getText().toString();
                 password = editTextPassword.getText().toString();
-                Client usuario = new Client(name,email,password,nombreCompleto);
-                if(!name.isEmpty() && !email.isEmpty() && !nombreCompleto.isEmpty() && !password.isEmpty()){
+                Client usuario = new Client(name,email,password);
+                if(!name.isEmpty() && !email.isEmpty() && !password.isEmpty()){
                     if(password.length()>=6){
                         registerUser(usuario);
                     }else{

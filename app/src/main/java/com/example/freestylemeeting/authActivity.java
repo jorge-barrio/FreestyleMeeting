@@ -1,12 +1,9 @@
 package com.example.freestylemeeting;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,11 +12,11 @@ import android.widget.Toast;
 
 import com.example.freestylemeeting.DAO.UserDao;
 import com.example.freestylemeeting.DAO.myCallback;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
+
+import Modelo.UserEstacion;
 
 public class authActivity extends AppCompatActivity {
     private EditText editTextPassword;
@@ -100,16 +97,19 @@ public class authActivity extends AppCompatActivity {
              @Override
              public void onCallback(boolean status) {
                  if (status){
-                     FirebaseUser user = myAuth.getCurrentUser();
-                     if(UserDao.isEnterprise(user)){
-
-                         startActivity(new Intent(authActivity.this, pistaActivityEnterprise.class));
-                         finish();
-                     }else{
-                         startActivity(new Intent(authActivity.this, MyHome.class));
-                         finish();
-                     }
-
+                     UserDao.getEnterprisesCollection().document(UserDao.getCurrentUser().getUid()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                         @Override
+                         public void onSuccess(DocumentSnapshot documentSnapshot) {
+                             UserEstacion userEstacion = documentSnapshot.toObject(UserEstacion.class);
+                             if(userEstacion != null){
+                                 startActivity(new Intent(authActivity.this, pistaActivityEnterprise.class));
+                                 finish();
+                             }else{
+                                 startActivity(new Intent(authActivity.this, NavegationDrawerActivity.class));
+                                 finish();
+                             }
+                         }
+                     });
                  }else{
                      Toast.makeText(authActivity.this, "El formato del email no es el adecuado", Toast.LENGTH_SHORT).show();
                  }
@@ -120,11 +120,29 @@ public class authActivity extends AppCompatActivity {
     }
     @Override
     protected void onStart() {
-
         super.onStart();
-        if(myAuth.getCurrentUser() !=null){
-            startActivity(new Intent(authActivity.this, HomeActivity.class));
-            finish();
+        if(UserDao.sesionIniciada()){
+            UserDao.getEnterprisesCollection().document(UserDao.getCurrentUser().getUid()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                @Override
+                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                    UserEstacion userEstacion = documentSnapshot.toObject(UserEstacion.class);
+                    if(userEstacion != null){
+                        startActivity(new Intent(authActivity.this, pistaActivityEnterprise.class));
+                        finish();
+                    }else{
+                        startActivity(new Intent(authActivity.this, NavegationDrawerActivity.class));
+                        finish();
+                    }
+                }
+            });
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 }

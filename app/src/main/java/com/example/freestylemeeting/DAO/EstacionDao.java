@@ -1,30 +1,50 @@
 package com.example.freestylemeeting.DAO;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import Modelo.Estacion;
 import Modelo.Pista;
 
 
+
 public class EstacionDao {
 
-    static FirebaseFirestore myDatabase = FirebaseFirestore.getInstance();
-    private final static String callectionEstacionesName = "Estaciones";
-    private final static String callectionPistasName = "Pistas";
+    private static FirebaseFirestore db;
+    public static Estacion estaciontmp = null;
 
-    public static Estacion[] getEstaciones(){
-        DocumentReference estaciones = myDatabase.collection(callectionEstacionesName).document();
-        System.out.println("Estaciones: "+estaciones);
-        //To-Do
-        Estacion[] result = {new Estacion("Alto campoo"), new Estacion("Baqueira-Beret"), new Estacion("Formigal")};
-        return result;
+    /**
+     * Crea una nueva estacion
+     * @param estacion
+     */
+    public static void postEstacion (Estacion estacion){
+        getEstacionesCollection().document(estacion.getCif()).set(estacion);
     }
 
-    public static Pista[] getPistasByEstacionId(String id){
-        CollectionReference pistas = myDatabase.collection(callectionEstacionesName).document(id).collection(callectionPistasName);
-        return new Pista[0];
+    /**
+     *
+     * @param cif
+     */
+    public void getEstacion (String cif, EstacionCallback estacionCallback) {
+        getEstacionesCollection().document(cif).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                Estacion estacion = documentSnapshot.toObject(Estacion.class);
+                estacionCallback.onCallback(estacion);
+            }
+        });
+    }
+
+    private static void saveEstacion(Estacion estacion) {
+        System.out.println("Aqui llego");
+        estaciontmp = estacion;
+    }
+
+    public static CollectionReference getEstacionesCollection(){
+         db = FirebaseFirestore.getInstance();
+         return db.collection("Estaciones");
     }
 }
 

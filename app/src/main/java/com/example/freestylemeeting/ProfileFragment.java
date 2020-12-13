@@ -1,5 +1,6 @@
 package com.example.freestylemeeting;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,6 +8,14 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
+
+import com.example.freestylemeeting.DAO.UserDao;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentSnapshot;
+
+import Modelo.Client;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -58,7 +67,40 @@ public class ProfileFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        View v = inflater.inflate(R.layout.fragment_profile, container, false);
+
+        if(UserDao.sesionIniciada()){
+            /* Mostrar datos del usuarios */
+            TextView nametext = v.findViewById(R.id.namePerfil);
+            TextView emailtext = v.findViewById(R.id.emailPerfil);
+            TextView numEntrenamientos = v.findViewById(R.id.numEstrenamientosPerfil);
+            TextView numReservas = v.findViewById(R.id.numReservasPerfil);
+            UserDao.getUsersCollection().document(UserDao.getCurrentUser().getUid()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                @Override
+                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                    Client cliente = documentSnapshot.toObject(Client.class);
+                    nametext.setText(cliente.getName());
+                    emailtext.setText(cliente.getEmail());
+                    numEntrenamientos.setText(""+cliente.getEntrenamientos().size());
+                    numReservas.setText(""+cliente.getReservas().size());
+                }
+            });
+        } else {
+            Intent intent = new Intent(getActivity(), authActivity.class);
+            startActivity(intent);
+        }
+
+        Button logOutButton = (Button) v.findViewById(R.id.logout_button);
+
+        logOutButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v){
+                UserDao.signOut();
+                startActivity(new Intent(getActivity(), authActivity.class));
+            }
+        });
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false);
+        return v;
     }
 }

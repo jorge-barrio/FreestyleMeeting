@@ -9,11 +9,16 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import Modelo.Pista;
+import com.example.freestylemeeting.DAO.EstacionDao;
+import com.example.freestylemeeting.DAO.UserDao;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentSnapshot;
+
+import Modelo.Client;
+import Modelo.Estacion;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,6 +32,9 @@ public class HomeFragment extends Fragment {
     public static final String TAG = "HomeFragment";
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+
+    // Estacion
+    TextView estaciontext;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -61,6 +69,9 @@ public class HomeFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+        //UserDao.usersCollection.document(UserDao.getActualUser().getUid()).get().addOnSuccessListener();
+
     }
 
     @Override
@@ -69,48 +80,135 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_home, container, false);
 
-        TextView estacion = v.findViewById(R.id.textNombreEstacion);
+        estaciontext = v.findViewById(R.id.textNombreEstacion);
+        if(UserDao.sesionIniciada()) {
+            UserDao.getUsersCollection().document(UserDao.getCurrentUser().getUid()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                @Override
+                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                    Client cliente = documentSnapshot.toObject(Client.class);
+                    String cifEstacion = cliente.getCurrentEstacion();
+                    if (cifEstacion == null) {
+                        estaciontext.setText("Seleccionar estacion");
+                    } else {
+                        System.out.println("CIFESTACION"+cifEstacion);
+                        EstacionDao.getEstacionesCollection().document(cifEstacion).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                            @Override
+                            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                Estacion estacion = documentSnapshot.toObject(Estacion.class);
+                                if (estacion != null)
+                                    estaciontext.setText(estacion.getNombre());
+                                else
+                                    estaciontext.setText("Seleccionar estacion");
+                            }
+                        });
+                    }
+                }
+            });
+        } else {
+            estaciontext.setText("Seleccionar estacion");
+        }
 
-        estacion.setOnClickListener(new View.OnClickListener() {
+        estaciontext.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v){
-                Intent intent = new Intent(getActivity(), SelectEstacionActivity.class);
-                startActivity(intent);
+                if(UserDao.sesionIniciada()) {
+                    Intent intent = new Intent(getActivity(), SelectEstacionActivity.class);
+                    startActivity(intent);
+                } else {
+                    Intent intent = new Intent(getActivity(), authActivity.class);
+                    startActivity(intent);
+                }
             }
         });
 
         CardView training = v.findViewById(R.id.cardEntrenamiento);
-
         training.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v){
-                Intent intent = new Intent(getActivity(), TrainingActivity.class);
-                startActivity(intent);
+                if(UserDao.sesionIniciada()) {
+                    UserDao.getUsersCollection().document(UserDao.getCurrentUser().getUid()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                        @Override
+                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+                            Client cliente = documentSnapshot.toObject(Client.class);
+                            if (cliente.getCurrentEstacion() == null) {
+                                Toast.makeText(getActivity(), "Selecciona antes una estacion", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Intent intent = new Intent(getActivity(), TrainingActivity.class);
+                                startActivity(intent);
+                            }
+                        }
+                    });
+                } else {
+                    Intent intent = new Intent(getActivity(), authActivity.class);
+                    startActivity(intent);
+                }
             }
         });
 
         CardView ski_trails_button = v.findViewById(R.id.cardPistas);
-
         ski_trails_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v){
-                Intent intent = new Intent(getActivity(), ListaPistaActivity.class);
-                startActivity(intent);
+                if(UserDao.sesionIniciada()) {
+                    UserDao.getUsersCollection().document(UserDao.getCurrentUser().getUid()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                        @Override
+                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+                            Client cliente = documentSnapshot.toObject(Client.class);
+                            if (cliente.getCurrentEstacion() == null) {
+                                Toast.makeText(getActivity(), "Selecciona antes una estacion", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Intent intent = new Intent(getActivity(), ListPistasActivity.class);
+                                startActivity(intent);
+                            }
+                        }
+                    });
+                } else {
+                    Intent intent = new Intent(getActivity(), authActivity.class);
+                    startActivity(intent);
+                }
             }
         });
 
         CardView group_button = v.findViewById(R.id.cardGrupos);
-
         group_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v){
-                Intent intent = new Intent(getActivity(), GroupActivity.class);
-                startActivity(intent);
+                if(UserDao.sesionIniciada()) {
+                    UserDao.getUsersCollection().document(UserDao.getCurrentUser().getUid()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                        @Override
+                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+                            Client cliente = documentSnapshot.toObject(Client.class);
+                            if (cliente.getCurrentEstacion() == null) {
+                                Toast.makeText(getActivity(), "Selecciona antes una estacion", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Intent intent = new Intent(getActivity(), GroupActivity.class);
+                                startActivity(intent);
+                            }
+                        }
+                    });
+                } else {
+                    Intent intent = new Intent(getActivity(), authActivity.class);
+                    startActivity(intent);
+                }
             }
         });
 
         CardView book_material_button = v.findViewById(R.id.cardReservar);
-
         book_material_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v){
-                Intent intent = new Intent(getActivity(), ReservarMaterialActivity.class);
-                startActivity(intent);
+                if(UserDao.sesionIniciada()) {
+                    UserDao.getUsersCollection().document(UserDao.getCurrentUser().getUid()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                        @Override
+                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+                            Client cliente = documentSnapshot.toObject(Client.class);
+                            if (cliente.getCurrentEstacion() == null) {
+                                Toast.makeText(getActivity(), "Selecciona antes una estacion", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Intent intent = new Intent(getActivity(), ReservarMaterialActivity.class);
+                                startActivity(intent);
+                            }
+                        }
+                    });
+                } else {
+                    Intent intent = new Intent(getActivity(), authActivity.class);
+                    startActivity(intent);
+                }
             }
         });
 

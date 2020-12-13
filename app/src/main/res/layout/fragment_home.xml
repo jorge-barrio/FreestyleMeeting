@@ -19,7 +19,11 @@
         android:textSize="20sp"
         android:gravity="center_horizontal"
         android:layout_marginRight="50dp"
-        android:layout_marginLeft="50dp"/>
+        android:layout_marginLeft="50dp"
+        android:shadowColor="@color/AzulOscuro3"
+        android:shadowDx="1.5"
+        android:shadowDy="1.5"
+        android:shadowRadius="1.6"/>
 
     <ImageView
         android:id="@+id/textBoxNombreEstacion"
@@ -39,15 +43,20 @@
         android:layout_width="wrap_content"
         android:layout_height="200dp"
         android:layout_below="@+id/textInfoNombreEstacion"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="50dp"
         android:layout_marginTop="15dp"
+        android:layout_marginRight="50dp"
+        android:gravity="center|center_horizontal|center_vertical"
         android:text="@string/nombreEstacion"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="36sp"
         android:textStyle="bold"
-        android:gravity="center"
-        android:layout_marginRight="50dp"
-        android:layout_marginLeft="50dp"/>
+        android:shadowColor="@color/AzulOscuro3"
+        android:shadowDx="5"
+        android:shadowDy="5"
+        android:shadowRadius="1.6"/>
 
     <GridLayout
         android:id="@+id/idGrid"

@@ -1,19 +1,18 @@
 package Modelo;
 
+import java.sql.Array;
 import java.util.ArrayList;
 
 public class Client extends User{
-    private String nombreCompleto;
+
     private ArrayList<Entrenamiento> entrenamientos;
-    private ArrayList<Reservas> reservas;
+    private ArrayList<Reserva> reservas;
     private String currentEstacion;
 
-    public String getNombreCompleto() {
-        return nombreCompleto;
-    }
+    public Client(){}
 
-    public void setNombreCompleto(String nombreCompleto) {
-        this.nombreCompleto = nombreCompleto;
+    public Client(String name, String email, String password){
+        super(name,email,password);
     }
 
     public ArrayList<Entrenamiento> getEntrenamientos() {
@@ -24,11 +23,11 @@ public class Client extends User{
         this.entrenamientos = entrenamientos;
     }
 
-    public ArrayList<Reservas> getReservas() {
+    public ArrayList<Reserva> getReservas() {
         return reservas;
     }
 
-    public void setReservas(ArrayList<Reservas> reservas) {
+    public void setReservas(ArrayList<Reserva> reservas) {
         this.reservas = reservas;
     }
 
@@ -38,13 +37,5 @@ public class Client extends User{
 
     public void setCurrentEstacion(String currentEstacion) {
         this.currentEstacion = currentEstacion;
-    }
-
-    public Client(){}
-    public Client(String name, String email, String password, String nombreCompleto){
-        super(name,email,password);
-        this.nombreCompleto=nombreCompleto;
-        this.entrenamientos = new ArrayList<Entrenamiento>();
-        this.reservas = new ArrayList<Reservas>();
     }
 }

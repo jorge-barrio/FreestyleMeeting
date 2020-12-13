@@ -1,19 +1,15 @@
 package com.example.freestylemeeting.DAO;
 
-import android.content.Intent;
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
-import com.example.freestylemeeting.RegisterActivity;
-import com.example.freestylemeeting.authActivity;
-import com.example.freestylemeeting.enterpriseRegister;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 
@@ -25,10 +21,18 @@ import Modelo.Client;
 import Modelo.UserEstacion;
 
 public class UserDao {
+
     static FirebaseAuth myAuth;
     static FirebaseFirestore myDatabase;
     static boolean status;
 
+    /**
+     * Logear Usuario
+     *
+     * @param email
+     * @param password
+     * @param callback
+     */
     public static void loginUser(String email, String password, myCallback callback){
         myAuth = FirebaseAuth.getInstance();
         myAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -43,8 +47,14 @@ public class UserDao {
         });
 
     }
-    public static void registerUser(Client user, myCallback callback){
 
+    /**
+     * Registrar usuario
+     *
+     * @param user
+     * @param callback
+     */
+    public static void registerUser(Client user, myCallback callback){
         myAuth = FirebaseAuth.getInstance();
         myDatabase = FirebaseFirestore.getInstance();
         Log.d("ANTES","todavia no he entrado" );
@@ -56,8 +66,7 @@ public class UserDao {
                     ArrayList <Object> reservas = new ArrayList<Object>();
 
                     Map<String,Object> map = new HashMap<>();
-                    map.put("nombre",user.getName());
-                    map.put("nombreCompleto",user.getNombreCompleto());
+                    map.put("name",user.getName());
                     map.put("email",user.getEmail());
                     map.put("password",user.getPassword());
                     map.put("entrenamientos",entrenamientos);
@@ -74,6 +83,12 @@ public class UserDao {
         });
 
     }
+
+    /**
+     *
+     * @param estacion
+     * @param callback
+     */
     public static void registerEnterprise(UserEstacion estacion, myCallback callback){
         status = false;
         myAuth = FirebaseAuth.getInstance();
@@ -86,7 +101,7 @@ public class UserDao {
 
                     System.out.println("He entrado");
                     Map<String,Object> map = new HashMap<>();
-                    map.put("nombre",estacion.getName());
+                    map.put("name",estacion.getName());
                     map.put("CIF",estacion.getCifEmpresa());
                     map.put("email",estacion.getEmail());
                     map.put("password",estacion.getPassword());
@@ -101,18 +116,31 @@ public class UserDao {
         });
 
     }
-    public static FirebaseUser getActualUser(){
+
+    public static FirebaseUser getCurrentUser(){
         myAuth = FirebaseAuth.getInstance();
         return myAuth.getCurrentUser();
     }
 
-    public static boolean isEnterprise(FirebaseUser user) {
-        myDatabase = FirebaseFirestore.getInstance();
-        if(myDatabase.collection("enterprises").document(user.getUid())!=null){
-            return true;
-        }else{
-            return false;
-        }
+    public static boolean sesionIniciada(){
+        return FirebaseAuth.getInstance().getCurrentUser() != null;
+    }
 
+    public static void editCurrentEstacion(String cifEstacion){
+        Map<String,Object> map = new HashMap<>();
+        map.put("currentEstacion",cifEstacion);
+        getUsersCollection().document(getCurrentUser().getUid()).update(map);
+    }
+
+    public static void signOut() {
+        myAuth = FirebaseAuth.getInstance();
+        myAuth.signOut();
+    }
+
+    public static CollectionReference getUsersCollection(){
+        return FirebaseFirestore.getInstance().collection("users");
+    }
+    public static CollectionReference getEnterprisesCollection(){
+        return FirebaseFirestore.getInstance().collection("enterprises");
     }
 }

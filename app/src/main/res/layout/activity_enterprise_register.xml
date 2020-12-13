@@ -27,11 +27,12 @@
             app:srcCompat="@drawable/skiicon"
             android:layout_marginBottom="10dp"
             />
+
         <EditText
-            android:id = "@+id/editTextName"
+            android:id="@+id/editTextName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nombre de la empresa"/>
+            android:hint="Nombre" />
         <EditText
             android:id = "@+id/editTextEmail"
             android:layout_width="match_parent"

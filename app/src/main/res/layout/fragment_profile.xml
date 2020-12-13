@@ -27,7 +27,8 @@
             <com.google.android.material.imageview.ShapeableImageView
                 android:layout_width="150dp"
                 android:layout_height="150dp"
-                android:src="@mipmap/perfil_ejemplo_foreground"
+                android:src="@drawable/skiicon"
+                android:background="@color/gris"
                 android:layout_centerHorizontal="true"
                 android:elevation="1dp"/>
 
@@ -53,6 +54,7 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/namePerfil"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Nickname"
@@ -62,6 +64,7 @@
                             android:layout_gravity="center_horizontal"/>
 
                         <TextView
+                            android:id="@+id/emailPerfil"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Sport"
@@ -87,10 +90,11 @@
                         android:layout_weight="1">
 
                         <TextView
+                            android:id="@+id/numEstrenamientosPerfil"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:text="12"
+                            android:text="-"
                             android:textStyle="bold"
                             android:textSize="35sp"/>
 
@@ -110,10 +114,11 @@
                         android:layout_weight="1">
 
                         <TextView
+                            android:id="@+id/numReservasPerfil"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:text="4"
+                            android:text="-"
                             android:textStyle="bold"
                             android:textSize="35sp"/>
 
@@ -121,7 +126,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:text="Amigos"
+                            android:text="Reservas"
                             android:textSize="20sp"/>
                     </LinearLayout>
                 </LinearLayout>
@@ -134,6 +139,7 @@
                     android:weightSum="1">
 
                     <Button
+                        android:id="@+id/logout_button"
                         android:layout_width="125dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"

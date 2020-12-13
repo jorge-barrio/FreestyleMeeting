@@ -2,16 +2,20 @@ package Modelo;
 
 import com.google.type.DateTime;
 
-public class Reservas {
+import java.util.Date;
+
+public class Reserva {
     private String idReserva;
     private String idEstacion;
     private String idPack;
-    private DateTime fechaRecogida;
+    private Date fechaRecogida;
     private int duracion;
     private float peso;
     private float altura;
+    private float precioEuros;
 
-    public Reservas(String idReserva, String idEstacion, String idPack, DateTime fechaRecogida, int duracion, float peso, float altura) {
+    public Reserva() { }
+    public Reserva(String idReserva, String idEstacion, String idPack, Date fechaRecogida, int duracion, float peso, float altura, float precioEuros) {
         this.idReserva = idReserva;
         this.idEstacion = idEstacion;
         this.idPack = idPack;
@@ -19,6 +23,7 @@ public class Reservas {
         this.duracion = duracion;
         this.peso = peso;
         this.altura = altura;
+        this.precioEuros = precioEuros;
     }
 
     public String getIdReserva() {
@@ -45,11 +50,11 @@ public class Reservas {
         this.idPack = idPack;
     }
 
-    public DateTime getFechaRecogida() {
+    public Date getFechaRecogida() {
         return fechaRecogida;
     }
 
-    public void setFechaRecogida(DateTime fechaRecogida) {
+    public void setFechaRecogida(Date fechaRecogida) {
         this.fechaRecogida = fechaRecogida;
     }
 
@@ -76,4 +81,8 @@ public class Reservas {
     public void setAltura(float altura) {
         this.altura = altura;
     }
+
+    public float getPrecioEuros() { return precioEuros; }
+
+    public void setPrecioEuros(float precioEuros) { this.precioEuros = precioEuros; }
 }

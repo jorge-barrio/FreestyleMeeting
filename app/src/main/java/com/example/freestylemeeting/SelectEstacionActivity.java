@@ -1,39 +1,63 @@
 package com.example.freestylemeeting;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.widget.Adapter;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.example.freestylemeeting.AdaptersList.EstacionAdapter;
 import com.example.freestylemeeting.DAO.EstacionDao;
+import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import Modelo.Estacion;
 
 public class SelectEstacionActivity extends AppCompatActivity {
 
+    List<Estacion> estaciones;
+    private EstacionAdapter estacionAdapter;
+    RecyclerView mMainList;
+    ListView list;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_estacion);
 
-        Estacion[] estaciones = EstacionDao.getEstaciones();
+        /* Introducir Estaciones de la BD en la lista */
+        estaciones = new ArrayList<>();
+        estacionAdapter = new EstacionAdapter(SelectEstacionActivity.this, estaciones);
 
-        ListView listView = findViewById(R.id.idListViewEstaciones);
+        mMainList = (RecyclerView) findViewById(R.id.idListViewEstaciones);
+        mMainList.setHasFixedSize(true);
+        mMainList.setLayoutManager(new LinearLayoutManager(this));
+        mMainList.setAdapter(estacionAdapter);
 
-        ArrayList<String> estacionesNames = new ArrayList<String>();
+        EstacionDao.getEstacionesCollection().addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                if(error != null){
+                    //Error
+                } else {
+                    for(DocumentChange doc : value.getDocumentChanges()){
+                        if(doc.getType() == DocumentChange.Type.ADDED){
+                            Estacion estacion = doc.getDocument().toObject(Estacion.class);
+                            estaciones.add(estacion);
 
-        for (Estacion estacion : estaciones) {
-            estacionesNames.add(estacion.getNombre());
-        }
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, estacionesNames);
-
-        listView.setAdapter(adapter);
-
+                            estacionAdapter.notifyDataSetChanged();
+                        }
+                    }
+                }
+            }
+        });
     }
 }

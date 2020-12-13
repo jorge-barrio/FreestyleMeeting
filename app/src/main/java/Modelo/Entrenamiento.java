@@ -1,18 +1,18 @@
 package Modelo;
 
-import com.google.type.DateTime;
-
-import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Entrenamiento {
     private String id;
     private ArrayList<String> idPistas;
-    private DateTime fechaInicio;
-    private DateTime fechaFin;
+    private Date fechaInicio;
+    private Date fechaFin;
     private String cifEstacion;
 
-    public Entrenamiento(String id, DateTime fechaInicio, DateTime fechaFin, String cifEstacion) {
+    public Entrenamiento() {}
+
+    public Entrenamiento(String id, Date fechaInicio, Date fechaFin, String cifEstacion) {
         this.id = id;
         this.idPistas = new ArrayList<String>();
         this.fechaInicio = fechaInicio;
@@ -36,19 +36,17 @@ public class Entrenamiento {
         this.idPistas = idPistas;
     }
 
-    public DateTime getFechaInicio() {
-        return fechaInicio;
-    }
+    public Date getFechaInicio() { return fechaInicio; }
 
-    public void setFechaInicio(DateTime fechaInicio) {
+    public void setFechaInicio(Date fechaInicio) {
         this.fechaInicio = fechaInicio;
     }
 
-    public DateTime getFechaFin() {
+    public Date getFechaFin() {
         return fechaFin;
     }
 
-    public void setFechaFin(DateTime fechaFin) {
+    public void setFechaFin(Date fechaFin) {
         this.fechaFin = fechaFin;
     }
 
