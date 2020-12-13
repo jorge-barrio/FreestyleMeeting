@@ -11,13 +11,12 @@ public class Estacion {
     private String latitud;
     private String longitud;
     private String localidad;
-
-    public static Estacion lastEstacion;
+    private String emailTienda;
 
     public Estacion () {
         // Default constructor required for calls to DataSnapshot.getValue(Estacion.class)
-        lastEstacion = this;
     }
+
     public Estacion (String cif, String nombre){
         this.cif = cif;
         this.nombre = nombre;
@@ -25,6 +24,7 @@ public class Estacion {
         this.longitud = "";
         this.pistas = new ArrayList<>();
         this.packsReserva = new ArrayList<>();
+        this.emailTienda = "";
     }
 
     public String getCif() {
