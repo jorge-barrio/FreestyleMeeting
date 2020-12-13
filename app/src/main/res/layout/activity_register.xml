@@ -53,7 +53,7 @@
             android:orientation ="horizontal">
 
             <Button
-                android:id="@+id/registrarse"
+                android:id="@+id/enviarSolicitud"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
