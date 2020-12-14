@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 import com.example.freestylemeeting.DAO.EstacionDao;
 import com.example.freestylemeeting.DAO.UserDao;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 
 import Modelo.Client;
@@ -82,27 +84,31 @@ public class HomeFragment extends Fragment {
 
         estaciontext = v.findViewById(R.id.textNombreEstacion);
         if(UserDao.sesionIniciada()) {
-            UserDao.getUsersCollection().document(UserDao.getCurrentUser().getUid()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            FirebaseUser usuario = UserDao.getCurrentUser();
+            Log.d("usuarioss", String.valueOf(usuario));
+            UserDao.getUsersCollection().document(usuario.getUid()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                 @Override
                 public void onSuccess(DocumentSnapshot documentSnapshot) {
+
                     Client cliente = documentSnapshot.toObject(Client.class);
-                    String cifEstacion = cliente.getCurrentEstacion();
-                    if (cifEstacion == null) {
-                        estaciontext.setText("Seleccionar estacion");
-                    } else {
-                        System.out.println("CIFESTACION"+cifEstacion);
-                        EstacionDao.getEstacionesCollection().document(cifEstacion).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                            @Override
-                            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                                Estacion estacion = documentSnapshot.toObject(Estacion.class);
-                                if (estacion != null)
-                                    estaciontext.setText(estacion.getNombre());
-                                else
-                                    estaciontext.setText("Seleccionar estacion");
-                            }
-                        });
+                    Log.d("cliente", String.valueOf(cliente));
+                        String cifEstacion = cliente.getCurrentEstacion();
+                        if (cifEstacion == null) {
+                            estaciontext.setText("Seleccionar estacion");
+                        } else {
+                            System.out.println("CIFESTACION" + cifEstacion);
+                            EstacionDao.getEstacionesCollection().document(cifEstacion).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                @Override
+                                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                    Estacion estacion = documentSnapshot.toObject(Estacion.class);
+                                    if (estacion != null)
+                                        estaciontext.setText(estacion.getNombre());
+                                    else
+                                        estaciontext.setText("Seleccionar estacion");
+                                }
+                            });
+                        }
                     }
-                }
             });
         } else {
             estaciontext.setText("Seleccionar estacion");
@@ -128,6 +134,7 @@ public class HomeFragment extends Fragment {
                         @Override
                         public void onSuccess(DocumentSnapshot documentSnapshot) {
                             Client cliente = documentSnapshot.toObject(Client.class);
+
                             if (cliente.getCurrentEstacion() == null) {
                                 Toast.makeText(getActivity(), "Selecciona antes una estacion", Toast.LENGTH_SHORT).show();
                             } else {

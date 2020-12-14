@@ -52,54 +52,10 @@
 
         </TableRow>
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical" >
-
-                    <Button
-                        android:id="@+id/freestyleButton"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Esqui Freestyle" />
-
-                    <Button
-                        android:id="@+id/snowboardButton"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Snowboard" />
-
-                    <Button
-                        android:id="@+id/kilometroLanzadoButton"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Kilometro lanzado" />
-
-                    <Button
-                        android:id="@+id/esquiFondoButton"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Esqui de Fondo" />
-
-                    <Button
-                        android:id="@+id/esquiTravesiaButton"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Esqui Travesia" />
-                </LinearLayout>
-            </ScrollView>
-        </TableRow>
+        <Spinner
+            android:id="@+id/modalidad_spinner"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" />
 
         <TableRow
             android:layout_width="match_parent"
@@ -116,50 +72,11 @@
 
         </TableRow>
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="10dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <Button
-                        android:id="@+id/principianteButton"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Principiante" />
-
-                    <Button
-                        android:id="@+id/intermedioButton"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Intermedio" />
-
-                    <Button
-                        android:id="@+id/avanzadoButton"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Avanzado" />
-
-                    <Button
-                        android:id="@+id/expertoButton"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Experto" />
-
-                </LinearLayout>
-            </ScrollView>
-        </TableRow>
-
+        <Spinner
+            android:id="@+id/nivel_spinner"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" />
     </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

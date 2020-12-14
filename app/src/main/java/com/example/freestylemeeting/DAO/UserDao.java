@@ -123,7 +123,13 @@ public class UserDao {
     }
 
     public static boolean sesionIniciada(){
-        return FirebaseAuth.getInstance().getCurrentUser() != null;
+        myAuth =FirebaseAuth.getInstance();
+        FirebaseUser usuario = myAuth.getCurrentUser();
+        if(usuario == null){
+            return false;
+        }else{
+            return true;
+        }
     }
 
     public static void editCurrentEstacion(String cifEstacion){
