@@ -48,13 +48,13 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/completaCarvingTextView"
+                        android:id="@+id/packTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_margin="10dp"
                         android:padding="10dp"
-                        android:text="Completa Carving/Snow:"
+                        android:text="Pack:"
                         android:textSize="20dp"
                         app:backgroundTint="@color/azul" />
                 </LinearLayout>
@@ -67,7 +67,7 @@
                     android:orientation="vertical">
 
                     <EditText
-                        android:id="@+id/completaCarvingEditText"
+                        android:id="@+id/packEditText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
@@ -94,13 +94,13 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/completaGEspecialTextView"
+                        android:id="@+id/pesoTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_margin="10dp"
                         android:padding="10dp"
-                        android:text="Completa G.Especial:"
+                        android:text="Peso (Kg):"
                         android:textSize="20dp"
                         app:backgroundTint="@color/azul" />
                 </LinearLayout>
@@ -108,18 +108,18 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
                     android:layout_gravity="right"
-                    android:layout_marginRight="50dp">
+                    android:layout_marginRight="50dp"
+                    android:orientation="vertical">
 
                     <EditText
-                        android:id="@+id/completaGEspecialEditText"
+                        android:id="@+id/pesoEditText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="right"
                         android:layout_margin="10dp"
                         android:ems="3"
-                        android:layout_gravity="right"
-                        android:inputType="textPersonName"
+                        android:inputType="numberDecimal"
                         android:text=" " />
                 </LinearLayout>
 
@@ -142,13 +142,13 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/completaInfantiltextView"
+                        android:id="@+id/alturaTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_margin="10dp"
                         android:padding="10dp"
-                        android:text="Completa Infantil:"
+                        android:text="Altura (cm):"
                         android:textSize="20dp"
                         app:backgroundTint="@color/azul" />
                 </LinearLayout>
@@ -161,13 +161,13 @@
                     android:layout_marginRight="50dp">
 
                     <EditText
-                        android:id="@+id/completaInfantilEditText"
+                        android:id="@+id/alturaEditText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="right"
                         android:layout_margin="10dp"
                         android:ems="3"
-                        android:inputType="textPersonName"
+                        android:inputType="numberDecimal"
                         android:text=" " />
                 </LinearLayout>
             </LinearLayout>
@@ -188,13 +188,13 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/esquiGMediaTextView"
+                        android:id="@+id/fechaRecogidaTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_margin="10dp"
                         android:padding="10dp"
-                        android:text="Esqui G. Media:"
+                        android:text="Fecha de recogida:"
                         android:textSize="20dp"
                         app:backgroundTint="@color/azul" />
 
@@ -208,13 +208,13 @@
                     android:layout_marginRight="50dp">
 
                     <EditText
-                        android:id="@+id/esquiGMediaEditText"
+                        android:id="@+id/fechaRecogidaEditText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="right"
                         android:layout_margin="10dp"
                         android:ems="3"
-                        android:inputType="textPersonName"
+                        android:inputType="date"
                         android:text=" " />
                 </LinearLayout>
             </LinearLayout>
@@ -235,13 +235,13 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/esquiGEspecialTextView"
+                        android:id="@+id/duracionTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_margin="10dp"
                         android:padding="10dp"
-                        android:text="Esqui G. Especial:"
+                        android:text="Duración préstamo(días):"
                         android:textSize="20dp"
                         app:backgroundTint="@color/azul" />
                 </LinearLayout>
@@ -254,13 +254,13 @@
                     android:layout_marginRight="50dp">
 
                     <EditText
-                        android:id="@+id/esquiGEspecialEditText"
+                        android:id="@+id/duracionEditText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="right"
                         android:layout_margin="10dp"
                         android:ems="3"
-                        android:inputType="textPersonName"
+                        android:inputType="number"
                         android:text=" " />
                 </LinearLayout>
             </LinearLayout>
@@ -278,37 +278,8 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:orientation="vertical"/>
 
-                    <TextView
-                        android:id="@+id/esquiGAltaTextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_margin="10dp"
-                        android:padding="10dp"
-                        android:text="Esqui G. Alta"
-                        android:textSize="20dp"
-                        app:backgroundTint="@color/azul" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_gravity="right"
-                    android:layout_marginRight="50dp">
-
-                    <EditText
-                        android:id="@+id/esquiGAltaEditText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="right"
-                        android:layout_margin="10dp"
-                        android:ems="3"
-                        android:inputType="textPersonName"
-                        android:text=" " />
-                </LinearLayout>
             </LinearLayout>
         </TableRow>
 
@@ -325,36 +296,12 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/numDiasTextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_margin="10dp"
-                        android:padding="10dp"
-                        android:text="Dias:"
-                        android:textSize="20dp"
-                        app:backgroundTint="@color/azul" />
-
-                </LinearLayout>
+                    android:orientation="vertical"/>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <EditText
-                        android:id="@+id/numDiasEditText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_margin="10dp"
-                        android:ems="2"
-                        android:inputType="textPersonName"
-                        android:text=" " />
-                </LinearLayout>
+                    android:orientation="vertical"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -369,7 +316,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="right"
                         android:padding="20dp"
-                        android:text="Total: 35€"
+                        android:text="Total: "
                         android:textSize="20dp"
                         app:backgroundTint="@color/azul" />
                 </LinearLayout>
