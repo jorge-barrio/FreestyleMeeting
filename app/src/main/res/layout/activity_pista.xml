@@ -1,94 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ListaPistaActivity">
+    android:layout_height="match_parent">
 
-  <LinearLayout
-      android:layout_width="0dp"
-      android:layout_height="match_parent"
-      android:orientation="vertical"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent">
+    <ImageButton
+      android:id="@+id/exitPistaDescripcion"
+      android:layout_width="65dp"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="15dp"
+      android:layout_marginLeft="10dp"
+      app:srcCompat="@drawable/abc_vector_test" />
 
-    <TableRow
+    <TextView
+        android:id="@+id/text_nombre_PistaDescripcion"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="51dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="Nombre Pista"
+        android:textSize="30dp" />
 
-      <ImageButton
-          android:id="@+id/iexitPistaButton"
-          android:layout_width="65dp"
-          android:layout_height="wrap_content"
-          android:layout_marginTop="5dp"
-          android:layout_marginLeft="10dp"
-          app:srcCompat="@drawable/abc_vector_test" />
-
-      <TextView
-          android:id="@+id/textNombrePista"
-          android:layout_width="match_parent"
-          android:layout_height="51dp"
-          android:gravity="center"
-          android:text="Nombre Pista"
-          android:textSize="30dp" />
-
-    </TableRow>
-
-    <TableRow
+    <ImageView
+        android:layout_below="@id/text_nombre_PistaDescripcion"
+        android:id="@+id/mapa_pistas_estacion_PistaDescripcion"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="250dp"
+        android:layout_marginTop="30dp"
+        app:srcCompat="@mipmap/pista_round"/>
 
-      <ImageView
-          android:id="@+id/imageView2"
-          android:layout_width="match_parent"
-          android:layout_height="331dp"
-          android:layout_marginTop="10dp"
-          app:srcCompat="@mipmap/pista_round" />
-    </TableRow>
+    <TextView
+        android:id="@+id/text_title_id_PistaDescripcion"
+        android:layout_below="@+id/mapa_pistas_estacion_PistaDescripcion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Identificador:"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="60dp"
+        android:textSize="26sp"
+        android:textStyle="bold"/>
 
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+    <TextView
+        android:id="@+id/text_id_PistaDescripcion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/mapa_pistas_estacion_PistaDescripcion"
+        android:layout_toRightOf="@+id/text_title_id_PistaDescripcion"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="30dp"
+        android:text="..."
+        android:textSize="26sp"/>
 
-      <TextView
-          android:id="@+id/nivelTextView"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="Nivel: Verde"
-          android:layout_marginTop="30dp"
-          android:layout_marginLeft="60dp"
-          android:textSize="30dp"/>
-    </TableRow>
+    <TextView
+        android:id="@+id/text_title_dificultad_PistaDescripcion"
+        android:layout_below="@+id/text_title_id_PistaDescripcion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nivel:"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="60dp"
+        android:textSize="26sp"
+        android:textStyle="bold"/>
 
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+    <TextView
+        android:id="@+id/text_dificultad_PistaDescripcion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_title_id_PistaDescripcion"
+        android:layout_toRightOf="@+id/text_title_dificultad_PistaDescripcion"
+        android:layout_toEndOf="@id/text_title_dificultad_PistaDescripcion"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="30dp"
+        android:text="..."
+        android:textSize="26sp"/>
 
-      <TextView
-          android:id="@+id/longitudTextView"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="Longitud: 3 KM"
-          android:layout_marginTop="30dp"
-          android:layout_marginLeft="60dp"
-          android:textSize="30dp"/>
-    </TableRow>
+    <TextView
+        android:id="@+id/text_title_usuarios_PistaDescripcion"
+        android:layout_below="@+id/text_title_dificultad_PistaDescripcion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Usuarios:"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="60dp"
+        android:textSize="26sp"
+        android:textStyle="bold"/>
 
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+    <TextView
+        android:id="@+id/text_usuarios_PistaDescripcion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_title_dificultad_PistaDescripcion"
+        android:layout_toRightOf="@+id/text_title_usuarios_PistaDescripcion"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="30dp"
+        android:text="..."
+        android:textSize="26sp"/>
 
-      <TextView
-          android:id="@+id/modalidadTextView"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="Modalidad: Snowboard"
-          android:layout_marginTop="30dp"
-          android:layout_marginLeft="60dp"
-          android:textSize="30dp"/>
-    </TableRow>
 
-  </LinearLayout>
-  </androidx.constraintlayout.widget.ConstraintLayout>
+  </RelativeLayout>

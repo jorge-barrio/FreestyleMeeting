@@ -10,15 +10,25 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Pista"
-        android:textSize="20sp"
+        android:textSize="26sp"
         android:textStyle="bold"/>
 
     <TextView
         android:layout_below="@id/nombrePistaList"
-        android:id="@+id/dificultadPistaList"
+        android:id="@+id/dificultadTitlePistaList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Dificultad"
+        android:text="Dificultad:"
+        android:textSize="14sp"/>
+
+    <TextView
+        android:layout_below="@id/nombrePistaList"
+        android:id="@+id/dificultadPistaList"
+        android:layout_toRightOf="@id/dificultadTitlePistaList"
+        android:layout_marginLeft="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="..."
         android:textSize="14sp"/>
 
 </RelativeLayout>

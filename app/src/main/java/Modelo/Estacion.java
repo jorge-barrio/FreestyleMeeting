@@ -36,4 +36,6 @@ public class Estacion {
     }
 
     public String getLocalidad() { return localidad; }
+
+    public ArrayList<Pista> getPistas() { return pistas; }
 }

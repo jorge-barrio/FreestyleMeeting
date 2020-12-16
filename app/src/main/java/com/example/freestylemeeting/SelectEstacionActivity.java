@@ -25,8 +25,6 @@ public class SelectEstacionActivity extends AppCompatActivity {
     List<Estacion> estaciones;
     private EstacionAdapter estacionAdapter;
     RecyclerView mMainList;
-    ListView list;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
