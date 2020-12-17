@@ -10,12 +10,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.freestylemeeting.DAO.EstacionDao;
 import com.example.freestylemeeting.DAO.UserDao;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 
 import Modelo.Client;
+import Modelo.Estacion;
+import Modelo.UserEstacion;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -80,10 +84,27 @@ public class ProfileFragment extends Fragment {
                 @Override
                 public void onSuccess(DocumentSnapshot documentSnapshot) {
                     Client cliente = documentSnapshot.toObject(Client.class);
-                    nametext.setText(cliente.getName());
-                    emailtext.setText(cliente.getEmail());
-                    numEntrenamientos.setText(""+cliente.getEntrenamientos().size());
-                    numReservas.setText(""+cliente.getReservas().size());
+
+                    if(cliente != null){
+                        nametext.setText(cliente.getName());
+                        emailtext.setText(cliente.getEmail());
+                        numEntrenamientos.setText(""+cliente.getEntrenamientos().size());
+                        numReservas.setText(""+cliente.getReservas().size());
+                    } else {
+                        UserDao.getEnterprisesCollection().document(UserDao.getCurrentUser().getUid()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                            @Override
+                            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                UserEstacion trabajador = documentSnapshot.toObject(UserEstacion.class);
+                                if(trabajador != null){
+                                    nametext.setText(trabajador.getName());
+                                    emailtext.setText(trabajador.getEmail());
+                                } else {
+                                    Toast.makeText(getActivity(), "Error.", Toast.LENGTH_SHORT).show();
+                                    System.out.println("ERROR. HomeFragment");
+                                }
+                            }
+                        });
+                    }
                 }
             });
         } else {
