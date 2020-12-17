@@ -61,12 +61,10 @@ public class ListPistasActivity extends AppCompatActivity {
                         @Override
                         public void onSuccess(DocumentSnapshot documentSnapshot) {
                             Estacion estacion = documentSnapshot.toObject(Estacion.class);
-                            System.out.println("PISTAS: " + estacion.getPistas().size());
                             if (estacion != null) {
                                 pistas.addAll(estacion.getPistas());
                                 pistaAdapter.notifyDataSetChanged();
                             }
-                            System.out.println("PISTAS DEBERIA MOSTRAR: " + pistas.size());
                         }
                     });
                 } else {
