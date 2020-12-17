@@ -3,98 +3,79 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     tools:context=".TrainingActivity">
+
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:layout_marginTop="30dp"
         >
-        <LinearLayout
+        <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="30dp"
-            >
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="20dp">
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp">
 
-                <TextView
-                    android:id="@+id/escogeModalidad"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:textSize="25dp"
-
-                    android:text="Escoge tu modalidad" />
-
-            </TableRow>
-
-            <Spinner
-                android:id="@+id/modalidad_spinner"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:spinnerMode="dropdown"
-                android:drawSelectorOnTop="true"
-                
-
-                />
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="40dp">
-
-                <TextView
-                    android:id="@+id/escogeNivel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:text="Escoge tu nivel"
-                    android:textSize="25dp" />
-
-            </TableRow>
-
-            <Spinner
-                android:id="@+id/nivel_spinner"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:spinnerMode="dropdown"
-                android:drawSelectorOnTop="true"
-
-                />
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="400dp"
-            android:layout_marginTop="65dp"
-            android:orientation="horizontal"
-            >
-
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/finalizarInicioEntrButton"
+            <TextView
+                android:id="@+id/escogeModalidad"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:layout_marginLeft="320dp"
-                android:clickable="true"
+                android:layout_marginLeft="10dp"
+                android:textSize="25dp"
+
+                android:text="Escoge tu modalidad" />
+
+        </TableRow>
+
+        <Spinner
+            android:id="@+id/modalidad_spinner"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:spinnerMode="dropdown"
+            android:drawSelectorOnTop="true"
 
 
-                app:fabCustomSize="65dp"
-                app:srcCompat="@drawable/ic_menu_send" />
+            />
 
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="40dp">
 
-        </LinearLayout>
+            <TextView
+                android:id="@+id/escogeNivel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="Escoge tu nivel"
+                android:textSize="25dp" />
+
+        </TableRow>
+
+        <Spinner
+            android:id="@+id/nivel_spinner"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:spinnerMode="dropdown"
+            android:drawSelectorOnTop="true"
+
+            />
     </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/finalizarInicioEntrButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:fabCustomSize="65dp"
+        app:srcCompat="@drawable/ic_menu_send"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="25dp"
+        android:layout_marginBottom="25dp"/>
+
 
 </RelativeLayout>
