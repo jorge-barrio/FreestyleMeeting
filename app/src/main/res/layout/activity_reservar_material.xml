@@ -120,7 +120,7 @@
                         android:layout_margin="10dp"
                         android:ems="3"
                         android:inputType="numberDecimal"
-                        android:text=" " />
+                        android:text="" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -168,7 +168,7 @@
                         android:layout_margin="10dp"
                         android:ems="3"
                         android:inputType="numberDecimal"
-                        android:text=" " />
+                        android:text="" />
                 </LinearLayout>
             </LinearLayout>
         </TableRow>
@@ -264,7 +264,7 @@
                         android:layout_margin="10dp"
                         android:ems="3"
                         android:inputType="number"
-                        android:text=" " />
+                        android:text="" />
                 </LinearLayout>
             </LinearLayout>
         </TableRow>
