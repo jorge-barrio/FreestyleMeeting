@@ -19,6 +19,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 
 import Modelo.Client;
 import Modelo.Estacion;
+import Modelo.UserEstacion;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -86,33 +87,71 @@ public class HomeFragment extends Fragment {
                 @Override
                 public void onSuccess(DocumentSnapshot documentSnapshot) {
                     Client cliente = documentSnapshot.toObject(Client.class);
-                    String cifEstacion = cliente.getCurrentEstacion();
-                    if (cifEstacion == null) {
-                        estaciontext.setText("Seleccionar estacion");
+
+                    if(cliente != null){
+                        String cifEstacion = cliente.getCurrentEstacion();
+                        if (cifEstacion == null){
+                            estaciontext.setText("Seleccionar estacion");
+                        } else {
+                            EstacionDao.getEstacionesCollection().document(cifEstacion).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                @Override
+                                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                    Estacion estacion = documentSnapshot.toObject(Estacion.class);
+                                    if (estacion != null)
+                                        estaciontext.setText(estacion.getNombre());
+                                    else
+                                        estaciontext.setText("Seleccionar estacion");
+                                }
+                            });
+                        }
                     } else {
-                        System.out.println("CIFESTACION"+cifEstacion);
-                        EstacionDao.getEstacionesCollection().document(cifEstacion).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                        UserDao.getEnterprisesCollection().document(UserDao.getCurrentUser().getUid()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                             @Override
                             public void onSuccess(DocumentSnapshot documentSnapshot) {
-                                Estacion estacion = documentSnapshot.toObject(Estacion.class);
-                                if (estacion != null)
-                                    estaciontext.setText(estacion.getNombre());
-                                else
-                                    estaciontext.setText("Seleccionar estacion");
+                                UserEstacion trabajador = documentSnapshot.toObject(UserEstacion.class);
+                                if(trabajador != null && trabajador.getCifEmpresa() != null){
+                                    String cifEstacion;
+                                    cifEstacion = trabajador.getCifEmpresa();
+                                    EstacionDao.getEstacionesCollection().document(cifEstacion).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                        @Override
+                                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                            Estacion estacion = documentSnapshot.toObject(Estacion.class);
+                                            if (estacion != null)
+                                                estaciontext.setText(estacion.getNombre());
+                                            else
+                                                estaciontext.setText("CIF erroneo. Contacta con los desarrolladores");
+                                        }
+                                    });
+                                } else {
+                                    Toast.makeText(getActivity(), "Error.", Toast.LENGTH_SHORT).show();
+                                    System.out.println("ERROR. HomeFragment");
+                                }
                             }
                         });
                     }
+
                 }
             });
         } else {
-            estaciontext.setText("Seleccionar estacion");
+            Intent intent = new Intent(getActivity(), authActivity.class);
+            startActivity(intent);
         }
 
         estaciontext.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v){
                 if(UserDao.sesionIniciada()) {
-                    Intent intent = new Intent(getActivity(), SelectEstacionActivity.class);
-                    startActivity(intent);
+                    UserDao.getUsersCollection().document(UserDao.getCurrentUser().getUid()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                        @Override
+                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+                            Client cliente = documentSnapshot.toObject(Client.class);
+
+                            // Comprobar si se trata de un cliente o un trabajador
+                            if(cliente != null){
+                                Intent intent = new Intent(getActivity(), SelectEstacionActivity.class);
+                                startActivity(intent);
+                            }
+                        }
+                    });
                 } else {
                     Intent intent = new Intent(getActivity(), authActivity.class);
                     startActivity(intent);
@@ -128,7 +167,11 @@ public class HomeFragment extends Fragment {
                         @Override
                         public void onSuccess(DocumentSnapshot documentSnapshot) {
                             Client cliente = documentSnapshot.toObject(Client.class);
-                            if (cliente.getCurrentEstacion() == null) {
+
+                            // Comprobar si se trata de un cliente o un trabajador
+                            if(cliente == null){
+                                Toast.makeText(getActivity(), "Funcionalidad solo para clientes", Toast.LENGTH_SHORT).show();
+                            } else if (cliente.getCurrentEstacion() == null) {
                                 Toast.makeText(getActivity(), "Selecciona antes una estacion", Toast.LENGTH_SHORT).show();
                             } else {
                                 Intent intent = new Intent(getActivity(), TrainingActivity.class);
@@ -151,7 +194,9 @@ public class HomeFragment extends Fragment {
                         @Override
                         public void onSuccess(DocumentSnapshot documentSnapshot) {
                             Client cliente = documentSnapshot.toObject(Client.class);
-                            if (cliente.getCurrentEstacion() == null) {
+
+                            // Comprobar si se trata de un cliente o un trabajador
+                            if(cliente != null && cliente.getCurrentEstacion() == null){
                                 Toast.makeText(getActivity(), "Selecciona antes una estacion", Toast.LENGTH_SHORT).show();
                             } else {
                                 Intent intent = new Intent(getActivity(), ListPistasActivity.class);
@@ -174,7 +219,9 @@ public class HomeFragment extends Fragment {
                         @Override
                         public void onSuccess(DocumentSnapshot documentSnapshot) {
                             Client cliente = documentSnapshot.toObject(Client.class);
-                            if (cliente.getCurrentEstacion() == null) {
+
+                            // Comprobar si se trata de un cliente o un trabajador
+                            if(cliente != null && cliente.getCurrentEstacion() == null) {
                                 Toast.makeText(getActivity(), "Selecciona antes una estacion", Toast.LENGTH_SHORT).show();
                             } else {
                                 Intent intent = new Intent(getActivity(), GroupActivity.class);
@@ -197,7 +244,11 @@ public class HomeFragment extends Fragment {
                         @Override
                         public void onSuccess(DocumentSnapshot documentSnapshot) {
                             Client cliente = documentSnapshot.toObject(Client.class);
-                            if (cliente.getCurrentEstacion() == null) {
+
+                            // Comprobar si se trata de un cliente o un trabajador
+                            if(cliente == null){
+                                Toast.makeText(getActivity(), "Funcionalidad solo para clientes", Toast.LENGTH_SHORT).show();
+                            } else if(cliente.getCurrentEstacion() == null) {
                                 Toast.makeText(getActivity(), "Selecciona antes una estacion", Toast.LENGTH_SHORT).show();
                             } else {
                                 Intent intent = new Intent(getActivity(), ReservarMaterialActivity.class);

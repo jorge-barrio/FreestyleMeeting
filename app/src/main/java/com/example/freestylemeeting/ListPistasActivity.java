@@ -1,42 +1,49 @@
 package com.example.freestylemeeting;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.widget.ListView;
+import android.view.View;
+import android.widget.Toast;
 
 import com.example.freestylemeeting.AdaptersList.PistaAdapter;
 import com.example.freestylemeeting.DAO.EstacionDao;
 import com.example.freestylemeeting.DAO.UserDao;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.firestore.DocumentChange;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
-import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import Modelo.Client;
+import Modelo.Estacion;
 import Modelo.Pista;
+import Modelo.UserEstacion;
 
 public class ListPistasActivity extends AppCompatActivity {
 
     List<Pista> pistas;
     private PistaAdapter pistaAdapter;
     RecyclerView mMainList;
-    ListView list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_pistas);
 
-        /* Introducir Estaciones de la BD en la lista */
+        FloatingActionButton addPistaButton = findViewById(R.id.add_pista_button);
+        addPistaButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(ListPistasActivity.this, "Funcionalidad en construccion...", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        /* Mostrar Pistas en la lista */
         pistas = new ArrayList<>();
         pistaAdapter = new PistaAdapter(ListPistasActivity.this, pistas);
 
@@ -49,22 +56,44 @@ public class ListPistasActivity extends AppCompatActivity {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 Client cliente = documentSnapshot.toObject(Client.class);
-                EstacionDao.getEstacionesCollection().document(cliente.getCurrentEstacion()).collection("pistas").addSnapshotListener(new EventListener<QuerySnapshot>() {
-                    @Override
-                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
-                        if (error != null) {
-                            //Error
-                        } else {
-                            for (DocumentChange doc : value.getDocumentChanges()) {
-                                if (doc.getType() == DocumentChange.Type.ADDED) {
-                                    Pista pista = doc.getDocument().toObject(Pista.class);
-                                    pistas.add(pista);
-                                    pistaAdapter.notifyDataSetChanged();
-                                }
+                if (cliente != null) {
+                    EstacionDao.getEstacionesCollection().document(cliente.getCurrentEstacion()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                        @Override
+                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+                            Estacion estacion = documentSnapshot.toObject(Estacion.class);
+                            if (estacion != null) {
+                                pistas.addAll(estacion.getPistas());
+                                pistaAdapter.notifyDataSetChanged();
                             }
                         }
-                    }
-                });
+                    });
+                } else {
+                    UserDao.getEnterprisesCollection().document(UserDao.getCurrentUser().getUid()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                        @Override
+                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+                            UserEstacion trabajador = documentSnapshot.toObject(UserEstacion.class);
+                            if(trabajador != null) {
+                                EstacionDao.getEstacionesCollection().document(trabajador.getCifEmpresa()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                    @Override
+                                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                        Estacion estacion = documentSnapshot.toObject(Estacion.class);
+                                        if (estacion != null) {
+                                            pistas.addAll(estacion.getPistas());
+                                            pistaAdapter.notifyDataSetChanged();
+                                        }
+                                    }
+                                });
+
+                                //Activamos la visibilidad del floating button
+                                addPistaButton.setVisibility(View.VISIBLE);
+
+                            } else {
+                                Intent intent = new Intent(ListPistasActivity.this, authActivity.class);
+                                startActivity(intent);
+                            }
+                        }
+                    });
+                }
             }
         });
     }

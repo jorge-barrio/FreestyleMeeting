@@ -1,6 +1,9 @@
 package Modelo;
 
-public class Pista {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Pista implements Parcelable {
     private String id;
     private String nombre;
     private String dificultad;
@@ -8,10 +11,30 @@ public class Pista {
 
     public Pista(){ }
 
-    public Pista(String nombre, String dificultad){
+    public Pista(String id, String nombre, String dificultad){
+        this.id = id;
         this.nombre = nombre;
         this.dificultad = dificultad;
     }
+
+    protected Pista(Parcel in) {
+        id = in.readString();
+        nombre = in.readString();
+        dificultad = in.readString();
+        notificacion = in.readString();
+    }
+
+    public static final Creator<Pista> CREATOR = new Creator<Pista>() {
+        @Override
+        public Pista createFromParcel(Parcel in) {
+            return new Pista(in);
+        }
+
+        @Override
+        public Pista[] newArray(int size) {
+            return new Pista[size];
+        }
+    };
 
     public String getId() { return id; }
 
@@ -39,4 +62,16 @@ public class Pista {
         this.notificacion = notificacion;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(id);
+        dest.writeString(nombre);
+        dest.writeString(dificultad);
+        dest.writeString(notificacion);
+    }
 }

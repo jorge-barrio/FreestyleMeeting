@@ -97,19 +97,8 @@ public class authActivity extends AppCompatActivity {
              @Override
              public void onCallback(boolean status) {
                  if (status){
-                     UserDao.getEnterprisesCollection().document(UserDao.getCurrentUser().getUid()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                         @Override
-                         public void onSuccess(DocumentSnapshot documentSnapshot) {
-                             UserEstacion userEstacion = documentSnapshot.toObject(UserEstacion.class);
-                             if(userEstacion != null){
-                                 startActivity(new Intent(authActivity.this, pistaActivityEnterprise.class));
-                                 finish();
-                             }else{
-                                 startActivity(new Intent(authActivity.this, NavegationDrawerActivity.class));
-                                 finish();
-                             }
-                         }
-                     });
+                     startActivity(new Intent(authActivity.this, NavegationDrawerActivity.class));
+                     finish();
                  }else{
                      Toast.makeText(authActivity.this, "El formato del email no es el adecuado", Toast.LENGTH_SHORT).show();
                  }
@@ -122,19 +111,8 @@ public class authActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         if(UserDao.sesionIniciada()){
-            UserDao.getEnterprisesCollection().document(UserDao.getCurrentUser().getUid()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                @Override
-                public void onSuccess(DocumentSnapshot documentSnapshot) {
-                    UserEstacion userEstacion = documentSnapshot.toObject(UserEstacion.class);
-                    if(userEstacion != null){
-                        startActivity(new Intent(authActivity.this, pistaActivityEnterprise.class));
-                        finish();
-                    }else{
-                        startActivity(new Intent(authActivity.this, NavegationDrawerActivity.class));
-                        finish();
-                    }
-                }
-            });
+            startActivity(new Intent(authActivity.this, NavegationDrawerActivity.class));
+            finish();
         }
     }
 

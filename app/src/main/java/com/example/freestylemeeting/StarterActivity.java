@@ -20,19 +20,8 @@ public class StarterActivity extends AppCompatActivity {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         setContentView(R.layout.activity_starter);
         if(UserDao.sesionIniciada()){
-            UserDao.getEnterprisesCollection().document(UserDao.getCurrentUser().getUid()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                @Override
-                public void onSuccess(DocumentSnapshot documentSnapshot) {
-                    UserEstacion userEstacion = documentSnapshot.toObject(UserEstacion.class);
-                    if(userEstacion != null){
-                        startActivity(new Intent(StarterActivity.this, pistaActivityEnterprise.class));
-                        finish();
-                    }else{
-                        startActivity(new Intent(StarterActivity.this, NavegationDrawerActivity.class));
-                        finish();
-                    }
-                }
-            });
+            startActivity(new Intent(StarterActivity.this, NavegationDrawerActivity.class));
+            finish();
         } else {
             startActivity(new Intent(StarterActivity.this, authActivity.class));
             finish();
