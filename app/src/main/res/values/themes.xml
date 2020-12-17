@@ -22,4 +22,7 @@
     <style name="Theme.FreestyleMeeting.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.FreestyleMeeting.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="mySpinnerItemStyle" parent="@android:style/Widget.Holo.DropDownItem.Spinner">
+        <item name="android:textColor">@color/azulOscuro</item>
+    </style>
 </resources>

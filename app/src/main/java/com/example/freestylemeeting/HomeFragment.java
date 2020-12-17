@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.example.freestylemeeting.DAO.EstacionDao;
 import com.example.freestylemeeting.DAO.UserDao;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 
@@ -34,6 +35,7 @@ public class HomeFragment extends Fragment {
     public static final String TAG = "HomeFragment";
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    static FirebaseAuth myAuth;
 
     // Estacion
     TextView estaciontext;
@@ -67,6 +69,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        myAuth = FirebaseAuth.getInstance();
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -83,10 +86,11 @@ public class HomeFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_home, container, false);
 
         estaciontext = v.findViewById(R.id.textNombreEstacion);
+        //myAuth.signOut();
         if(UserDao.sesionIniciada()) {
-            FirebaseUser usuario = UserDao.getCurrentUser();
-            Log.d("usuarioss", String.valueOf(usuario));
-            UserDao.getUsersCollection().document(usuario.getUid()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+           FirebaseUser usuario = UserDao.getCurrentUser();
+           Log.d("sesion", usuario.getUid());
+            UserDao.getUsersCollection().document(UserDao.getCurrentUser().getUid()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                 @Override
                 public void onSuccess(DocumentSnapshot documentSnapshot) {
 
