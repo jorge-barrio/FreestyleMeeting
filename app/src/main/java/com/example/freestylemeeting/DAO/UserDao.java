@@ -10,11 +10,16 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
 
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import Modelo.Client;
@@ -123,7 +128,13 @@ public class UserDao {
     }
 
     public static boolean sesionIniciada(){
-        return FirebaseAuth.getInstance().getCurrentUser() != null;
+        myAuth =FirebaseAuth.getInstance();
+        FirebaseUser usuario = myAuth.getCurrentUser();
+        if(usuario == null){
+            return false;
+        }else{
+            return true;
+        }
     }
 
     public static void editCurrentEstacion(String cifEstacion){
@@ -142,5 +153,53 @@ public class UserDao {
     }
     public static CollectionReference getEnterprisesCollection(){
         return FirebaseFirestore.getInstance().collection("enterprises");
+    }
+    public static void getEntrenamientos(String cifEstacion){
+        myAuth = FirebaseAuth.getInstance();
+        myDatabase = FirebaseFirestore.getInstance();
+        FirebaseUser userLogged = myAuth.getCurrentUser();
+        myDatabase.collection("users").document(userLogged.getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                DocumentSnapshot document = task.getResult();
+                List<Map<String,Object>> entrenamientos = (List<Map<String,Object>>) document.get("entrenamientos");//Lista de entrenamientos
+
+            }
+        });
+
+    }
+    public static void createTraining(String modalidad, String nivel,String cifEstacion) {
+        myAuth = FirebaseAuth.getInstance();
+        myDatabase = FirebaseFirestore.getInstance();
+        FirebaseUser userLogged = myAuth.getCurrentUser();
+        myDatabase.collection("users").document(userLogged.getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                DocumentSnapshot document = task.getResult();
+                List<Map<String,Object>> entrenamientos = (List<Map<String,Object>>) document.get("entrenamientos");//Se ha probado a imprimirlo y se imprime bien
+                Map<String,Object> nuevoEntrenamiento = new HashMap<String,Object>();
+                Date date = new Date();
+                String id = String.valueOf(entrenamientos.size()+1);
+                List<String> idPistas = new ArrayList<String>();
+
+                nuevoEntrenamiento.put("cifEstacion",cifEstacion);
+                nuevoEntrenamiento.put("fechaInicio",date);
+                nuevoEntrenamiento.put("id",id);
+                nuevoEntrenamiento.put("idPistas",idPistas);
+                entrenamientos.add(nuevoEntrenamiento);
+
+                myDatabase.collection("users").document(userLogged.getUid()).update("entrenamientos", entrenamientos).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful()){
+                            Log.d("update","todo ha ido bien");
+                        }else{
+                            Log.d("update","todo ha ido mal");
+                        }
+                    }
+                });
+            }
+        });
+
     }
 }
