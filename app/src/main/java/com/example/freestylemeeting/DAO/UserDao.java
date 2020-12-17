@@ -76,7 +76,7 @@ public class UserDao {
                     map.put("password",user.getPassword());
                     map.put("entrenamientos",entrenamientos);
                     map.put("reservas",reservas);
-                    map.put("currentEstacion","");
+                    map.put("currentEstacion",null);
                     Log.d("entrada dao","HE ENTRADO EN EL DAO CON EXITO" );
                     callback.onCallback(true);
                     String id = myAuth.getCurrentUser().getUid();

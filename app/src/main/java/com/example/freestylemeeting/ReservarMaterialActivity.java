@@ -144,9 +144,9 @@ public class ReservarMaterialActivity extends AppCompatActivity {
                     Intent email = new Intent(Intent.ACTION_SEND);
                     email.putExtra(Intent.EXTRA_EMAIL, new String[]{ estacion.getEmailTienda() });
                     email.putExtra(Intent.EXTRA_SUBJECT, "Nueva Reserva");
-                    email.putExtra(Intent.EXTRA_TEXT, "Registrada nueva reserva con id: "+reserva.getIdReserva()+"\n pack: "
-                            +reserva.getIdPack()+"\n peso: "+reserva.getPeso()+"\n altura: "+reserva.getAltura()+"\n duracion: "
-                            +reserva.getDuracion()+"\n fecha: "+reserva.getFechaRecogida()+"\n precio: "+reserva.getPrecioEuros());
+                    email.putExtra(Intent.EXTRA_TEXT, "Registrada nueva reserva con id: "+reserva.getIdReserva()+"\n Pack: "
+                            +reserva.getIdPack()+"\n Peso(kg): "+reserva.getPeso()+"\n Altura(m): "+reserva.getAltura()+"\n Duracion: "
+                            +reserva.getDuracion()+"\n Fecha de recogida: "+reserva.getFechaRecogida()+"\n Precio: "+reserva.getPrecioEuros());
 //need this to prompts email client only
                     email.setType("message/rfc822");
                     startActivity(Intent.createChooser(email, "Choose an Email client :"));
