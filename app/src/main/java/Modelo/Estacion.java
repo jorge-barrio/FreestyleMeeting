@@ -38,4 +38,8 @@ public class Estacion {
     public String getLocalidad() { return localidad; }
 
     public ArrayList<Pista> getPistas() { return pistas; }
+
+    public ArrayList<PackReserva> getPacksReserva() { return packsReserva; }
+
+    public String getEmailTienda () { return emailTienda; }
 }
