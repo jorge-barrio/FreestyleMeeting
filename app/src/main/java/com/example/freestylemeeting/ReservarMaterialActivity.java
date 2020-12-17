@@ -100,7 +100,7 @@ public class ReservarMaterialActivity extends AppCompatActivity {
         atrasReservarMaterialButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(ReservarMaterialActivity.this,HomeFragment.class));
+                startActivity(new Intent(ReservarMaterialActivity.this,NavegationDrawerActivity.class));
             }
         });
 
@@ -152,7 +152,7 @@ public class ReservarMaterialActivity extends AppCompatActivity {
                     startActivity(Intent.createChooser(email, "Choose an Email client :"));
 
                     Toast.makeText(getApplicationContext(), "ReservaRealizada", Toast.LENGTH_SHORT ).show();
-                    startActivity(new Intent(ReservarMaterialActivity.this,HomeFragment.class));
+                    startActivity(new Intent(ReservarMaterialActivity.this,NavegationDrawerActivity.class));
                 }
             }
         });
