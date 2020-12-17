@@ -105,7 +105,7 @@
         android:clickable="true"
         android:backgroundTint="@color/AzulClaro"
         android:foregroundTint="@color/AzulClaro"
-        android:visibility="visible"
+        android:visibility="invisible"
         app:srcCompat="@android:drawable/ic_menu_edit"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
