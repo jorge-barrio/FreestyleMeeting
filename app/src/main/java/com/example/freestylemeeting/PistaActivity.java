@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -15,6 +16,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.DocumentSnapshot;
 
+import Modelo.Client;
 import Modelo.Estacion;
 import Modelo.Pista;
 import Modelo.UserEstacion;
@@ -35,7 +37,7 @@ public class PistaActivity extends AppCompatActivity {
         TextView dificultadText = (TextView) findViewById(R.id.text_dificultad_PistaDescripcion);
         TextView usuariosText = (TextView) findViewById(R.id.text_usuarios_PistaDescripcion);
         FloatingActionButton editPistaButton = findViewById(R.id.edit_pista_button);
-
+        FloatingActionButton addPistaToTraining = findViewById(R.id.add_pista_training_button);
         nombreText.setText(pista.getNombre());
         idText.setText(pista.getId());
         dificultadText.setText(pista.getDificultad());
@@ -45,13 +47,47 @@ public class PistaActivity extends AppCompatActivity {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 UserEstacion trabajador = documentSnapshot.toObject(UserEstacion.class);
+                Client cliente = documentSnapshot.toObject(Client.class);
+                Log.d("client", String.valueOf(cliente));
                 if(trabajador != null) {
                     //Activamos la visibilidad del floating button
+                    addPistaToTraining.setClickable(false);
                     editPistaButton.setVisibility(View.VISIBLE);
+                } else if(cliente != null){
+                    Log.d("entrenamiento activo", String.valueOf(cliente.isEntrenamientoActivo()));
+                    if(cliente.isEntrenamientoActivo()){
+                        editPistaButton.setClickable(false);
+                        addPistaToTraining.setVisibility(View.VISIBLE);
+
+                    }
                 }
             }
         });
+        UserDao.getUsersCollection().document(UserDao.getCurrentUser().getUid()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
 
+                Client cliente = documentSnapshot.toObject(Client.class);
+                Log.d("client", String.valueOf(cliente));
+                if(cliente != null){
+                    Log.d("entrenamiento activo", String.valueOf(cliente.isEntrenamientoActivo()));
+                    if(cliente.isEntrenamientoActivo()){
+                        editPistaButton.setClickable(false);
+                        addPistaToTraining.setVisibility(View.VISIBLE);
+
+                    }
+                }
+            }
+        });
+        addPistaToTraining.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                UserDao.addPistaToTraining(pista.getNombre());
+                Intent intent = new Intent(PistaActivity.this, ListPistasActivity.class);
+                startActivity(intent);
+
+            }
+        });
         editPistaButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

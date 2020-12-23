@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.freestylemeeting">
+
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -14,6 +15,7 @@
         <activity android:name=".StarterActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -21,7 +23,7 @@
         <activity android:name=".pistaActivityEnterprise" />
         <activity android:name=".enterpriseRegister" />
         <activity android:name=".SelectEstacionActivity" />
-        <activity android:name=".authActivity"/>
+        <activity android:name=".authActivity" />
         <activity android:name=".CrearGruposActivity" />
         <activity android:name=".GroupActivity" />
         <activity android:name=".HomeActivity" />
@@ -30,8 +32,7 @@
         <activity
             android:name=".NavegationDrawerActivity"
             android:label="@string/title_activity_navegation_drawer"
-            android:theme="@style/Theme.FreestyleMeeting.NoActionBar">
-        </activity>
+            android:theme="@style/Theme.FreestyleMeeting.NoActionBar"></activity>
         <activity android:name=".PistaActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".ReservarMaterialActivity" />

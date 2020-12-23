@@ -112,5 +112,19 @@
         android:layout_marginBottom="25dp"
         android:layout_marginRight="25dp"/>
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/add_pista_training_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:backgroundTint="@color/AzulClaro"
+        android:foregroundTint="@color/AzulClaro"
+        android:visibility="invisible"
+        app:srcCompat="@android:drawable/ic_input_add"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="25dp"
+        android:layout_marginRight="25dp"/>
+
 
   </RelativeLayout>

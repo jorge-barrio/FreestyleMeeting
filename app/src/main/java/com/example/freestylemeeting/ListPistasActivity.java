@@ -36,10 +36,20 @@ public class ListPistasActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list_pistas);
 
         FloatingActionButton addPistaButton = findViewById(R.id.add_pista_button);
+        FloatingActionButton closeTraining = findViewById(R.id.close_training);
         addPistaButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(ListPistasActivity.this, "Funcionalidad en construccion...", Toast.LENGTH_SHORT).show();
+            }
+        });
+        closeTraining.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                UserDao.closeTraining();
+                Toast.makeText(ListPistasActivity.this, "Entrenamiento finalizado con exito", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(ListPistasActivity.this, NavegationDrawerActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -57,6 +67,7 @@ public class ListPistasActivity extends AppCompatActivity {
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 Client cliente = documentSnapshot.toObject(Client.class);
                 if (cliente != null) {
+                    closeTraining.setVisibility(View.VISIBLE);
                     EstacionDao.getEstacionesCollection().document(cliente.getCurrentEstacion()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                         @Override
                         public void onSuccess(DocumentSnapshot documentSnapshot) {

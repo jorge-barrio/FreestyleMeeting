@@ -74,6 +74,7 @@ public class UserDao {
                     map.put("name",user.getName());
                     map.put("email",user.getEmail());
                     map.put("password",user.getPassword());
+                    map.put("entrenamientoActivo",user.isEntrenamientoActivo());
                     map.put("entrenamientos",entrenamientos);
                     map.put("reservas",reservas);
                     map.put("currentEstacion",null);
@@ -142,7 +143,6 @@ public class UserDao {
         map.put("currentEstacion",cifEstacion);
         getUsersCollection().document(getCurrentUser().getUid()).update(map);
     }
-
     public static void signOut() {
         myAuth = FirebaseAuth.getInstance();
         myAuth.signOut();
@@ -172,6 +172,7 @@ public class UserDao {
         myAuth = FirebaseAuth.getInstance();
         myDatabase = FirebaseFirestore.getInstance();
         FirebaseUser userLogged = myAuth.getCurrentUser();
+        getUsersCollection().document(getCurrentUser().getUid()).update("entrenamientoActivo",true);
         myDatabase.collection("users").document(userLogged.getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -201,5 +202,38 @@ public class UserDao {
             }
         });
 
+    }
+    public static void addPistaToTraining(String pista){
+        myAuth = FirebaseAuth.getInstance();
+        myDatabase = FirebaseFirestore.getInstance();
+        FirebaseUser userLogged = myAuth.getCurrentUser();
+        myDatabase.collection("users").document(userLogged.getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                DocumentSnapshot document = task.getResult();
+                List<Map<String,Object>> entrenamientos = (List<Map<String,Object>>) document.get("entrenamientos");//Se ha probado a imprimirlo y se imprime bien
+                Map<String,Object> entrenamientoClave = (Map<String,Object>) entrenamientos.get(entrenamientos.size()-1);
+                List<String> idPistas = (List<String>) entrenamientoClave.get("idPistas");
+                idPistas.add(pista);
+
+                entrenamientos.get(entrenamientos.size()-1).remove("idPistas");
+                entrenamientos.get(entrenamientos.size()-1).put("idPistas",idPistas);
+                myDatabase.collection("users").document(userLogged.getUid()).update("entrenamientos", entrenamientos).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful()){
+                            Log.d("update","todo ha ido bien");
+                        }else{
+                            Log.d("update","todo ha ido mal");
+                        }
+                    }
+                });
+            }
+        });
+
+    }
+
+    public static void closeTraining() {
+        getUsersCollection().document(getCurrentUser().getUid()).update("entrenamientoActivo",false);
     }
 }
