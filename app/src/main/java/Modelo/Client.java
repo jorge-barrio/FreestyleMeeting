@@ -8,11 +8,18 @@ public class Client extends User{
     private ArrayList<Entrenamiento> entrenamientos;
     private ArrayList<Reserva> reservas;
     private String currentEstacion;
+    private boolean entrenamientoActivo;
 
     public Client(){}
 
     public Client(String name, String email, String password){
+
         super(name,email,password);
+        this.entrenamientoActivo = false;
+        this.entrenamientos = new ArrayList<Entrenamiento>();
+        this.reservas = new ArrayList<Reserva>();
+        this.currentEstacion = null;
+
     }
 
     public ArrayList<Entrenamiento> getEntrenamientos() {
@@ -37,5 +44,13 @@ public class Client extends User{
 
     public void setCurrentEstacion(String currentEstacion) {
         this.currentEstacion = currentEstacion;
+    }
+
+    public boolean isEntrenamientoActivo() {
+        return entrenamientoActivo;
+    }
+
+    public void setEntrenamientoActivo(boolean entrenamientoActivo) {
+        this.entrenamientoActivo = entrenamientoActivo;
     }
 }

@@ -60,7 +60,7 @@ public class TrainingActivity extends AppCompatActivity {
                         String cifEstacion = cliente.getCurrentEstacion();
                         UserDao.createTraining(modalidad,nivel,cifEstacion);
                         Toast.makeText(TrainingActivity.this,"Su entrenamiento ha sido creado con exito", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(TrainingActivity.this, NavegationDrawerActivity.class));
+                        startActivity(new Intent(TrainingActivity.this, ListPistasActivity.class));
                         }
 
                 });
