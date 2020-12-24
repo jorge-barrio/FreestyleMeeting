@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.freestylemeeting">
+
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -11,31 +12,34 @@
         android:roundIcon="@mipmap/logo_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FreestyleMeeting">
-        <activity android:name=".StarterActivity">
+        <activity android:name=".EditPistaActivity" android:screenOrientation="portrait"></activity>
+        <activity android:name=".CreatePistaActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".StarterActivity" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ListPistasActivity" />
-        <activity android:name=".pistaActivityEnterprise" />
-        <activity android:name=".enterpriseRegister" />
-        <activity android:name=".SelectEstacionActivity" />
-        <activity android:name=".authActivity"/>
-        <activity android:name=".CrearGruposActivity" />
-        <activity android:name=".GroupActivity" />
-        <activity android:name=".HomeActivity" />
-        <activity android:name=".ListaPistaActivity" />
-        <activity android:name=".MyHome" />
+        <activity android:name=".ListPistasActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".pistaActivityEnterprise" android:screenOrientation="portrait"/>
+        <activity android:name=".enterpriseRegister" android:screenOrientation="portrait"/>
+        <activity android:name=".SelectEstacionActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".authActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".CrearGruposActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".GroupActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".HomeActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".ListaPistaActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".MyHome" android:screenOrientation="portrait"/>
         <activity
             android:name=".NavegationDrawerActivity"
             android:label="@string/title_activity_navegation_drawer"
-            android:theme="@style/Theme.FreestyleMeeting.NoActionBar">
-        </activity>
-        <activity android:name=".PistaActivity" />
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".ReservarMaterialActivity" />
-        <activity android:name=".TrainingActivity" />
+            android:theme="@style/Theme.FreestyleMeeting.NoActionBar"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".PistaActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".RegisterActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".ReservarMaterialActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".TrainingActivity" android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

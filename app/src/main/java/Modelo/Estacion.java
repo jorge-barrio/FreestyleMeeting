@@ -1,6 +1,7 @@
 package Modelo;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Estacion {
 
@@ -42,4 +43,17 @@ public class Estacion {
     public ArrayList<PackReserva> getPacksReserva() { return packsReserva; }
 
     public String getEmailTienda () { return emailTienda; }
+
+    public HashMap<String, Object> toHasMap () {
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("cif",cif);
+        map.put("nombre",nombre);
+        map.put("pistas",pistas);
+        map.put("packsReserva",packsReserva);
+        map.put("latitud",latitud);
+        map.put("longitud",longitud);
+        map.put("localidad",localidad);
+        map.put("emailTienda",emailTienda);
+        return map;
+    }
 }

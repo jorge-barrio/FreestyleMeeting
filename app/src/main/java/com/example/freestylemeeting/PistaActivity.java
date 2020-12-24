@@ -3,8 +3,10 @@ package com.example.freestylemeeting;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,15 +33,27 @@ public class PistaActivity extends AppCompatActivity {
         ImageButton exitButton = (ImageButton) findViewById(R.id.exitPistaDescripcion);
 
         TextView nombreText = (TextView) findViewById(R.id.text_nombre_PistaDescripcion);
-        TextView idText = (TextView) findViewById(R.id.text_id_PistaDescripcion);
+        //TextView idText = (TextView) findViewById(R.id.text_id_PistaDescripcion);
         TextView dificultadText = (TextView) findViewById(R.id.text_dificultad_PistaDescripcion);
-        TextView usuariosText = (TextView) findViewById(R.id.text_usuarios_PistaDescripcion);
+        TextView usuariosText = (TextView) findViewById(R.id.text_usuarios_activos_PistaDescripcion);
+        TextView disponibleText = (TextView) findViewById(R.id.text_disponible_PistaDescripcion);
+        TextView avisosText = (TextView) findViewById(R.id.text_avisos_PistaDescripcion);
         FloatingActionButton editPistaButton = findViewById(R.id.edit_pista_button);
 
         nombreText.setText(pista.getNombre());
-        idText.setText(pista.getId());
+        //idText.setText(pista.getId());
         dificultadText.setText(pista.getDificultad());
-        usuariosText.setText("To-Do");
+        System.out.println("ARRAY:"+pista.getUsuariosActivos().size());
+        usuariosText.setText(""+pista.getUsuariosActivos().size());
+        if(pista.getDisponible()){
+            disponibleText.setText("Abierta");
+            disponibleText.setTextColor(Color.rgb(76,175,80));
+        } else {
+            disponibleText.setText("Cerrada");
+            disponibleText.setTextColor(Color.RED);
+        }
+        System.out.println("AVISOS: "+pista.getAvisos());
+        avisosText.setText(pista.getAvisos());
 
         UserDao.getEnterprisesCollection().document(UserDao.getCurrentUser().getUid()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
@@ -55,7 +69,9 @@ public class PistaActivity extends AppCompatActivity {
         editPistaButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(PistaActivity.this, "Funcionalidad en construccion...", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(PistaActivity.this, EditPistaActivity.class);
+                intent.putExtra("pista", pista);
+                startActivity(intent);
             }
         });
 

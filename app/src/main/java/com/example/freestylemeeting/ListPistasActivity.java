@@ -39,7 +39,8 @@ public class ListPistasActivity extends AppCompatActivity {
         addPistaButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(ListPistasActivity.this, "Funcionalidad en construccion...", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(ListPistasActivity.this, CreatePistaActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -51,6 +52,8 @@ public class ListPistasActivity extends AppCompatActivity {
         mMainList.setHasFixedSize(true);
         mMainList.setLayoutManager(new LinearLayoutManager(this));
         mMainList.setAdapter(pistaAdapter);
+
+        Estacion estacion;
 
         UserDao.getUsersCollection().document(UserDao.getCurrentUser().getUid()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
@@ -96,5 +99,11 @@ public class ListPistasActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(ListPistasActivity.this, NavegationDrawerActivity.class);
+        startActivity(intent);
     }
 }

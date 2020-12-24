@@ -3,25 +3,39 @@ package Modelo;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.sql.Array;
+import java.util.ArrayList;
+import java.util.UUID;
+
 public class Pista implements Parcelable {
     private String id;
     private String nombre;
     private String dificultad;
-    private String notificacion;
+    private boolean disponible = false;
+    private String avisos;
+    private ArrayList<String> usuariosActivos;
 
     public Pista(){ }
 
-    public Pista(String id, String nombre, String dificultad){
-        this.id = id;
+    public Pista(String nombre, String dificultad){
+        this.id = UUID.randomUUID().toString();
+        System.out.println("ID:"+id);
         this.nombre = nombre;
         this.dificultad = dificultad;
+        this.disponible = false;
+        this.avisos = "";
+        this.usuariosActivos = new ArrayList<>();
     }
 
     protected Pista(Parcel in) {
         id = in.readString();
         nombre = in.readString();
         dificultad = in.readString();
-        notificacion = in.readString();
+        disponible = in.readInt() == 0 ? false : true;
+        avisos = in.readString();
+        usuariosActivos = new ArrayList<>();
+        in.readStringList(usuariosActivos);
+        System.out.println("EEEEOOOOOOO"+usuariosActivos.size());
     }
 
     public static final Creator<Pista> CREATOR = new Creator<Pista>() {
@@ -38,8 +52,6 @@ public class Pista implements Parcelable {
 
     public String getId() { return id; }
 
-    public void setId(String id) { this.id = id; }
-
     public String getNombre() { return nombre; }
 
     public void setNombre(String nombre) {
@@ -54,13 +66,21 @@ public class Pista implements Parcelable {
         this.dificultad = dificultad;
     }
 
-    public String getNotificacion() {
-        return notificacion;
+    public boolean getDisponible(){ return disponible; }
+
+    public void setDisponible(boolean disponible){ this.disponible = disponible; }
+
+    public String getAvisos() {
+        return avisos;
     }
 
-    public void setNotificacion(String notificacion) {
-        this.notificacion = notificacion;
+    public void setAvisos(String avisos) {
+        this.avisos = avisos;
     }
+
+    public ArrayList<String> getUsuariosActivos() { return usuariosActivos; }
+
+    public void setUsuariosActivos(ArrayList<String> usuariosActivos){ this.usuariosActivos = usuariosActivos; }
 
     @Override
     public int describeContents() {
@@ -72,6 +92,8 @@ public class Pista implements Parcelable {
         dest.writeString(id);
         dest.writeString(nombre);
         dest.writeString(dificultad);
-        dest.writeString(notificacion);
+        dest.writeInt(disponible ? 1 : 0);
+        dest.writeString(avisos);
+        dest.writeStringList(usuariosActivos);
     }
 }

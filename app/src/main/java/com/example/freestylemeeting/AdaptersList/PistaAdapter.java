@@ -2,6 +2,7 @@ package com.example.freestylemeeting.AdaptersList;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,10 +40,17 @@ public class PistaAdapter extends RecyclerView.Adapter<PistaAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.nametext.setText(pistasList.get(position).getNombre());
-        holder.dificultadtext.setText(pistasList.get(position).getDificultad());
-        System.out.println("Pistas inside: "+pistasList.size());
         Pista pista = pistasList.get(position);
+        holder.nametext.setText(pista.getNombre());
+        holder.dificultadtext.setText(pista.getDificultad());
+        if(pista.getDisponible()){
+            holder.disponibleText.setText("Disponible");
+            holder.disponibleText.setTextColor(Color.rgb(76,175,80));
+        } else {
+            holder.disponibleText.setText("Cerrada");
+            holder.disponibleText.setTextColor(Color.RED);
+        }
+
         holder.mView.setOnClickListener(new View.OnClickListener(){
 
             @Override
@@ -64,12 +72,14 @@ public class PistaAdapter extends RecyclerView.Adapter<PistaAdapter.ViewHolder> 
         View mView;
         public TextView nametext;
         public TextView dificultadtext;
+        public TextView disponibleText;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             mView = itemView;
             nametext = (TextView) mView.findViewById(R.id.nombrePistaList);
             dificultadtext = (TextView) mView.findViewById(R.id.dificultadPistaList);
+            disponibleText = (TextView) mView.findViewById(R.id.disponiblePistaList);
         }
     }
 }
