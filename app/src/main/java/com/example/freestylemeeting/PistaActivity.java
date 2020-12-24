@@ -1,7 +1,9 @@
 package com.example.freestylemeeting;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -30,7 +32,7 @@ public class PistaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pista);
 
-        Pista pista= getIntent().getParcelableExtra("pista");
+        Pista pista = getIntent().getParcelableExtra("pista");
 
         ImageButton exitButton = (ImageButton) findViewById(R.id.exitPistaDescripcion);
 
@@ -45,17 +47,44 @@ public class PistaActivity extends AppCompatActivity {
         nombreText.setText(pista.getNombre());
         //idText.setText(pista.getId());
         dificultadText.setText(pista.getDificultad());
-        System.out.println("ARRAY:"+pista.getUsuariosActivos().size());
-        usuariosText.setText(""+pista.getUsuariosActivos().size());
-        if(pista.getDisponible()){
+        System.out.println("ARRAY:" + pista.getUsuariosActivos().size());
+        usuariosText.setText("" + pista.getUsuariosActivos().size());
+        if (pista.getDisponible()) {
             disponibleText.setText("Abierta");
-            disponibleText.setTextColor(Color.rgb(76,175,80));
+            disponibleText.setTextColor(Color.rgb(76, 175, 80));
         } else {
             disponibleText.setText("Cerrada");
             disponibleText.setTextColor(Color.RED);
         }
-        System.out.println("AVISOS: "+pista.getAvisos());
+        System.out.println("AVISOS: " + pista.getAvisos());
         avisosText.setText(pista.getAvisos());
+
+        ImageButton delete = (ImageButton) findViewById(R.id.deletePistaDescripcion);
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which) {
+                            case DialogInterface.BUTTON_POSITIVE:
+                                EstacionDao.deletePista(pista);
+                                Intent intent = new Intent(PistaActivity.this, ListPistasActivity.class);
+                                startActivity(intent);
+                                break;
+
+                            case DialogInterface.BUTTON_NEGATIVE:
+                                //No hacer nada
+                                break;
+                        }
+                    }
+                };
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(PistaActivity.this);
+                builder.setMessage("¿Estas seguro de que quieres borrar la pista?").setPositiveButton("Si", dialogClickListener)
+                        .setNegativeButton("No", dialogClickListener).show();
+            }
+        });
 
         UserDao.getEnterprisesCollection().document(UserDao.getCurrentUser().getUid()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
@@ -72,7 +101,6 @@ public class PistaActivity extends AppCompatActivity {
                     if(cliente.isEntrenamientoActivo()){
                         editPistaButton.setClickable(false);
                         addPistaToTraining.setVisibility(View.VISIBLE);
-
                     }
                 }
             }

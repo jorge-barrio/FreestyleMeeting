@@ -103,6 +103,43 @@ public class EstacionDao {
 
     /**
      *
+     * @param pista
+     */
+    public static void deletePista (Pista pista){
+        UserDao.getEnterprisesCollection().document(UserDao.getCurrentUser().getUid()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                UserEstacion trabajador = documentSnapshot.toObject(UserEstacion.class);
+                if(trabajador != null) {
+                    EstacionDao.getEstacionesCollection().document(trabajador.getCifEmpresa()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                        @Override
+                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+                            Estacion estacion = documentSnapshot.toObject(Estacion.class);
+                            ArrayList<Pista> pistas = estacion.getPistas();
+                            Pista p;
+
+                            if (estacion != null) {
+                                for (int i = 0; i < pistas.size(); i++){
+                                    p = pistas.get(i);
+                                    if(p.getId().equals(pista.getId())){
+                                        pistas.remove(i);
+                                        //estacion.getPistas().add(pista);
+                                        Map<String,Object> map = new HashMap<>();
+                                        map.put("pistas",pistas);
+                                        getEstacionesCollection().document(estacion.getCif()).update(map);
+                                        return;
+                                    }
+                                }
+                            }
+                        }
+                    });
+                }
+            }
+        });
+    }
+
+    /**
+     *
      * @param cif
      */
     public void getEstacion (String cif, EstacionCallback estacionCallback) {

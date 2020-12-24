@@ -23,6 +23,18 @@
         android:text="Nombre Pista"
         android:textSize="30dp" />
 
+    <ImageButton
+        android:id="@+id/deletePistaDescripcion"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_alignParentRight="true"
+        app:srcCompat="@drawable/trash"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        android:backgroundTint="@color/white"/>
+
     <ImageView
         android:id="@+id/mapa_pistas_estacion_PistaDescripcion"
         android:layout_below="@id/text_nombre_PistaDescripcion"
