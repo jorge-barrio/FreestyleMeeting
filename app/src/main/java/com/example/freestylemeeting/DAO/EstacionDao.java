@@ -16,6 +16,7 @@ import java.util.Map;
 
 import Modelo.Client;
 import Modelo.Estacion;
+import Modelo.Grupo;
 import Modelo.Pista;
 import Modelo.UserEstacion;
 
@@ -160,5 +161,34 @@ public class EstacionDao {
          db = FirebaseFirestore.getInstance();
          return db.collection("Estaciones");
     }
+
+    /*public void editGrupo(Grupo grupo){
+                        EstacionDao.getEstacionesCollection().document().get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                            @Override
+                            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                Estacion estacion = documentSnapshot.toObject(Estacion.class);
+                                ArrayList<Pista> pistas = estacion.getPistas();
+                                Pista p;
+
+                                if (estacion != null) {
+                                    for (int i = 0; i < pistas.size(); i++){
+                                        p = pistas.get(i);
+                                        if(p.getId().equals(pista.getId())){
+                                            pistas.set(i, pista);
+                                            //estacion.getPistas().add(pista);
+                                            Map<String,Object> map = new HashMap<>();
+                                            map.put("pistas",pistas);
+                                            getEstacionesCollection().document(estacion.getCif()).update(map);
+                                            return;
+                                        }
+                                    }
+                                }
+                            }
+                        });
+                    }
+                }
+            });
+
+    }*/
 }
 

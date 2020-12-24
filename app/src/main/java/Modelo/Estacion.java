@@ -13,6 +13,7 @@ public class Estacion {
     private String longitud;
     private String localidad;
     private String emailTienda;
+    private ArrayList<Grupo> grupos;
 
     public Estacion () {
         // Default constructor required for calls to DataSnapshot.getValue(Estacion.class)
@@ -25,6 +26,7 @@ public class Estacion {
         this.longitud = "";
         this.pistas = new ArrayList<>();
         this.packsReserva = new ArrayList<>();
+        this.grupos = new ArrayList<>();
         this.emailTienda = "";
     }
 
@@ -43,6 +45,12 @@ public class Estacion {
     public ArrayList<PackReserva> getPacksReserva() { return packsReserva; }
 
     public String getEmailTienda () { return emailTienda; }
+
+    public ArrayList<Grupo> getGrupos() { return grupos; }
+
+    public void addGrupo(Grupo grupo){
+        grupos.add(grupo);
+    }
 
     public HashMap<String, Object> toHasMap () {
         HashMap<String, Object> map = new HashMap<>();
