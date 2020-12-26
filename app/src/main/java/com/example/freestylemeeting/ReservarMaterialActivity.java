@@ -108,7 +108,6 @@ public class ReservarMaterialActivity extends AppCompatActivity {
         reservarButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println("--------------------entrabien: ");
                 Spinner spinner = (Spinner)findViewById(R.id.spinner);
                 EditText pesoEditText = (EditText) findViewById(R.id.pesoEditText);
                 EditText alturaEditText = (EditText) findViewById(R.id.alturaEditText);

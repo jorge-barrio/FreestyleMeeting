@@ -3,13 +3,16 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="75dp">
+    android:layout_height="wrap_content"
+    android:background="@drawable/borde"
+     >
 
     <TextView
         android:id="@+id/nombreGrupoList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="NombreGrupo"
+        android:layout_marginLeft="7dp"
         android:textSize="20sp"
         android:textStyle="bold"/>
 
@@ -19,6 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Modalidad"
+        android:layout_alignLeft="@id/nombreGrupoList"
         android:textSize="14sp"/>
     <TextView
         android:layout_toRightOf="@+id/modalidad_list"
@@ -41,13 +45,23 @@
         android:textSize="14sp"/>
 
     <TextView
-        android:id="@+id/unirse_list"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="20sp"
+        android:layout_below="@id/tam_list"
+        android:id="@+id/fechaHoraList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Unirse \nal grupo"
-        android:textSize="18sp"
-        android:gravity="center_horizontal" />
+        android:layout_alignLeft="@id/nombreGrupoList"
+        android:text="Fecha y Hora:"
+        android:textSize="14sp"/>
+
+    <TextView
+        android:layout_below="@id/tam_list"
+        android:id="@+id/lugarList"
+        android:layout_marginLeft="15sp"
+        android:layout_marginBottom="5dp"
+        android:layout_toRightOf="@id/fechaHoraList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lugar:"
+        android:textSize="14sp"/>
 
 </RelativeLayout>

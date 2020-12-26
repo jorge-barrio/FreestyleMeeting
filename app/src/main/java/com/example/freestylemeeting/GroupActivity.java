@@ -30,7 +30,7 @@ import Modelo.Estacion;
 import Modelo.Grupo;
 
 public class GroupActivity extends AppCompatActivity {
-    List<Grupo> grupos;
+    ArrayList<Grupo> grupos;
     private GrupoAdapter grupoAdapter;
     RecyclerView mMainList;
 
@@ -44,6 +44,14 @@ public class GroupActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(GroupActivity.this,CrearGruposActivity.class));
+            }
+        });
+
+        Button botonAtras = (Button) findViewById(R.id.botonAtrasGrupos);
+        botonAtras.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(GroupActivity.this,NavegationDrawerActivity.class));
             }
         });
 
