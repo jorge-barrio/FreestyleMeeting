@@ -18,6 +18,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.freestylemeeting.DAO.EstacionDao;
 import com.example.freestylemeeting.DAO.UserDao;
+import com.example.freestylemeeting.DAO.myCallback;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.auth.User;
@@ -123,14 +124,36 @@ public class SettingsFragment extends Fragment {
         buttonCambiarNombre.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                UserDao.changeNombre(nameText.getText()+"");
+
+                UserDao.changeNombre(nameText.getText() + "", new myCallback() {
+                    @Override
+                    public void onCallback(boolean status) {
+                        if (status){
+                            Toast.makeText(getActivity(), "Su nombre se ha cambiado con exito", Toast.LENGTH_SHORT).show();
+
+                        }else{
+                            Toast.makeText(getActivity(), "Error al cambiar nombre", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
             }
         });
 
         buttonCambiarPassword.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                UserDao.changePassword(passwordText.getText()+"");
+                UserDao.changePassword(passwordText.getText()+"", new myCallback() {
+                    @Override
+                    public void onCallback(boolean status) {
+                        if (status){
+                            Toast.makeText(getActivity(), "Su contraseña se ha cambiado con exito", Toast.LENGTH_SHORT).show();
+
+                        }else{
+                            Toast.makeText(getActivity(), "Error al cambiar contraseña", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
             }
         });
 
@@ -143,9 +166,19 @@ public class SettingsFragment extends Fragment {
                 avisoBorradoCuenta.setPositiveButton("Borrar Cuenta", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        UserDao.borrarCuenta();
-                        Intent intent = new Intent(getActivity(), RegisterActivity.class);
-                        startActivity(intent);
+                        UserDao.borrarCuenta(new myCallback() {
+                            @Override
+                            public void onCallback(boolean status) {
+                                if (status){
+                                    Intent intent = new Intent(getActivity(), NavegationDrawerActivity.class);
+                                    startActivity(intent);
+
+                                }else{
+                                    Toast.makeText(getActivity(), "Error borrando la cuenta", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+
                     }
                 });
                 avisoBorradoCuenta.setNegativeButton("Cancelar",null);

@@ -238,7 +238,7 @@ public class UserDao {
 
     }
 
-    public static void changeNombre(String nombre){
+    public static void changeNombre(String nombre,myCallback callback){
         UserDao.getUsersCollection().document(UserDao.getCurrentUser().getUid()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
@@ -249,8 +249,10 @@ public class UserDao {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if(task.isSuccessful()){
+                                callback.onCallback(true);
                                 Log.d("update","Se ha actualizado el nombre correctamente");
                             } else {
+                                callback.onCallback(false);
                                 Log.d("update", "Fallo al actualizarse el nombre");
                             }
                         }
@@ -266,13 +268,16 @@ public class UserDao {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
                                         if(task.isSuccessful()){
+                                            callback.onCallback(true);
                                             Log.d("update","Se ha actualizado el nombre correctamente");
                                         } else {
+                                            callback.onCallback(false);
                                             Log.d("update", "Fallo al actualizarse el nombre");
                                         }
                                     }
                                 });
                             }else{
+                                callback.onCallback(false);
                                 Log.d("Fallo", "Fallo en el Uid actual");
                             }
                         }
@@ -283,7 +288,7 @@ public class UserDao {
         });
     }
 
-    public static void changePassword(String password){
+    public static void changePassword(String password,myCallback callback){
         UserDao.getUsersCollection().document(UserDao.getCurrentUser().getUid()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
@@ -294,8 +299,10 @@ public class UserDao {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if(task.isSuccessful()){
+                                callback.onCallback(true);
                                 Log.d("update","Se ha actualizado la contraseña correctamente");
                             } else {
+                                callback.onCallback(false);
                                 Log.d("update", "Fallo al actualizarse la contraseña");
                             }
                         }
@@ -311,13 +318,16 @@ public class UserDao {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
                                         if(task.isSuccessful()){
+                                            callback.onCallback(true);
                                             Log.d("update","Se ha actualizado la contraseña correctamente");
                                         } else {
+                                            callback.onCallback(false);
                                             Log.d("update", "Fallo al actualizarse la contraseña");
                                         }
                                     }
                                 });
                             }else{
+                                callback.onCallback(false);
                                 Log.d("Fallo", "Fallo en el Uid actual");
                             }
                         }
@@ -328,7 +338,8 @@ public class UserDao {
         });
     }
 
-    public static void borrarCuenta(){
+    public static void borrarCuenta(myCallback callback){
+
         UserDao.getUsersCollection().document(UserDao.getCurrentUser().getUid()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
@@ -338,11 +349,14 @@ public class UserDao {
                     UserDao.getUsersCollection().document(UserDao.getCurrentUser().getUid()).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
+                            signOut();
+                            callback.onCallback(true);
                             Log.d("delete","Se ha borrado la cuenta");
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
+                            callback.onCallback(false);
                             Log.d("delete","Fallo, no se ha borrado la cuenta");
                         }
                     });
@@ -356,15 +370,19 @@ public class UserDao {
                                 UserDao.getEnterprisesCollection().document(UserDao.getCurrentUser().getUid()).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void aVoid) {
+                                        signOut();
+                                        callback.onCallback(true);
                                         Log.d("delete","Se ha borrado la cuenta");
                                     }
                                 }).addOnFailureListener(new OnFailureListener() {
                                     @Override
                                     public void onFailure(@NonNull Exception e) {
+                                        callback.onCallback(false);
                                         Log.d("delete","Fallo, no se ha borrado la cuenta");
                                     }
                                 });
                             }else{
+                                callback.onCallback(false);
                                 Log.d("Fallo", "Fallo en el Uid actual");
                             }
                         }
