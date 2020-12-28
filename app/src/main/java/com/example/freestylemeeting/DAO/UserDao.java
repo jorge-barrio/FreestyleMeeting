@@ -1,15 +1,19 @@
 package com.example.freestylemeeting.DAO;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -23,6 +27,7 @@ import java.util.List;
 import java.util.Map;
 
 import Modelo.Client;
+import Modelo.User;
 import Modelo.UserEstacion;
 
 public class UserDao {
@@ -231,6 +236,142 @@ public class UserDao {
             }
         });
 
+    }
+
+    public static void changeNombre(String nombre){
+        UserDao.getUsersCollection().document(UserDao.getCurrentUser().getUid()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                Client cliente = documentSnapshot.toObject(Client.class);
+
+                if(cliente != null){
+                    UserDao.getUsersCollection().document(UserDao.getCurrentUser().getUid()).update("name", nombre).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if(task.isSuccessful()){
+                                Log.d("update","Se ha actualizado el nombre correctamente");
+                            } else {
+                                Log.d("update", "Fallo al actualizarse el nombre");
+                            }
+                        }
+                    });
+                }else{
+                    UserDao.getEnterprisesCollection().document(UserDao.getCurrentUser().getUid()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                        @Override
+                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+                            UserEstacion estacion = documentSnapshot.toObject(UserEstacion.class);
+
+                            if(estacion != null){
+                                UserDao.getEnterprisesCollection().document(UserDao.getCurrentUser().getUid()).update("name", nombre).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if(task.isSuccessful()){
+                                            Log.d("update","Se ha actualizado el nombre correctamente");
+                                        } else {
+                                            Log.d("update", "Fallo al actualizarse el nombre");
+                                        }
+                                    }
+                                });
+                            }else{
+                                Log.d("Fallo", "Fallo en el Uid actual");
+                            }
+                        }
+                    });
+                }
+
+            }
+        });
+    }
+
+    public static void changePassword(String password){
+        UserDao.getUsersCollection().document(UserDao.getCurrentUser().getUid()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                Client cliente = documentSnapshot.toObject(Client.class);
+
+                if(cliente != null){
+                    UserDao.getUsersCollection().document(UserDao.getCurrentUser().getUid()).update("password", password).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if(task.isSuccessful()){
+                                Log.d("update","Se ha actualizado la contraseña correctamente");
+                            } else {
+                                Log.d("update", "Fallo al actualizarse la contraseña");
+                            }
+                        }
+                    });
+                }else{
+                    UserDao.getEnterprisesCollection().document(UserDao.getCurrentUser().getUid()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                        @Override
+                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+                            UserEstacion estacion = documentSnapshot.toObject(UserEstacion.class);
+
+                            if(estacion != null){
+                                UserDao.getEnterprisesCollection().document(UserDao.getCurrentUser().getUid()).update("password", password).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if(task.isSuccessful()){
+                                            Log.d("update","Se ha actualizado la contraseña correctamente");
+                                        } else {
+                                            Log.d("update", "Fallo al actualizarse la contraseña");
+                                        }
+                                    }
+                                });
+                            }else{
+                                Log.d("Fallo", "Fallo en el Uid actual");
+                            }
+                        }
+                    });
+                }
+
+            }
+        });
+    }
+
+    public static void borrarCuenta(){
+        UserDao.getUsersCollection().document(UserDao.getCurrentUser().getUid()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                Client cliente = documentSnapshot.toObject(Client.class);
+
+                if(cliente != null){
+                    UserDao.getUsersCollection().document(UserDao.getCurrentUser().getUid()).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Log.d("delete","Se ha borrado la cuenta");
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.d("delete","Fallo, no se ha borrado la cuenta");
+                        }
+                    });
+                }else{
+                    UserDao.getEnterprisesCollection().document(UserDao.getCurrentUser().getUid()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                        @Override
+                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+                            UserEstacion estacion = documentSnapshot.toObject(UserEstacion.class);
+
+                            if(estacion != null){
+                                UserDao.getEnterprisesCollection().document(UserDao.getCurrentUser().getUid()).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        Log.d("delete","Se ha borrado la cuenta");
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Log.d("delete","Fallo, no se ha borrado la cuenta");
+                                    }
+                                });
+                            }else{
+                                Log.d("Fallo", "Fallo en el Uid actual");
+                            }
+                        }
+                    });
+                }
+            }
+        });
     }
 
     public static void closeTraining() {
