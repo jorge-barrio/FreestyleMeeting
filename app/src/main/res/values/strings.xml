@@ -2,7 +2,7 @@
     <string name="app_name">Freestyle meeting</string>
     <string name="book_material">Reservar</string>
     <string name="groups">Grupos</string>
-    <string name="ski_trails">Pistas de equi</string>
+    <string name="ski_trails">Pistas de esqui</string>
     <string name="training">Entrenamiento</string>
     <string name="title_activity_navigation_drawer">NavigationDrawerActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -46,5 +46,6 @@
     <string name="attachment_summary_on">Automatically download attachments for incoming emails
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <string name="menu_ajustes">Ajustes</string>
 
 </resources>
