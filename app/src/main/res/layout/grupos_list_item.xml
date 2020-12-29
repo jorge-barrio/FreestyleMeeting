@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/borde"
+     >
+
+    <TextView
+        android:id="@+id/nombreGrupoList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="NombreGrupo"
+        android:layout_marginLeft="7dp"
+        android:textSize="20sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:layout_below="@id/nombreGrupoList"
+        android:id="@+id/modalidad_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Modalidad"
+        android:layout_alignLeft="@id/nombreGrupoList"
+        android:textSize="14sp"/>
+    <TextView
+        android:layout_toRightOf="@+id/modalidad_list"
+        android:layout_below="@+id/nombreGrupoList"
+        android:layout_marginLeft="15sp"
+        android:id="@+id/nivel_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nivel"
+        android:textSize="14sp"/>
+
+    <TextView
+        android:layout_toRightOf="@+id/nivel_list"
+        android:layout_below="@+id/nombreGrupoList"
+        android:layout_marginLeft="15sp"
+        android:id="@+id/tam_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tamaño"
+        android:textSize="14sp"/>
+
+    <TextView
+        android:layout_below="@id/tam_list"
+        android:id="@+id/fechaHoraList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/nombreGrupoList"
+        android:text="Fecha y Hora:"
+        android:textSize="14sp"/>
+
+    <TextView
+        android:layout_below="@id/tam_list"
+        android:id="@+id/lugarList"
+        android:layout_marginLeft="15sp"
+        android:layout_marginBottom="5dp"
+        android:layout_toRightOf="@id/fechaHoraList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lugar:"
+        android:textSize="14sp"/>
+
+</RelativeLayout>
