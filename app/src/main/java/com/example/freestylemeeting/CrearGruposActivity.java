@@ -22,14 +22,11 @@ import com.example.freestylemeeting.DAO.UserDao;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;;
 
-import java.text.DateFormat;
+
 import java.text.DecimalFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 import Modelo.Client;
 import Modelo.Grupo;
@@ -114,7 +111,6 @@ public class CrearGruposActivity extends AppCompatActivity {
                     LocalDateTime fechaSeleccionada=null;
 
                     fechaSeleccionada = LocalDateTime.parse(fechaEditText.getText().toString()+" "+horaEditText.getText().toString(), formatter);
-
 
                     LocalDateTime now = LocalDateTime.now();
 

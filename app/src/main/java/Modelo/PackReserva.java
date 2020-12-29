@@ -1,26 +1,16 @@
 package Modelo;
 
 public class PackReserva {
-    private String id;
     private String nombre;
     private String descripcion;
     private float precio;
 
     public PackReserva(){ }
 
-    public PackReserva(String id, String nombre, String descripcion, float precio) {
-        this.id = id;
+    public PackReserva( String nombre, String descripcion, float precio) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.precio = precio;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getNombre() {

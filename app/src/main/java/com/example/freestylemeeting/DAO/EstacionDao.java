@@ -18,6 +18,8 @@ import Modelo.Client;
 import Modelo.Estacion;
 import Modelo.Grupo;
 import Modelo.Pista;
+import Modelo.Reserva;
+import Modelo.User;
 import Modelo.UserEstacion;
 
 
@@ -207,6 +209,31 @@ public class EstacionDao {
                             Map<String, Object> map = new HashMap<>();
                             map.put("grupos", grupos);
                             getEstacionesCollection().document(estacion.getCif()).update(map);
+                            return;
+                        }
+                    }
+                });
+            }
+        });
+
+    }
+
+    public static void addReserva(Reserva reserva){
+        UserDao.getUsersCollection().document(UserDao.getCurrentUser().getUid()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                Client cliente = documentSnapshot.toObject(Client.class);
+                EstacionDao.getEstacionesCollection().document(cliente.getCurrentEstacion()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        Estacion estacion = documentSnapshot.toObject(Estacion.class);
+                        ArrayList<Reserva> reservas = estacion.getReservas();
+                        if (estacion != null) {
+                            reservas.add(reserva);
+                            Map<String, Object> map = new HashMap<>();
+                            map.put("reservas", reservas);
+                            getEstacionesCollection().document(estacion.getCif()).update(map);
+                            UserDao.addReserva(reserva.getIdReserva(), reserva.getFechaRecogida(), estacion.getCif());
                             return;
                         }
                     }
