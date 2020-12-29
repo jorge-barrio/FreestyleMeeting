@@ -14,6 +14,7 @@ public class Estacion {
     private String localidad;
     private String emailTienda;
     private ArrayList<Grupo> grupos;
+    private ArrayList<Reserva> reservas;
 
     public Estacion () {
         // Default constructor required for calls to DataSnapshot.getValue(Estacion.class)
@@ -28,7 +29,10 @@ public class Estacion {
         this.packsReserva = new ArrayList<>();
         this.grupos = new ArrayList<>();
         this.emailTienda = "";
+        this.reservas = new ArrayList<>();
     }
+
+    public ArrayList<Reserva> getReservas() { return reservas; }
 
     public String getCif() {
         return cif;
