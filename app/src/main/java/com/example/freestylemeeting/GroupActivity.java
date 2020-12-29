@@ -73,7 +73,7 @@ public class GroupActivity extends AppCompatActivity {
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         Estacion estacion = documentSnapshot.toObject(Estacion.class);
                         if (estacion != null) {
-                            grupos.addAll(estacion.getGrupos());
+                            grupos.addAll(estacion.getGruposActualesOrdenados());
                             grupoAdapter.notifyDataSetChanged();
                         }
                     }

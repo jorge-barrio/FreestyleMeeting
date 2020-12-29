@@ -125,8 +125,7 @@ public class HomeFragment extends Fragment {
                                         }
                                     });
                                 } else {
-                                    Toast.makeText(getActivity(), "Error.", Toast.LENGTH_SHORT).show();
-                                    System.out.println("ERROR. HomeFragment");
+                                    Toast.makeText(getActivity(), "Error home. Auth is wrong", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
