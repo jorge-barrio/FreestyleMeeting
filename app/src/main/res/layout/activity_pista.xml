@@ -33,6 +33,7 @@
         app:srcCompat="@drawable/trash"
         android:adjustViewBounds="true"
         android:scaleType="fitXY"
+        android:visibility="invisible"
         android:backgroundTint="@color/white"/>
 
     <ImageView
