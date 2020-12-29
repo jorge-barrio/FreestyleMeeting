@@ -3,8 +3,11 @@ package com.example.freestylemeeting;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Base64;
 import android.view.View;
 import android.widget.Toast;
+
+import java.io.UnsupportedEncodingException;
 import java.util.Properties;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -29,6 +32,9 @@ public class JavaMailAPI extends AsyncTask<Void,Void,Void>  {
 
     private String mName;
     private String mMessage;
+
+    private static String passwordText = "";
+    private static final String text = "RnJlZXN0eWxlMTIz";
 
     private ProgressDialog mProgressDialog;
 
@@ -61,6 +67,14 @@ public class JavaMailAPI extends AsyncTask<Void,Void,Void>  {
         //Creating properties
         Properties props = new Properties();
 
+        try {
+            //byte[] bytes = text.getBytes("US-ASCII");
+            byte[] data = Base64.decode(text, Base64.DEFAULT);
+            passwordText = new String(data,"US-ASCII");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
         //Configuring properties for gmail
         //If you are not using gmail you may need to change the values
         props.put("mail.smtp.host", "smtp.gmail.com");
@@ -74,7 +88,7 @@ public class JavaMailAPI extends AsyncTask<Void,Void,Void>  {
                 new javax.mail.Authenticator() {
                     //Authenticating the password
                     protected PasswordAuthentication getPasswordAuthentication() {
-                        return new PasswordAuthentication("meetingfreestyle@gmail.com", "Freestyle123");
+                        return new PasswordAuthentication("meetingfreestyle@gmail.com", passwordText);
                     }
                 });
 
