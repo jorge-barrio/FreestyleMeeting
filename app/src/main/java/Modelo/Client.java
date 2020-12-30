@@ -2,6 +2,8 @@ package Modelo;
 
 import java.sql.Array;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class Client extends User{
 
@@ -32,6 +34,18 @@ public class Client extends User{
 
     public ArrayList<Reserva> getReservas() {
         return reservas;
+    }
+
+    public ArrayList<Reserva> getReservasActualesAAntiguas() {
+        ArrayList<Reserva> reservasOrdenada = (ArrayList<Reserva>) reservas.clone();
+        Collections.sort(reservasOrdenada, new Comparator<Reserva>() {
+            @Override
+            public int compare(Reserva r1, Reserva r2) {
+                return r2.getFechaRecogida().compareTo(r1.getFechaRecogida());
+            }
+        });
+
+        return reservasOrdenada;
     }
 
     public void setReservas(ArrayList<Reserva> reservas) {

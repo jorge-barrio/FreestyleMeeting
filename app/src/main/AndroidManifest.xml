@@ -12,8 +12,11 @@
         android:roundIcon="@mipmap/logo_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FreestyleMeeting">
+
         <activity android:name=".entrenamiento"></activity>
         <activity android:name=".userTrainings" />
+
+        <activity android:name=".ListMisReservas"></activity>
         <activity
             android:name=".EditPistaActivity"
             android:screenOrientation="portrait" />
@@ -25,7 +28,6 @@
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

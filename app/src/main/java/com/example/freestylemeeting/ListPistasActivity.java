@@ -63,6 +63,9 @@ public class ListPistasActivity extends AppCompatActivity {
         mMainList.setLayoutManager(new LinearLayoutManager(this));
         mMainList.setAdapter(pistaAdapter);
 
+        // Mostramos primero las pistas cacheadas mientras se actualizan
+        pistas.addAll(EstacionDao.currentEstacion.getPistas());
+
         Estacion estacion;
 
         UserDao.getUsersCollection().document(UserDao.getCurrentUser().getUid()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
@@ -78,6 +81,7 @@ public class ListPistasActivity extends AppCompatActivity {
                         public void onSuccess(DocumentSnapshot documentSnapshot) {
                             Estacion estacion = documentSnapshot.toObject(Estacion.class);
                             if (estacion != null) {
+                                pistas.removeAll(pistas);
                                 pistas.addAll(estacion.getPistas());
                                 pistaAdapter.notifyDataSetChanged();
                             }
@@ -94,6 +98,7 @@ public class ListPistasActivity extends AppCompatActivity {
                                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                                         Estacion estacion = documentSnapshot.toObject(Estacion.class);
                                         if (estacion != null) {
+                                            pistas.removeAll(pistas);
                                             pistas.addAll(estacion.getPistas());
                                             pistaAdapter.notifyDataSetChanged();
                                         }

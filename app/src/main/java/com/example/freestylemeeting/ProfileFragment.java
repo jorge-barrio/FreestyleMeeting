@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +28,8 @@ import Modelo.UserEstacion;
  * create an instance of this fragment.
  */
 public class ProfileFragment extends Fragment {
+
+    private static Client cliente = null;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -77,11 +80,36 @@ public class ProfileFragment extends Fragment {
 
         if(UserDao.sesionIniciada()){
             /* Mostrar datos del usuarios */
+
             TextView entrenamientos = v.findViewById(R.id.entrenamientos);
+
+            LinearLayout reservas = v.findViewById(R.id.reservas_perfil);
+
             TextView nametext = v.findViewById(R.id.namePerfil);
             TextView emailtext = v.findViewById(R.id.emailPerfil);
             TextView numEntrenamientos = v.findViewById(R.id.numEstrenamientosPerfil);
             TextView numReservas = v.findViewById(R.id.numReservasPerfil);
+
+            reservas.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v){
+                    if(UserDao.currentCliente != null && UserDao.currentEmpleado == null) {
+                        Intent intent = new Intent(getActivity(), ListMisReservas.class);
+                        startActivity(intent);
+                    }
+                }
+            });
+
+            // Primero mostramos los datos cacheados y despues los actualizamos
+            if(UserDao.currentCliente != null) {
+                nametext.setText(UserDao.currentCliente.getName());
+                emailtext.setText(UserDao.currentCliente.getEmail());
+                numEntrenamientos.setText("" + UserDao.currentCliente.getEntrenamientos().size());
+                numReservas.setText("" + UserDao.currentCliente.getReservas().size());
+            } else if(UserDao.currentEmpleado != null){
+                nametext.setText(UserDao.currentEmpleado.getName());
+                emailtext.setText(UserDao.currentEmpleado.getEmail());
+            }
+
             UserDao.getUsersCollection().document(UserDao.getCurrentUser().getUid()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                 @Override
                 public void onSuccess(DocumentSnapshot documentSnapshot) {
@@ -126,6 +154,9 @@ public class ProfileFragment extends Fragment {
         logOutButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v){
                 UserDao.signOut();
+                UserDao.currentCliente = null;
+                UserDao.currentEmpleado = null;
+                EstacionDao.currentEstacion = null;
                 startActivity(new Intent(getActivity(), authActivity.class));
             }
         });

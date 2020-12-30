@@ -13,12 +13,8 @@
             android:icon="@drawable/ic_account_circle"
             android:title="@string/menu_profile"/>
         <item
-            android:id="@+id/nav_notifications"
-            android:icon="@drawable/ic_baseline_notifications_24"
-            android:title="@string/menu_notifications" />
-        <item
             android:id="@+id/nav_ajustes"
             android:icon="@drawable/ic_settings"
-            android:title="Ajustes" />
+            android:title="@string/menu_ajustes" />
     </group>
 </menu>

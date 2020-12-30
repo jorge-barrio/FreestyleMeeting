@@ -96,6 +96,7 @@ public class PistaActivity extends AppCompatActivity {
                     //Activamos la visibilidad del floating button
                     addPistaToTraining.setClickable(false);
                     editPistaButton.setVisibility(View.VISIBLE);
+                    delete.setVisibility(View.VISIBLE);
                 } else if(cliente != null){
                     Log.d("entrenamiento activo", String.valueOf(cliente.isEntrenamientoActivo()));
                     if(cliente.isEntrenamientoActivo()){

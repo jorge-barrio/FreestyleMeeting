@@ -31,11 +31,10 @@ public class Pista implements Parcelable {
         id = in.readString();
         nombre = in.readString();
         dificultad = in.readString();
-        disponible = in.readInt() == 0 ? false : true;
+        disponible = in.readInt() == 1;
         avisos = in.readString();
         usuariosActivos = new ArrayList<>();
         in.readStringList(usuariosActivos);
-        System.out.println("EEEEOOOOOOO"+usuariosActivos.size());
     }
 
     public static final Creator<Pista> CREATOR = new Creator<Pista>() {

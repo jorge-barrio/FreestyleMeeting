@@ -16,7 +16,10 @@ import java.util.Map;
 
 import Modelo.Client;
 import Modelo.Estacion;
+import Modelo.Grupo;
 import Modelo.Pista;
+import Modelo.Reserva;
+import Modelo.User;
 import Modelo.UserEstacion;
 
 
@@ -24,6 +27,9 @@ public class EstacionDao {
 
     private static FirebaseFirestore db;
     public static Estacion estaciontmp = null;
+
+    /* Cache */
+    public static Estacion currentEstacion = null;
 
     /**
      * Crea una nueva estacion
@@ -159,6 +165,85 @@ public class EstacionDao {
     public static CollectionReference getEstacionesCollection(){
          db = FirebaseFirestore.getInstance();
          return db.collection("Estaciones");
+    }
+
+    public static void editGrupo(Grupo grupo){
+        UserDao.getUsersCollection().document(UserDao.getCurrentUser().getUid()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                Client cliente = documentSnapshot.toObject(Client.class);
+                EstacionDao.getEstacionesCollection().document(cliente.getCurrentEstacion()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        Estacion estacion = documentSnapshot.toObject(Estacion.class);
+                        ArrayList<Grupo> grupos = estacion.getGrupos();
+                        Grupo g;
+                        if (estacion != null) {
+                            for (int i = 0; i < grupos.size(); i++) {
+                                g = grupos.get(i);
+                                if (g.getId().equals(grupo.getId())) {
+                                    grupos.set(i, grupo);
+                                    Map<String, Object> map = new HashMap<>();
+                                    map.put("grupos", grupos);
+                                    getEstacionesCollection().document(estacion.getCif()).update(map);
+                                    return;
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        });
+
+    }
+
+    public static void addGrupo(Grupo grupo){
+        UserDao.getUsersCollection().document(UserDao.getCurrentUser().getUid()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                Client cliente = documentSnapshot.toObject(Client.class);
+                EstacionDao.getEstacionesCollection().document(cliente.getCurrentEstacion()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        Estacion estacion = documentSnapshot.toObject(Estacion.class);
+                        ArrayList<Grupo> grupos = estacion.getGrupos();
+                        if (estacion != null) {
+                            grupos.add(grupo);
+                            Map<String, Object> map = new HashMap<>();
+                            map.put("grupos", grupos);
+                            getEstacionesCollection().document(estacion.getCif()).update(map);
+                            return;
+                        }
+                    }
+                });
+            }
+        });
+
+    }
+
+    public static void addReserva(Reserva reserva){
+        UserDao.getUsersCollection().document(UserDao.getCurrentUser().getUid()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                Client cliente = documentSnapshot.toObject(Client.class);
+                EstacionDao.getEstacionesCollection().document(cliente.getCurrentEstacion()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        Estacion estacion = documentSnapshot.toObject(Estacion.class);
+                        ArrayList<Reserva> reservas = estacion.getReservas();
+                        if (estacion != null) {
+                            reservas.add(reserva);
+                            Map<String, Object> map = new HashMap<>();
+                            map.put("reservas", reservas);
+                            getEstacionesCollection().document(estacion.getCif()).update(map);
+                            UserDao.addReserva(reserva);
+                            return;
+                        }
+                    }
+                });
+            }
+        });
+
     }
 }
 

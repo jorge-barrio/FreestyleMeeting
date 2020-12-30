@@ -35,6 +35,7 @@ public class SettingsFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
     private static EditText nameText;
     private static EditText passwordText;
+    private static TextView estacion;
 
     // Estacion
     TextView estaciontext;
@@ -94,7 +95,6 @@ public class SettingsFragment extends Fragment {
 
                     if(cliente != null){
                         nameText.setText(cliente.getName());
-                        passwordText.setText(cliente.getPassword());
                     } else {
                         UserDao.getEnterprisesCollection().document(UserDao.getCurrentUser().getUid()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                             @Override
@@ -102,7 +102,6 @@ public class SettingsFragment extends Fragment {
                                 UserEstacion estacion = documentSnapshot.toObject(UserEstacion.class);
                                 if(estacion != null){
                                     nameText.setText(estacion.getName());
-                                    passwordText.setText(estacion.getPassword());
                                 } else {
                                     Toast.makeText(getActivity(),"Error.", Toast.LENGTH_SHORT).show();
                                     System.out.println("ERROR. HomeFragment");
@@ -120,6 +119,7 @@ public class SettingsFragment extends Fragment {
         Button buttonCambiarNombre = (Button) v.findViewById(R.id.buttonCambiarNombre);
         Button buttonCambiarPassword = (Button) v.findViewById(R.id.buttonCambiarPassword);
         Button buttonBorrarCuenta = (Button) v.findViewById(R.id.buttonBorraCuenta);
+        Button buttonCambiarEstacion = (Button) v.findViewById(R.id.cambiar_estacion_boton_ajustes);
 
         buttonCambiarNombre.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -154,6 +154,18 @@ public class SettingsFragment extends Fragment {
                         }
                     }
                 });
+            }
+        });
+
+        buttonCambiarEstacion.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                if(UserDao.currentCliente != null && UserDao.currentEmpleado == null) {
+                    Intent intent = new Intent(getActivity(), SelectEstacionActivity.class);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(getActivity(), "Funcionalidad solo para clientes", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

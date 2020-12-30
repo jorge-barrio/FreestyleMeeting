@@ -3,52 +3,31 @@ package Modelo;
 import com.google.type.DateTime;
 
 import java.util.Date;
+import java.util.UUID;
 
 public class Reserva {
     private String idReserva;
-    private String idEstacion;
-    private String idPack;
+    private String estacion;
+    private String correoCliente;
+    private String correoTienda;
+    private String nombrePack;
     private Date fechaRecogida;
     private int duracion;
     private float peso;
     private float altura;
     private float precioEuros;
+    private int talla;
+    private String cifEstacion;
 
-    public Reserva() { }
-    public Reserva(String idReserva, String idEstacion, String idPack, Date fechaRecogida, int duracion, float peso, float altura, float precioEuros) {
-        this.idReserva = idReserva;
-        this.idEstacion = idEstacion;
-        this.idPack = idPack;
-        this.fechaRecogida = fechaRecogida;
-        this.duracion = duracion;
-        this.peso = peso;
-        this.altura = altura;
-        this.precioEuros = precioEuros;
+    public Reserva() {
+        this.idReserva = UUID.randomUUID().toString();
     }
 
-    public String getIdReserva() {
-        return idReserva;
-    }
+    public String getCorreoCliente() { return correoCliente; }
 
-    public void setIdReserva(String idReserva) {
-        this.idReserva = idReserva;
-    }
+    public void setCorreoCliente(String correoCliente) { this.correoCliente = correoCliente; }
 
-    public String getIdEstacion() {
-        return idEstacion;
-    }
-
-    public void setIdEstacion(String idEstacion) {
-        this.idEstacion = idEstacion;
-    }
-
-    public String getIdPack() {
-        return idPack;
-    }
-
-    public void setIdPack(String idPack) {
-        this.idPack = idPack;
-    }
+    public String getIdReserva() { return idReserva; }
 
     public Date getFechaRecogida() {
         return fechaRecogida;
@@ -85,4 +64,22 @@ public class Reserva {
     public float getPrecioEuros() { return precioEuros; }
 
     public void setPrecioEuros(float precioEuros) { this.precioEuros = precioEuros; }
+
+    public String getNombrePack() { return nombrePack; }
+
+    public void setNombrePack(String nombrePack) { this.nombrePack = nombrePack; }
+
+    public int getTalla() { return talla; }
+
+    public void setTalla(int talla) { this.talla = talla; }
+    
+    public String getEstacion() { return estacion; }
+
+    public void setEstacion(String estacion) { this.estacion = estacion; }
+
+    public String getCorreoTienda() { return correoTienda; }
+
+    public void setCorreoTienda(String correoTienda) { this.correoTienda = correoTienda; }
+
+    public void setCifEstacion(String cif) { this.cifEstacion = cif; }
 }

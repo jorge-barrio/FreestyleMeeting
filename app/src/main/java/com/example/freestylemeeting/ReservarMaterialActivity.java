@@ -108,27 +108,33 @@ public class ReservarMaterialActivity extends AppCompatActivity {
         reservarButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println("--------------------entrabien: ");
                 Spinner spinner = (Spinner)findViewById(R.id.spinner);
                 EditText pesoEditText = (EditText) findViewById(R.id.pesoEditText);
                 EditText alturaEditText = (EditText) findViewById(R.id.alturaEditText);
                 EditText fechaEditText = (EditText) findViewById(R.id.fechaRecogidaEditText);
                 EditText duracionEditText = (EditText) findViewById(R.id.duracionEditText);
+                EditText tallaEditText = (EditText) findViewById(R.id.tallaEditText);
 
-                if (pesoEditText.getText().toString().matches("") || alturaEditText.getText().toString().matches("") || duracionEditText.getText().toString().matches("") || fechaEditText.getText().toString().matches("")) {
+                if (pesoEditText.getText().toString().matches("") || alturaEditText.getText().toString().matches("") || duracionEditText.getText().toString().matches("") || fechaEditText.getText().toString().matches("") || tallaEditText.getText().toString().matches("")) {
                     Toast.makeText(getApplicationContext(), "Faltan campos por rellenar", Toast.LENGTH_SHORT ).show();
                 }else{
 
                     int indicePack = spinner.getSelectedItemPosition();
-                    int peso = Integer.parseInt(pesoEditText.getText().toString());
-                    int altura = Integer.parseInt(alturaEditText.getText().toString());
+                    String nombrePack = spinner.getSelectedItem().toString();
+                    float peso = Float.parseFloat(pesoEditText.getText().toString());
+                    float altura = Float.parseFloat(alturaEditText.getText().toString());
                     int duracion = Integer.parseInt(duracionEditText.getText().toString());
+                    int talla = Integer.parseInt((tallaEditText.getText().toString()));
 
                     Reserva reserva = new Reserva();
+                    reserva.setEstacion(estacion.getNombre());
+                    reserva.setCifEstacion(estacion.getCif());
+                    reserva.setCorreoCliente(cliente.getEmail());
+                    reserva.setCorreoTienda(estacion.getEmailTienda());
+                    reserva.setTalla(talla);
                     reserva.setAltura(altura);
                     reserva.setDuracion(duracion);
-                    reserva.setIdEstacion(estacion.getCif());
-                    reserva.setIdPack(packsReserva.get(indicePack).getId());
+                    reserva.setNombrePack(nombrePack);
                     reserva.setPeso(peso);
                     reserva.setPrecioEuros(packsReserva.get(indicePack).getPrecio() * duracion);
                     Date dateRecogida= null;
@@ -138,21 +144,27 @@ public class ReservarMaterialActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
 
-                    reserva.setFechaRecogida(dateRecogida);
-                    reserva.setIdReserva(cliente.getEmail()+"-"+reserva.getFechaRecogida());
 
-                    Intent email = new Intent(Intent.ACTION_SEND);
-                    email.putExtra(Intent.EXTRA_EMAIL, new String[]{ estacion.getEmailTienda() });
-                    email.putExtra(Intent.EXTRA_SUBJECT, "Nueva Reserva");
-                    email.putExtra(Intent.EXTRA_TEXT, "Registrada nueva reserva con id: "+reserva.getIdReserva()+"\n Pack: "
-                            +reserva.getIdPack()+"\n Peso(kg): "+reserva.getPeso()+"\n Altura(m): "+reserva.getAltura()+"\n Duracion: "
-                            +reserva.getDuracion()+"\n Fecha de recogida: "+reserva.getFechaRecogida()+"\n Precio: "+reserva.getPrecioEuros());
+                    if(dateRecogida.before(new Date())){
+                        Toast.makeText(getApplicationContext(), "La fecha introducida no es válida", Toast.LENGTH_SHORT ).show();
+                    }else{
+                        reserva.setFechaRecogida(dateRecogida);
+
+                        /*Intent email = new Intent(Intent.ACTION_SEND);
+                        email.putExtra(Intent.EXTRA_EMAIL, new String[]{ estacion.getEmailTienda() });
+                        email.putExtra(Intent.EXTRA_SUBJECT, "Nueva Reserva");
+                        email.putExtra(Intent.EXTRA_TEXT, "Registrada nueva reserva con id: "+reserva.getIdReserva()+"\n Pack: "
+                                +reserva.getNombrePack()+"\n Peso(kg): "+reserva.getPeso()+"\n Altura(m): "+reserva.getAltura()+"\n Duracion: "
+                                +reserva.getDuracion()+"\n Fecha de recogida: "+reserva.getFechaRecogida()+"\n Precio: "+reserva.getPrecioEuros()+"\n Talla: "+
+                                reserva.getTalla());
 //need this to prompts email client only
-                    email.setType("message/rfc822");
-                    startActivity(Intent.createChooser(email, "Choose an Email client :"));
+                        email.setType("message/rfc822");
+                        startActivity(Intent.createChooser(email, "Choose an Email client :"));*/
+                        EstacionDao.addReserva(reserva);
+                        Toast.makeText(getApplicationContext(), "ReservaRealizada", Toast.LENGTH_SHORT ).show();
+                        startActivity(new Intent(ReservarMaterialActivity.this,NavegationDrawerActivity.class));
+                    }
 
-                    Toast.makeText(getApplicationContext(), "ReservaRealizada", Toast.LENGTH_SHORT ).show();
-                    startActivity(new Intent(ReservarMaterialActivity.this,NavegationDrawerActivity.class));
                 }
             }
         });
@@ -195,7 +207,7 @@ public class ReservarMaterialActivity extends AppCompatActivity {
         packsReserva=packs;
         estacion = objEstacion;
         cliente = objClient;
-        String[] nombres = new String[packs.size()];
+        String[] nombres = new String[packs == null ? 0 : packs.size()];
         for(int i =0; i<packs.size(); i++){
             nombres[i] = packs.get(i).getDescripcion();
         }
