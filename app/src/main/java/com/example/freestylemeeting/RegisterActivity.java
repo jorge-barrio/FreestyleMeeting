@@ -70,7 +70,7 @@ public class RegisterActivity extends AppCompatActivity {
                     startActivity(new Intent(RegisterActivity.this,authActivity.class));
                     finish();
                 }else{
-                    Toast.makeText(RegisterActivity.this, "El formato del email no es el adecuado", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, "Error al registrar usuario. Compruebe si el email ya ha sido registrado o su formato sea erroneo", Toast.LENGTH_SHORT).show();
                 }
 
             }

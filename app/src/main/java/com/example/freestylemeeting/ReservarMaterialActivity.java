@@ -121,13 +121,16 @@ public class ReservarMaterialActivity extends AppCompatActivity {
 
                     int indicePack = spinner.getSelectedItemPosition();
                     String nombrePack = spinner.getSelectedItem().toString();
-                    int peso = Integer.parseInt(pesoEditText.getText().toString());
-                    int altura = Integer.parseInt(alturaEditText.getText().toString());
+                    float peso = Float.parseFloat(pesoEditText.getText().toString());
+                    float altura = Float.parseFloat(alturaEditText.getText().toString());
                     int duracion = Integer.parseInt(duracionEditText.getText().toString());
                     int talla = Integer.parseInt((tallaEditText.getText().toString()));
 
                     Reserva reserva = new Reserva();
+                    reserva.setEstacion(estacion.getNombre());
+                    reserva.setCifEstacion(estacion.getCif());
                     reserva.setCorreoCliente(cliente.getEmail());
+                    reserva.setCorreoTienda(estacion.getEmailTienda());
                     reserva.setTalla(talla);
                     reserva.setAltura(altura);
                     reserva.setDuracion(duracion);

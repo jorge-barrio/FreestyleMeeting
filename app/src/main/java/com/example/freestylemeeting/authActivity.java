@@ -100,7 +100,7 @@ public class authActivity extends AppCompatActivity {
                      startActivity(new Intent(authActivity.this, NavegationDrawerActivity.class));
                      finish();
                  }else{
-                     Toast.makeText(authActivity.this, "El formato del email no es el adecuado", Toast.LENGTH_SHORT).show();
+                     Toast.makeText(authActivity.this, "Credenciales erroneas o email ya existente", Toast.LENGTH_SHORT).show();
                  }
 
              }

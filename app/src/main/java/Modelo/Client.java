@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class Client extends User{
 
     private ArrayList<Entrenamiento> entrenamientos;
-    private ArrayList<ReservaCliente> reservas;
+    private ArrayList<Reserva> reservas;
     private String currentEstacion;
     private boolean entrenamientoActivo;
 
@@ -17,7 +17,7 @@ public class Client extends User{
         super(name,email,password);
         this.entrenamientoActivo = false;
         this.entrenamientos = new ArrayList<Entrenamiento>();
-        this.reservas = new ArrayList<ReservaCliente>();
+        this.reservas = new ArrayList<Reserva>();
         this.currentEstacion = null;
 
     }
@@ -30,11 +30,11 @@ public class Client extends User{
         this.entrenamientos = entrenamientos;
     }
 
-    public ArrayList<ReservaCliente> getReservas() {
+    public ArrayList<Reserva> getReservas() {
         return reservas;
     }
 
-    public void setReservas(ArrayList<ReservaCliente> reservas) {
+    public void setReservas(ArrayList<Reserva> reservas) {
         this.reservas = reservas;
     }
 

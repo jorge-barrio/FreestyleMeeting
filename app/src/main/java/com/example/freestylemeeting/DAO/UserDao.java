@@ -27,6 +27,7 @@ import java.util.List;
 import java.util.Map;
 
 import Modelo.Client;
+import Modelo.Reserva;
 import Modelo.ReservaCliente;
 import Modelo.User;
 import Modelo.UserEstacion;
@@ -401,14 +402,14 @@ public class UserDao {
         getUsersCollection().document(getCurrentUser().getUid()).update("entrenamientoActivo", false);
     }
 
-    public static void addReserva(String idReserva, Date fecha, String cifEstacion) {
+    public static void addReserva(Reserva reserva) {
         UserDao.getUsersCollection().document(UserDao.getCurrentUser().getUid()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 Client cliente = documentSnapshot.toObject(Client.class);
-                ArrayList<ReservaCliente> reservas = cliente.getReservas();
-                ReservaCliente nuevaReserva = new ReservaCliente(idReserva, fecha, cifEstacion);
-                reservas.add(nuevaReserva);
+                ArrayList<Reserva> reservas = cliente.getReservas();
+                Reserva miReserva = reserva;
+                reservas.add(miReserva);
                 Map<String, Object> map = new HashMap<>();
                 map.put("reservas", reservas);
                 UserDao.getUsersCollection().document(UserDao.getCurrentUser().getUid()).update(map);

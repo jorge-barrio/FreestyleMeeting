@@ -7,7 +7,9 @@ import java.util.UUID;
 
 public class Reserva {
     private String idReserva;
+    private String estacion;
     private String correoCliente;
+    private String correoTienda;
     private String nombrePack;
     private Date fechaRecogida;
     private int duracion;
@@ -15,6 +17,7 @@ public class Reserva {
     private float altura;
     private float precioEuros;
     private int talla;
+    private String cifEstacion;
 
     public Reserva() {
         this.idReserva = UUID.randomUUID().toString();
@@ -69,4 +72,14 @@ public class Reserva {
     public int getTalla() { return talla; }
 
     public void setTalla(int talla) { this.talla = talla; }
+    
+    public String getEstacion() { return estacion; }
+
+    public void setEstacion(String estacion) { this.estacion = estacion; }
+
+    public String getCorreoTienda() { return correoTienda; }
+
+    public void setCorreoTienda(String correoTienda) { this.correoTienda = correoTienda; }
+
+    public void setCifEstacion(String cif) { this.cifEstacion = cif; }
 }

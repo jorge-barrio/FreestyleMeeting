@@ -233,7 +233,7 @@ public class EstacionDao {
                             Map<String, Object> map = new HashMap<>();
                             map.put("reservas", reservas);
                             getEstacionesCollection().document(estacion.getCif()).update(map);
-                            UserDao.addReserva(reserva.getIdReserva(), reserva.getFechaRecogida(), estacion.getCif());
+                            UserDao.addReserva(reserva);
                             return;
                         }
                     }
