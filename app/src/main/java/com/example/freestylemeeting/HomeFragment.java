@@ -188,6 +188,9 @@ public class HomeFragment extends Fragment {
                                 });
                             }
                         });
+                    } else {
+                        Intent intent = new Intent(getActivity(), ReservarMaterialActivity.class);
+                        startActivity(intent);
                     }
                 }else if(UserDao.currentCliente != null){
                     Toast.makeText(getActivity(), "Selecciona antes una estacion", Toast.LENGTH_SHORT).show();

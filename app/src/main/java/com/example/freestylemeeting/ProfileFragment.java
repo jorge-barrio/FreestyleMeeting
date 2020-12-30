@@ -88,8 +88,10 @@ public class ProfileFragment extends Fragment {
 
             reservas.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v){
-                    Intent intent = new Intent(getActivity(), ListMisReservas.class);
-                    startActivity(intent);
+                    if(UserDao.currentCliente != null && UserDao.currentEmpleado == null) {
+                        Intent intent = new Intent(getActivity(), ListMisReservas.class);
+                        startActivity(intent);
+                    }
                 }
             });
 

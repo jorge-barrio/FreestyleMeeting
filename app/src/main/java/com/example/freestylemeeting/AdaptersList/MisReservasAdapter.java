@@ -18,6 +18,7 @@ import org.w3c.dom.Text;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import Modelo.Estacion;
@@ -44,7 +45,8 @@ public class MisReservasAdapter extends RecyclerView.Adapter<MisReservasAdapter.
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         String dateRecogida = new SimpleDateFormat("dd / MM / yyyy").format(reservasList.get(position).getFechaRecogida());
-        holder.fechatext.setText("Reserva nº"+(position+1)+"\nFecha: "+dateRecogida);
+        String actual = reservasList.get(position).getFechaRecogida().before(new Date()) ? "" : " (Pendiente)" ;
+        holder.fechatext.setText("Reserva nº"+(position+1)+"\nFecha: "+dateRecogida+actual);
         holder.estaciontext.setText(reservasList.get(position).getEstacion());
         holder.packtext.setText(reservasList.get(position).getNombrePack());
         holder.preciotext.setText(""+reservasList.get(position).getPrecioEuros()+" €");

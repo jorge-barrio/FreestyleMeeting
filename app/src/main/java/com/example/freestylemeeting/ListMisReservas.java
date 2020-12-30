@@ -49,7 +49,7 @@ public class ListMisReservas extends AppCompatActivity {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 Client cliente = documentSnapshot.toObject(Client.class);
-                misreservas.addAll(cliente.getReservas());
+                misreservas.addAll(cliente.getReservasActualesAAntiguas());
                 misreservasAdapter.notifyDataSetChanged();
             }
         });
