@@ -99,6 +99,16 @@ public class Estacion {
         return listaOrdenada;
     }
 
+    public ArrayList<Grupo> getGruposPropietario(String correo){
+        ArrayList<Grupo> resultado = new ArrayList<Grupo>();
+
+        for(int i=0; i<grupos.size(); i++){
+            if(grupos.get(i).getMiembros().get(0).equals(correo)){
+                resultado.add(grupos.get(i));
+            }
+        }
+        return resultado;
+    }
     public void addGrupo(Grupo grupo){
         grupos.add(grupo);
     }

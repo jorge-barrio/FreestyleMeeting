@@ -55,7 +55,7 @@ public class GroupActivity extends AppCompatActivity {
             }
         });
 
-        /* Introducir Estaciones de la BD en la lista */
+        /* Introducir Grupos de la BD en la lista */
         grupos = new ArrayList<>();
         grupoAdapter = new GrupoAdapter(GroupActivity.this, grupos);
 

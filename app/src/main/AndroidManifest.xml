@@ -78,6 +78,9 @@
         <activity
             android:name=".TrainingActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".ListaParticipantes"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
