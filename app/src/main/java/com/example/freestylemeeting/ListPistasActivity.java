@@ -70,7 +70,9 @@ public class ListPistasActivity extends AppCompatActivity {
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 Client cliente = documentSnapshot.toObject(Client.class);
                 if (cliente != null) {
-                    closeTraining.setVisibility(View.VISIBLE);
+                    if(cliente.isEntrenamientoActivo()){
+                        closeTraining.setVisibility(View.VISIBLE);
+                    }
                     EstacionDao.getEstacionesCollection().document(cliente.getCurrentEstacion()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                         @Override
                         public void onSuccess(DocumentSnapshot documentSnapshot) {

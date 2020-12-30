@@ -27,6 +27,7 @@ import java.util.List;
 import java.util.Map;
 
 import Modelo.Client;
+import Modelo.Entrenamiento;
 import Modelo.User;
 import Modelo.UserEstacion;
 
@@ -163,12 +164,11 @@ public class UserDao {
         myAuth = FirebaseAuth.getInstance();
         myDatabase = FirebaseFirestore.getInstance();
         FirebaseUser userLogged = myAuth.getCurrentUser();
-        myDatabase.collection("users").document(userLogged.getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+        myDatabase.collection("users").document(userLogged.getUid()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                DocumentSnapshot document = task.getResult();
-                List<Map<String,Object>> entrenamientos = (List<Map<String,Object>>) document.get("entrenamientos");//Lista de entrenamientos
-
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                Client cliente = documentSnapshot.toObject(Client.class);
+                ArrayList<Entrenamiento> entrenamientos = cliente.getEntrenamientos();
             }
         });
 
@@ -394,5 +394,29 @@ public class UserDao {
 
     public static void closeTraining() {
         getUsersCollection().document(getCurrentUser().getUid()).update("entrenamientoActivo",false);
+        myAuth = FirebaseAuth.getInstance();
+        myDatabase = FirebaseFirestore.getInstance();
+        FirebaseUser userLogged = myAuth.getCurrentUser();
+        myDatabase.collection("users").document(userLogged.getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                DocumentSnapshot document = task.getResult();
+                List<Map<String,Object>> entrenamientos = (List<Map<String,Object>>) document.get("entrenamientos");//Se ha probado a imprimirlo y se imprime bien
+                Date date = new Date();
+                entrenamientos.get(entrenamientos.size()-1).put("fechaFin",date);
+                myDatabase.collection("users").document(userLogged.getUid()).update("entrenamientos", entrenamientos).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful()){
+                            Log.d("update","todo ha ido bien");
+                        }else{
+                            Log.d("update","todo ha ido mal");
+                        }
+                    }
+                });
+            }
+        });
+
+
     }
 }

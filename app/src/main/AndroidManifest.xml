@@ -12,6 +12,8 @@
         android:roundIcon="@mipmap/logo_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FreestyleMeeting">
+        <activity android:name=".entrenamiento"></activity>
+        <activity android:name=".userTrainings" />
         <activity
             android:name=".EditPistaActivity"
             android:screenOrientation="portrait" />

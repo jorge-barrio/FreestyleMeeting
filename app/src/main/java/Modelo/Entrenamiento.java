@@ -1,9 +1,12 @@
 package Modelo;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Entrenamiento {
+public class Entrenamiento implements Parcelable {
     private String id;
     private ArrayList<String> idPistas;
     private Date fechaInicio;
@@ -19,6 +22,28 @@ public class Entrenamiento {
         this.fechaFin = fechaFin;
         this.cifEstacion = cifEstacion;
     }
+
+    protected Entrenamiento(Parcel in) {
+        id = in.readString();
+        cifEstacion = in.readString();
+        idPistas = new ArrayList<>();
+        in.readStringList(idPistas);
+        fechaInicio = (java.util.Date) in.readSerializable();
+        fechaFin = (java.util.Date) in.readSerializable();
+
+    }
+
+    public static final Creator<Entrenamiento> CREATOR = new Creator<Entrenamiento>() {
+        @Override
+        public Entrenamiento createFromParcel(Parcel in) {
+            return new Entrenamiento(in);
+        }
+
+        @Override
+        public Entrenamiento[] newArray(int size) {
+            return new Entrenamiento[size];
+        }
+    };
 
     public String getId() {
         return id;
@@ -56,5 +81,19 @@ public class Entrenamiento {
 
     public void setCifEstacion(String cifEstacion) {
         this.cifEstacion = cifEstacion;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(id);
+        dest.writeStringList(idPistas);
+        dest.writeString(cifEstacion);
+        dest.writeSerializable(fechaInicio);
+        dest.writeSerializable(fechaFin);
     }
 }

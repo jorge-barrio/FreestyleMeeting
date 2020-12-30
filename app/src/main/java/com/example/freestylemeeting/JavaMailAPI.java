@@ -58,6 +58,7 @@ public class JavaMailAPI extends AsyncTask<Void,Void,Void>  {
 
     @Override
     protected Void doInBackground(Void... params) {
+        
         //Creating properties
         Properties props = new Properties();
 

@@ -77,6 +77,7 @@ public class ProfileFragment extends Fragment {
 
         if(UserDao.sesionIniciada()){
             /* Mostrar datos del usuarios */
+            TextView entrenamientos = v.findViewById(R.id.entrenamientos);
             TextView nametext = v.findViewById(R.id.namePerfil);
             TextView emailtext = v.findViewById(R.id.emailPerfil);
             TextView numEntrenamientos = v.findViewById(R.id.numEstrenamientosPerfil);
@@ -91,6 +92,13 @@ public class ProfileFragment extends Fragment {
                         emailtext.setText(cliente.getEmail());
                         numEntrenamientos.setText(""+cliente.getEntrenamientos().size());
                         numReservas.setText(""+cliente.getReservas().size());
+                        entrenamientos.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(getActivity(), userTrainings.class);
+                                startActivity(intent);
+                            }
+                        });
                     } else {
                         UserDao.getEnterprisesCollection().document(UserDao.getCurrentUser().getUid()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                             @Override
