@@ -115,7 +115,7 @@ public class HomeFragment extends Fragment {
         training.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v){
                 if(UserDao.currentCliente != null && UserDao.currentCliente.getCurrentEstacion() != null) {
-                    Intent intent = new Intent(getActivity(), SelectEstacionActivity.class);
+                    Intent intent = new Intent(getActivity(), TrainingActivity.class);
                     startActivity(intent);
                 }else if(UserDao.currentCliente != null){
                     Toast.makeText(getActivity(), "Selecciona antes una estacion", Toast.LENGTH_SHORT).show();
