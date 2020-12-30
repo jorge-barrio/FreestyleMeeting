@@ -1,7 +1,6 @@
 package com.example.freestylemeeting.DAO;
 
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -13,11 +12,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.SetOptions;
 
 
 import java.util.ArrayList;
@@ -28,8 +24,6 @@ import java.util.Map;
 
 import Modelo.Client;
 import Modelo.Reserva;
-import Modelo.ReservaCliente;
-import Modelo.User;
 import Modelo.UserEstacion;
 
 public class UserDao {
@@ -37,6 +31,10 @@ public class UserDao {
     static FirebaseAuth myAuth;
     static FirebaseFirestore myDatabase;
     static boolean status;
+
+    /* Cache */
+    public static Client currentCliente = null;
+    public static UserEstacion currentEmpleado = null;
 
     /**
      * Logear Usuario
@@ -148,6 +146,7 @@ public class UserDao {
         Map<String, Object> map = new HashMap<>();
         map.put("currentEstacion", cifEstacion);
         getUsersCollection().document(getCurrentUser().getUid()).update(map);
+        currentCliente.setCurrentEstacion(cifEstacion);
     }
 
     public static void signOut() {

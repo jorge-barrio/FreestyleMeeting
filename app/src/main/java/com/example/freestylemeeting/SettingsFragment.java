@@ -160,8 +160,12 @@ public class SettingsFragment extends Fragment {
         buttonCambiarEstacion.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), SelectEstacionActivity.class);
-                startActivity(intent);
+                if(UserDao.currentCliente != null && UserDao.currentEmpleado == null) {
+                    Intent intent = new Intent(getActivity(), SelectEstacionActivity.class);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(getActivity(), "Funcionalidad solo para clientes", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

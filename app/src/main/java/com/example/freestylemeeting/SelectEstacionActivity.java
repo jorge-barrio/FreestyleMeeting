@@ -50,7 +50,6 @@ public class SelectEstacionActivity extends AppCompatActivity {
                         if(doc.getType() == DocumentChange.Type.ADDED){
                             Estacion estacion = doc.getDocument().toObject(Estacion.class);
                             estaciones.add(estacion);
-
                             estacionAdapter.notifyDataSetChanged();
                         }
                     }

@@ -207,7 +207,7 @@ public class ReservarMaterialActivity extends AppCompatActivity {
         packsReserva=packs;
         estacion = objEstacion;
         cliente = objClient;
-        String[] nombres = new String[packs.size()];
+        String[] nombres = new String[packs == null ? 0 : packs.size()];
         for(int i =0; i<packs.size(); i++){
             nombres[i] = packs.get(i).getDescripcion();
         }

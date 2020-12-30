@@ -93,6 +93,17 @@ public class ProfileFragment extends Fragment {
                 }
             });
 
+            // Primero mostramos los datos cacheados y despues los actualizamos
+            if(UserDao.currentCliente != null) {
+                nametext.setText(UserDao.currentCliente.getName());
+                emailtext.setText(UserDao.currentCliente.getEmail());
+                numEntrenamientos.setText("" + UserDao.currentCliente.getEntrenamientos().size());
+                numReservas.setText("" + UserDao.currentCliente.getReservas().size());
+            } else if(UserDao.currentEmpleado != null){
+                nametext.setText(UserDao.currentEmpleado.getName());
+                emailtext.setText(UserDao.currentEmpleado.getEmail());
+            }
+
             UserDao.getUsersCollection().document(UserDao.getCurrentUser().getUid()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                 @Override
                 public void onSuccess(DocumentSnapshot documentSnapshot) {
@@ -130,6 +141,9 @@ public class ProfileFragment extends Fragment {
         logOutButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v){
                 UserDao.signOut();
+                UserDao.currentCliente = null;
+                UserDao.currentEmpleado = null;
+                EstacionDao.currentEstacion = null;
                 startActivity(new Intent(getActivity(), authActivity.class));
             }
         });

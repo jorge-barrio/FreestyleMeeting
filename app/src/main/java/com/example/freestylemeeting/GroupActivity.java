@@ -64,6 +64,9 @@ public class GroupActivity extends AppCompatActivity {
         mMainList.setLayoutManager(new LinearLayoutManager(this));
         mMainList.setAdapter(grupoAdapter);
 
+        // Mostramos los datos cacheados y despues ya hacemos la consulta
+        grupos.addAll(EstacionDao.currentEstacion.getGruposActualesOrdenados());
+
         UserDao.getUsersCollection().document(UserDao.getCurrentUser().getUid()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
@@ -73,6 +76,7 @@ public class GroupActivity extends AppCompatActivity {
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         Estacion estacion = documentSnapshot.toObject(Estacion.class);
                         if (estacion != null) {
+                            grupos.removeAll(grupos);
                             grupos.addAll(estacion.getGruposActualesOrdenados());
                             grupoAdapter.notifyDataSetChanged();
                         }

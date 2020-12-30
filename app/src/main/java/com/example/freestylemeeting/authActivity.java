@@ -97,7 +97,7 @@ public class authActivity extends AppCompatActivity {
              @Override
              public void onCallback(boolean status) {
                  if (status){
-                     startActivity(new Intent(authActivity.this, NavegationDrawerActivity.class));
+                     startActivity(new Intent(authActivity.this, StarterActivity.class));
                      finish();
                  }else{
                      Toast.makeText(authActivity.this, "Credenciales erroneas o email ya existente", Toast.LENGTH_SHORT).show();
@@ -111,7 +111,7 @@ public class authActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         if(UserDao.sesionIniciada()){
-            startActivity(new Intent(authActivity.this, NavegationDrawerActivity.class));
+            startActivity(new Intent(authActivity.this, StarterActivity.class));
             finish();
         }
     }

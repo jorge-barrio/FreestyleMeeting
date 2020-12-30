@@ -28,6 +28,9 @@ public class EstacionDao {
     private static FirebaseFirestore db;
     public static Estacion estaciontmp = null;
 
+    /* Cache */
+    public static Estacion currentEstacion = null;
+
     /**
      * Crea una nueva estacion
      * @param estacion

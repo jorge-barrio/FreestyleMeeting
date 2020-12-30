@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.freestylemeeting.DAO.EstacionDao;
 import com.example.freestylemeeting.DAO.UserDao;
 import com.example.freestylemeeting.NavegationDrawerActivity;
 import com.example.freestylemeeting.R;
@@ -21,7 +22,6 @@ import Modelo.Estacion;
 public class EstacionAdapter extends RecyclerView.Adapter<EstacionAdapter.ViewHolder>  {
 
     public List<Estacion> estacionList;
-
     public Context context;
 
     public EstacionAdapter(Context context, List<Estacion> estacionList) {
@@ -41,12 +41,14 @@ public class EstacionAdapter extends RecyclerView.Adapter<EstacionAdapter.ViewHo
         holder.nametext.setText(estacionList.get(position).getNombre());
         holder.localidadtext.setText(estacionList.get(position).getLocalidad());
 
-        String cifEstacion = estacionList.get(position).getCif();
+        Estacion estacion = estacionList.get(position);
+        String cifEstacion = estacion.getCif();
         holder.mView.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View v) {
                 UserDao.editCurrentEstacion(cifEstacion);
+                EstacionDao.currentEstacion = estacion;
                 context.startActivity(new Intent(context, NavegationDrawerActivity.class));
             }
         });
