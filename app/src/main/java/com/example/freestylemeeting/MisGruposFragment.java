@@ -1,9 +1,11 @@
 package com.example.freestylemeeting;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -75,24 +77,28 @@ public class MisGruposFragment extends Fragment{
         mMainList.setLayoutManager(new LinearLayoutManager(getActivity()));
         mMainList.setAdapter(grupoAdapter);
 
-        // Mostramos los datos cacheados y despues ya hacemos la consulta
-        //grupos.addAll(EstacionDao.currentEstacion.getGruposActualesOrdenados());
-
         UserDao.getUsersCollection().document(UserDao.getCurrentUser().getUid()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 Client cliente = documentSnapshot.toObject(Client.class);
-                EstacionDao.getEstacionesCollection().document(cliente.getCurrentEstacion()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                    @Override
-                    public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        Estacion estacion = documentSnapshot.toObject(Estacion.class);
-                        if (estacion != null) {
-                            grupos.removeAll(grupos);
-                            grupos.addAll(estacion.getGruposPropietario(cliente.getEmail()));
-                            grupoAdapter.notifyDataSetChanged();
+                if (cliente!=null) {
+
+                    EstacionDao.getEstacionesCollection().document(cliente.getCurrentEstacion()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                        @Override
+                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+                            Estacion estacion = documentSnapshot.toObject(Estacion.class);
+                            if (estacion != null) {
+                                grupos.removeAll(grupos);
+                                grupos.addAll(estacion.getGruposPropietario(cliente.getEmail()));
+                                grupoAdapter.notifyDataSetChanged();
+                            }
                         }
-                    }
-                });
+                    });
+                }else {
+                    Toast.makeText(getActivity(), "Opcion solo disponible para clientes", Toast.LENGTH_SHORT ).show();
+                    startActivity(new Intent(getActivity(), NavegationDrawerActivity.class));
+                }
+
             }
         });
         return v;
