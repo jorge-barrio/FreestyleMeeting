@@ -48,7 +48,7 @@ public class EntrenamientoAdapter extends RecyclerView.Adapter<EntrenamientoAdap
         Entrenamiento ent = entrenamientoList.get(position);
 
         EstacionDao.getEstacionesCollection().document(ent.getCifEstacion()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-           @Override
+            @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 Estacion estacion = documentSnapshot.toObject(Estacion.class);
                 holder.idEnt.setText(estacion.getNombre());
@@ -56,16 +56,14 @@ public class EntrenamientoAdapter extends RecyclerView.Adapter<EntrenamientoAdap
         });
 
         holder.fechaInicio.setText(ent.getFechaInicio().toString());
+        holder.fechaFin.setText(ent.getFechaFin().toString());
 
-
-
-        holder.mView.setOnClickListener(new View.OnClickListener(){
+        holder.mView.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, entrenamiento.class);
-                Log.d("ent",ent.getCifEstacion());
-                intent.putExtra("entrenamiento",  ent);
+                intent.putExtra("entrenamiento", ent);
                 context.startActivity(intent);
             }
         });
@@ -76,11 +74,12 @@ public class EntrenamientoAdapter extends RecyclerView.Adapter<EntrenamientoAdap
         return entrenamientoList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
         View mView;
         public TextView idEnt;
         public TextView fechaInicio;
+        public TextView fechaFin;
 
 
         public ViewHolder(@NonNull View itemView) {
@@ -88,7 +87,8 @@ public class EntrenamientoAdapter extends RecyclerView.Adapter<EntrenamientoAdap
             mView = itemView;
 
             idEnt = (TextView) mView.findViewById(R.id.nombreEntrenamientoList);
-            fechaInicio = (TextView) mView.findViewById(R.id.fechaInicio);
+            fechaInicio = (TextView) mView.findViewById(R.id.fechaInicioDescription);
+            fechaFin = (TextView) mView.findViewById(R.id.fechaFinDescription);
 
         }
     }

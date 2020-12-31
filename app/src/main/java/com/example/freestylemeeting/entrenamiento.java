@@ -30,8 +30,8 @@ public class entrenamiento extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_entrenamiento);
-
-        Entrenamiento ent = getIntent().getParcelableExtra("entrenamiento");
+        Bundle extras = getIntent().getExtras();
+        Entrenamiento ent = (Entrenamiento) extras.get("entrenamiento");
 
         ImageButton exitButton = (ImageButton) findViewById(R.id.exitPistaDescripcion);
 
