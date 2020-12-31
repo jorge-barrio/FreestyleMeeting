@@ -64,6 +64,7 @@ public class EntrenamientoAdapter extends RecyclerView.Adapter<EntrenamientoAdap
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, entrenamiento.class);
+                Log.d("ent",ent.getCifEstacion());
                 intent.putExtra("entrenamiento",  ent);
                 context.startActivity(intent);
             }

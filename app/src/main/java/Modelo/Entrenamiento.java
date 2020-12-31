@@ -17,7 +17,7 @@ public class Entrenamiento implements Parcelable {
 
     public Entrenamiento(String id, Date fechaInicio, Date fechaFin, String cifEstacion) {
         this.id = id;
-        this.idPistas = new ArrayList<String>();
+        this.idPistas = new ArrayList<>();
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
         this.cifEstacion = cifEstacion;
