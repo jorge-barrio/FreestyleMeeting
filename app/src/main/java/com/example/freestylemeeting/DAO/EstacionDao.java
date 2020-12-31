@@ -245,5 +245,32 @@ public class EstacionDao {
         });
 
     }
+
+    public static void deleteGrupo(String id){
+        UserDao.getUsersCollection().document(UserDao.getCurrentUser().getUid()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                Client cliente = documentSnapshot.toObject(Client.class);
+                EstacionDao.getEstacionesCollection().document(cliente.getCurrentEstacion()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        Estacion estacion = documentSnapshot.toObject(Estacion.class);
+                        ArrayList<Grupo> grupos = estacion.getGrupos();
+                        Grupo g;
+                        for (int i = 0; i < grupos.size(); i++) {
+                            g = grupos.get(i);
+                            if (g.getId().equals(id)) {
+                                grupos.remove(i);
+                                Map<String, Object> map = new HashMap<>();
+                                map.put("grupos", grupos);
+                                getEstacionesCollection().document(estacion.getCif()).update(map);
+                                return;
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    }
 }
 
