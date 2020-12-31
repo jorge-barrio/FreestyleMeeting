@@ -7,6 +7,7 @@ import android.os.Bundle;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -193,9 +194,13 @@ public class HomeFragment extends Fragment {
                         startActivity(intent);
                     }
                 }else if(UserDao.currentCliente != null){
+
                     Toast.makeText(getActivity(), "Selecciona antes una estacion", Toast.LENGTH_SHORT).show();
                 }else if(UserDao.currentEmpleado != null) {
-                    Toast.makeText(getActivity(), "Funcionalidad solo para clientes", Toast.LENGTH_SHORT).show();
+                    Log.d("Prueba","txt");
+                    Intent intent = new Intent(getActivity(), ListMisReservasEstacion.class);
+                    startActivity(intent);
+                    //Toast.makeText(getActivity(), "Funcionalidad solo para clientes", Toast.LENGTH_SHORT).show();
                 }else{
                     Intent intent = new Intent(getActivity(), authActivity.class);
                     startActivity(intent);
