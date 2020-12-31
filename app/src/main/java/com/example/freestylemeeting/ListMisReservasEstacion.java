@@ -2,6 +2,7 @@ package com.example.freestylemeeting;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -47,13 +48,17 @@ public class ListMisReservasEstacion extends AppCompatActivity {
 
 
                             if(estacion != null){
-                                misreservasAdapter = new MisReservasAdapter(ListMisReservasEstacion.this,reservas);
-                                mMainList =  (RecyclerView) findViewById(R.id.idListViewEstacionReservas);
-                                mMainList.setHasFixedSize(true);
-                                mMainList.setLayoutManager(new LinearLayoutManager(ListMisReservasEstacion.this));
-                                mMainList.setAdapter(misreservasAdapter);
+                                if(reservas != null) {
+                                    misreservasAdapter = new MisReservasAdapter(ListMisReservasEstacion.this, reservas);
+                                    mMainList = (RecyclerView) findViewById(R.id.idListViewEstacionReservas);
+                                    mMainList.setHasFixedSize(true);
+                                    mMainList.setLayoutManager(new LinearLayoutManager(ListMisReservasEstacion.this));
+                                    mMainList.setAdapter(misreservasAdapter);
 
-                                misreservasAdapter.notifyDataSetChanged();
+                                    misreservasAdapter.notifyDataSetChanged();
+                                }else{
+                                    Toast.makeText(ListMisReservasEstacion.this,"No tiene ninguna reserva.", Toast.LENGTH_SHORT).show();
+                                }
                             }
 
                         }
