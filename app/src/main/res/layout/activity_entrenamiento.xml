@@ -5,131 +5,28 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
     <ImageButton
-        android:id="@+id/exitPistaDescripcion"
+        android:id="@+id/exitPistasEntrenamiento"
+
         android:layout_width="65dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:layout_marginLeft="10dp"
         app:srcCompat="@drawable/abc_vector_test" />
-
     <TextView
-        android:id="@+id/text_nombre_entrenamiento"
+        android:id="@+id/listaPistas"
+        android:layout_below="@+id/exitPistasEntrenamiento"
         android:layout_width="match_parent"
         android:layout_height="51dp"
         android:layout_marginTop="10dp"
         android:gravity="center"
-        android:text="Nombre Entrenamiento"
-        android:textSize="30dp"
-        />
-
-    <ImageButton
-        android:id="@+id/deletePistaDescripcion"
-        android:layout_width="60dp"
+        android:text="Pistas del entrenamiento"
+        android:textSize="30dp" />
+    <ListView
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_alignParentRight="true"
-        app:srcCompat="@drawable/trash"
-        android:adjustViewBounds="true"
-        android:scaleType="fitXY"
-        android:backgroundTint="@color/white"/>
-
-    <!--<TextView
-        android:id="@+id/text_title_id_PistaDescripcion"
-        android:layout_below="@+id/mapa_pistas_estacion_PistaDescripcion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Identificador:"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="60dp"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:visibility="invisible"
-        />
-
-    <TextView
-        android:id="@+id/text_id_PistaDescripcion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/text_title_id_PistaDescripcion"
-        android:layout_toRightOf="@+id/text_title_id_PistaDescripcion"
-        android:layout_marginLeft="20dp"
-        android:layout_marginBottom="2dp"
-        android:text="..."
-        android:textSize="10sp"/>-->
-
-
-
-
-
-    <TextView
-        android:id="@+id/fechaInicio"
-        android:layout_below="@+id/text_nombre_entrenamiento"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Fecha inicio: "
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="60dp"
-        android:textSize="20sp"
-        android:textStyle="bold"/>
-
-    <TextView
-        android:id="@+id/fechaInicioDesc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/text_nombre_entrenamiento"
-        android:layout_toRightOf="@+id/fechaInicio"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
-        android:text="..."
-        android:textSize="20sp"/>
-    <TextView
-        android:id="@+id/fechaFin"
-        android:layout_below="@+id/fechaInicio"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Fecha fin: "
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="60dp"
-        android:textSize="20sp"
-        android:textStyle="bold"/>
-
-    <TextView
-        android:id="@+id/fechaFindescripcion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/fechaInicio"
-        android:layout_toRightOf="@+id/fechaFin"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
-        android:text="..."
-        android:textSize="20sp"/>
-    <TextView
-        android:id="@+id/pistas"
-        android:layout_below="@+id/fechaFin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Entrenamientos: "
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="60dp"
-        android:textSize="20sp"
-        android:textStyle="bold"/>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/listViewPistas"
-
-        android:layout_below="@+id/fechaFin"
-        android:layout_toRightOf="@+id/pistas"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="25dp"
-        android:layout_marginRight="25dp"
-        android:layout_marginLeft="20dp">
-
-    </androidx.recyclerview.widget.RecyclerView>
-
+        android:id="@+id/listaPistasTraining"
+        android:layout_below="@+id/listaPistas"
+        />
 
 </RelativeLayout>

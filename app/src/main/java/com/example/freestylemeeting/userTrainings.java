@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageButton;
 
 import com.example.freestylemeeting.AdaptersList.EntrenamientoAdapter;
 import com.example.freestylemeeting.AdaptersList.PistaAdapter;
@@ -53,6 +54,7 @@ public class userTrainings extends AppCompatActivity {
                 }
             }
         });
+
 
 
     }
