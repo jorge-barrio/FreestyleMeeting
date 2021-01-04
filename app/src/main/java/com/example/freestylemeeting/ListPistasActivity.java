@@ -7,11 +7,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.freestylemeeting.AdaptersList.PistaAdapter;
 import com.example.freestylemeeting.DAO.EstacionDao;
 import com.example.freestylemeeting.DAO.UserDao;
+import com.example.freestylemeeting.DAO.myCallback;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -34,7 +36,7 @@ public class ListPistasActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_pistas);
-
+        TextView titulo = findViewById(R.id.textListaDePistas);
         FloatingActionButton addPistaButton = findViewById(R.id.add_pista_button);
         FloatingActionButton closeTraining = findViewById(R.id.close_training);
         addPistaButton.setOnClickListener(new View.OnClickListener() {
@@ -47,10 +49,23 @@ public class ListPistasActivity extends AppCompatActivity {
         closeTraining.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                UserDao.closeTraining();
-                Toast.makeText(ListPistasActivity.this, "Entrenamiento finalizado con exito", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(ListPistasActivity.this, NavegationDrawerActivity.class);
-                startActivity(intent);
+                UserDao.closeTraining(new myCallback(){
+                    @Override
+                    public void onCallback(boolean status) {
+                        if (status){
+                            Toast.makeText(ListPistasActivity.this, "Entrenamiento finalizado con exito", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(ListPistasActivity.this, NavegationDrawerActivity.class);
+                            startActivity(intent);
+                        }else{
+                            Toast.makeText(ListPistasActivity.this, "No se puede guardar un entrenamiento vacío", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(ListPistasActivity.this, NavegationDrawerActivity.class);
+                            startActivity(intent);
+                        }
+
+                    }
+
+                });
+
             }
         });
 
@@ -75,6 +90,7 @@ public class ListPistasActivity extends AppCompatActivity {
                 if (cliente != null) {
                     if(cliente.isEntrenamientoActivo()){
                         closeTraining.setVisibility(View.VISIBLE);
+                        titulo.setText("Selecciona tus pistas:\n-------------------------");
                     }
                     EstacionDao.getEstacionesCollection().document(cliente.getCurrentEstacion()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                         @Override

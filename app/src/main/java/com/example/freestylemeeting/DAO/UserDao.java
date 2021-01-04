@@ -1,9 +1,11 @@
 package com.example.freestylemeeting.DAO;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import com.example.freestylemeeting.ListPistasActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -466,7 +468,7 @@ public class UserDao {
         });
     }
 
-    public static void closeTraining() {
+    public static void closeTraining(myCallback callback) {
 
         getUsersCollection().document(getCurrentUser().getUid()).update("entrenamientoActivo",false);
         myAuth = FirebaseAuth.getInstance();
@@ -476,47 +478,56 @@ public class UserDao {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 DocumentSnapshot document = task.getResult();
-                List<Map<String,Object>> entrenamientos = (List<Map<String,Object>>) document.get("entrenamientos");//Se ha probado a imprimirlo y se imprime bien
+                List<Map<String, Object>> entrenamientos = (List<Map<String, Object>>) document.get("entrenamientos");//Se ha probado a imprimirlo y se imprime bien
+
                 Date date = new Date();
-                entrenamientos.get(entrenamientos.size()-1).put("fechaFin",date);
-                ArrayList<String> pistasTraining = (ArrayList<String>)entrenamientos.get(entrenamientos.size()-1).get("idPistas");
-                String pista = pistasTraining.get(pistasTraining.size()-1);
-                String estacion = (String)document.get("currentEstacion");
-                myDatabase.collection("users").document(userLogged.getUid()).update("entrenamientos", entrenamientos).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if(task.isSuccessful()){
-                            Log.d("update","todo ha ido bien");
-                            myDatabase.collection("Estaciones").document(estacion).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                                @Override
-                                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                                    DocumentSnapshot document = task.getResult();
-                                    List<Map<String, Object>> pistas = (List<Map<String, Object>>) document.get("pistas");
-                                    int ind = -1;
-                                    List<String> usuariosActivos = new ArrayList<>();
-                                    for (Map<String, Object> pistaclave : pistas) {
-                                        if (pistaclave.get("nombre").equals(pista)) {
-                                            usuariosActivos = (List<String>) pistaclave.get("usuariosActivos");
-                                            usuariosActivos.remove(userLogged.getEmail());
-                                            ind = pistas.indexOf(pistaclave);
+                Map<String, Object> entrenamientoClave = (Map<String, Object>) entrenamientos.get(entrenamientos.size() - 1);
+                List<String> pistas = (List<String>) entrenamientoClave.get("idPistas");
+                if (pistas.isEmpty()) {
+                    callback.onCallback(false);
+                    entrenamientos.remove(entrenamientos.size()-1);
+                    myDatabase.collection("users").document(userLogged.getUid()).update("entrenamientos", entrenamientos);
+                } else {
+                    entrenamientos.get(entrenamientos.size() - 1).put("fechaFin", date);
+                    ArrayList<String> pistasTraining = (ArrayList<String>) entrenamientos.get(entrenamientos.size() - 1).get("idPistas");
+                    String pista = pistasTraining.get(pistasTraining.size() - 1);
+                    String estacion = (String) document.get("currentEstacion");
+                    myDatabase.collection("users").document(userLogged.getUid()).update("entrenamientos", entrenamientos).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                callback.onCallback(true);
+                                Log.d("update", "todo ha ido bien");
+                                myDatabase.collection("Estaciones").document(estacion).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                        DocumentSnapshot document = task.getResult();
+                                        List<Map<String, Object>> pistas = (List<Map<String, Object>>) document.get("pistas");
+                                        int ind = -1;
+                                        List<String> usuariosActivos = new ArrayList<>();
+                                        for (Map<String, Object> pistaclave : pistas) {
+                                            if (pistaclave.get("nombre").equals(pista)) {
+                                                usuariosActivos = (List<String>) pistaclave.get("usuariosActivos");
+                                                usuariosActivos.remove(userLogged.getEmail());
+                                                ind = pistas.indexOf(pistaclave);
+                                            }
                                         }
+
+
+                                        pistas.get(ind).remove("usuariosActivos");
+                                        pistas.get(ind).put("usuariosActivos", usuariosActivos);
+                                        myDatabase.collection("Estaciones").document(estacion).update("pistas", pistas);
+
                                     }
+                                });
 
 
-                                    pistas.get(ind).remove("usuariosActivos");
-                                    pistas.get(ind).put("usuariosActivos", usuariosActivos);
-                                    myDatabase.collection("Estaciones").document(estacion).update("pistas",pistas);
-
-                                }
-                            });
-
-
-
-                        }else{
-                            Log.d("update","todo ha ido mal");
+                            } else {
+                                Log.d("update", "todo ha ido mal");
+                            }
                         }
-                    }
-                });
+                    });
+                }
             }
         });
 

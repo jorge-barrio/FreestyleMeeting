@@ -126,6 +126,7 @@ public class PistaActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 UserDao.addPistaToTraining(pista.getNombre());
+                Toast.makeText(PistaActivity.this, "Pista añadida con éxito!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(PistaActivity.this, ListPistasActivity.class);
                 startActivity(intent);
 
