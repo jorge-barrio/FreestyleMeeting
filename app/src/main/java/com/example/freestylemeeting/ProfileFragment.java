@@ -81,7 +81,7 @@ public class ProfileFragment extends Fragment {
         if(UserDao.sesionIniciada()){
             /* Mostrar datos del usuarios */
 
-            TextView entrenamientos = v.findViewById(R.id.entrenamientos);
+            LinearLayout entrenamientos = v.findViewById(R.id.entrenamientos);
 
             LinearLayout reservas = v.findViewById(R.id.reservas_perfil);
 
