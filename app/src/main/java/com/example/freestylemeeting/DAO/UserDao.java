@@ -258,7 +258,8 @@ public class UserDao {
                                             for (Map<String, Object> pistaclave : pistas) {
                                                 if (pistaclave.get("nombre").equals(pista)) {
                                                     usuariosActivos = (List<String>) pistaclave.get("usuariosActivos");
-                                                    usuariosActivos.add(userLogged.getEmail());
+                                                    if(!usuariosActivos.contains(userLogged.getEmail())){
+                                                    usuariosActivos.add(userLogged.getEmail());}
                                                     ind = pistas.indexOf(pistaclave);
                                                 }
                                                 if(idPistas.size()!=1){
