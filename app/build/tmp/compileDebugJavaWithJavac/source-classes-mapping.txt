@@ -1,6 +1,0 @@
-com/example/freestylemeeting/authActivity.java
- com.example.freestylemeeting.authActivity
-com/example/freestylemeeting/HomeActivity.java
- com.example.freestylemeeting.HomeActivity
-com/example/freestylemeeting/BuildConfig.java
- com.example.freestylemeeting.BuildConfig

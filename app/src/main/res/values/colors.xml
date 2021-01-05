@@ -14,5 +14,10 @@
     <color name ="azulOscuro">#2C384A</color>
     <color name ="coral">#FF8A65</color>
     <color name="gris">#ECEFF1</color>
-
+    <color name="AzulOscuro1">#161925</color>
+    <color name="AzulOscuro2">#23395B</color>
+    <color name="AzulOscuro3">#406E8E</color>
+    <color name="AzulClaro">#8EA8C3</color>
+    <color name="AzulClaro2">#CBF7ED</color>
+    <color name="Rojo">#ff0000</color>
 </resources>

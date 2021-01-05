@@ -1,3 +1,51 @@
 <resources>
     <string name="app_name">Freestyle meeting</string>
+    <string name="book_material">Reservar</string>
+    <string name="groups">Grupos</string>
+    <string name="ski_trails">Pistas de esqui</string>
+    <string name="training">Entrenamiento</string>
+    <string name="title_activity_navigation_drawer">NavigationDrawerActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Cambiar estacion</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_profile">Perfil</string>
+    <string name="menu_notifications">Notificaciones</string>
+    <string name="title_activity_navegation_drawer">NavegationDrawerActivity</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="nombreEstacion">...</string>
+    <string-array name="modalidad_spinner">
+        <item>esqui</item>
+        <item>snowboard</item>
+        <item>travesia</item>
+    </string-array>
+    <string-array name="nivel_spinner">
+        <item>principiante</item>
+        <item>intermedio</item>
+        <item>avanzado</item>
+        <item>experto</item>
+    </string-array>
+    <string name="title_activity_ajustes">AjustesActivity</string>
+
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <string name="menu_ajustes">Ajustes</string>
+
 </resources>

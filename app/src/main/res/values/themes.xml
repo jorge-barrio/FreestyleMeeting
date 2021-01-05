@@ -2,8 +2,8 @@
     <!-- Base application theme. -->
     <style name="Theme.FreestyleMeeting" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/amarillo</item>
-        <item name="colorPrimaryVariant">@color/ambar</item>
+        <item name="colorPrimary">@color/AzulClaro</item>
+        <item name="colorPrimaryVariant">@color/AzulOscuro2</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/azul</item>
@@ -12,5 +12,17 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+    </style>
+
+    <style name="Theme.FreestyleMeeting.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.FreestyleMeeting.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.FreestyleMeeting.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="mySpinnerItemStyle" parent="@android:style/Widget.Holo.DropDownItem.Spinner">
+        <item name="android:textColor">@color/azulOscuro</item>
     </style>
 </resources>

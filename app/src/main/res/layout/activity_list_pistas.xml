@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ListPistasActivity">
+
+    <TextView
+        android:id="@+id/textListaDePistas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="Lista de pistas:\n-------------------------"
+        android:textColor="@color/AzulOscuro3"
+        android:textSize="32sp"
+        android:layout_marginRight="25dp"
+        android:layout_marginLeft="25dp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/idListViewPistas"
+        android:layout_below="@+id/textListaDePistas"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginLeft="25dp">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/add_pista_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:backgroundTint="@color/AzulClaro"
+        android:foregroundTint="@color/AzulClaro"
+        android:visibility="invisible"
+        app:srcCompat="@android:drawable/ic_input_add"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="25dp"
+        android:layout_marginRight="25dp"/>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/close_training"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:backgroundTint="@color/AzulClaro"
+        android:foregroundTint="@color/AzulClaro"
+        android:visibility="invisible"
+        app:srcCompat="@android:drawable/ic_media_pause"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="25dp"
+        android:layout_marginRight="25dp"/>
+
+</RelativeLayout>

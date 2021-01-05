@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ListMisReservas">
+
+    <TextView
+        android:id="@+id/textListaDeMisReservas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="Mis reservas:\n-------------------------------"
+        android:textColor="@color/AzulOscuro3"
+        android:textSize="32sp"
+        android:layout_marginRight="25dp"
+        android:layout_marginLeft="25dp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/idListViewMisReservas"
+        android:layout_below="@+id/textListaDeMisReservas"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginLeft="25dp">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+</RelativeLayout>

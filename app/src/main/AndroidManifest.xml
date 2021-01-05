@@ -2,21 +2,88 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.freestylemeeting">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/logo_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FreestyleMeeting">
-        <activity android:name=".HomeActivity"></activity>
-        <activity android:name=".authActivity">
+
+        <activity android:name=".entrenamiento"></activity>
+        <activity android:name=".userTrainings" />
+
+        <activity android:name=".ListMisReservas"></activity>
+        <activity
+            android:name=".EditPistaActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".CreatePistaActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".StarterActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ListPistasActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".pistaActivityEnterprise"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".enterpriseRegister"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SelectEstacionActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".authActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".CrearGruposActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".GroupActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".HomeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ListaPistaActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MyHome"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".NavegationDrawerActivity"
+            android:label="@string/title_activity_navegation_drawer"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.FreestyleMeeting.NoActionBar" />
+        <activity
+            android:name=".PistaActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".RegisterActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ReservarMaterialActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".TrainingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ListaParticipantes"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ListMisReservasEstacion"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

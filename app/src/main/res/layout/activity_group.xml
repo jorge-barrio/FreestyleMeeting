@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".GroupActivity">
+
+    <Button
+        android:id="@+id/botonAtrasGrupos"
+        android:layout_width="65dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/abc_vector_test"
+        app:backgroundTint="@color/azulOscuro"
+        app:srcCompat="@drawable/abc_vector_test" />
+
+    <Button
+        android:id="@+id/botonCrearGrupo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="40dp"
+        android:text="Crear Nuevo Grupo"
+        android:textColorHighlight="@color/azul" />
+
+    <TextView
+        android:id="@+id/textListaDeGrupos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/botonCrearGrupo"
+        android:text="Seleccione grupo para unirse:\n-------------------------"
+        android:textColor="@color/AzulOscuro3"
+        android:textSize="32sp"
+        android:layout_marginRight="25dp"
+        android:layout_marginLeft="25dp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/idListViewGrupos"
+        android:layout_below="@+id/textListaDeGrupos"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginLeft="25dp">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+</RelativeLayout>
