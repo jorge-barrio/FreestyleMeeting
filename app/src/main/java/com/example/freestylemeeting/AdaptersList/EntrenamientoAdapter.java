@@ -20,6 +20,8 @@ import com.example.freestylemeeting.entrenamiento;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import Modelo.Entrenamiento;
@@ -55,8 +57,11 @@ public class EntrenamientoAdapter extends RecyclerView.Adapter<EntrenamientoAdap
             }
         });
 
-        holder.fechaInicio.setText(ent.getFechaInicio().toString());
-        holder.fechaFin.setText(ent.getFechaFin().toString());
+        String dateInicio = new SimpleDateFormat("dd / MM / yyyy").format(ent.getFechaInicio());
+        String dateFin = new SimpleDateFormat("dd / MM / yyyy").format(ent.getFechaFin());
+
+        holder.fechaInicio.setText(dateInicio);
+        holder.fechaFin.setText(dateFin);
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
 

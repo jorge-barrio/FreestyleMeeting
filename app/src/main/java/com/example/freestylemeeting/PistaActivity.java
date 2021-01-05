@@ -72,7 +72,6 @@ public class PistaActivity extends AppCompatActivity {
             disponibleText.setText("Cerrada");
             disponibleText.setTextColor(Color.RED);
         }
-        System.out.println("AVISOS: " + pista.getAvisos());
         avisosText.setText(pista.getAvisos());
 
         ImageButton delete = (ImageButton) findViewById(R.id.deletePistaDescripcion);
@@ -143,9 +142,7 @@ public class PistaActivity extends AppCompatActivity {
             public void onClick(View view) {
                 UserDao.addPistaToTraining(pista.getNombre());
                 Toast.makeText(PistaActivity.this, "Pista añadida con éxito!", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(PistaActivity.this, ListPistasActivity.class);
-                startActivity(intent);
-
+                back();
             }
         });
         editPistaButton.setOnClickListener(new View.OnClickListener() {
@@ -159,10 +156,36 @@ public class PistaActivity extends AppCompatActivity {
 
         exitButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v){
-                Intent intent = new Intent(PistaActivity.this, ListPistasActivity.class);
-                startActivity(intent);
+                back();
             }
         });
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        back();
+    }
+
+    public void back(){
+        String cif = null;
+        if(UserDao.currentCliente!=null) {
+            cif = UserDao.currentCliente.getCurrentEstacion();
+        }else if(UserDao.currentEmpleado!=null) {
+            cif = UserDao.currentEmpleado.getCifEmpresa();
+        }
+        if(cif != null){
+            EstacionDao.getEstacionesCollection().document(cif).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                @Override
+                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                    Estacion estacion = documentSnapshot.toObject(Estacion.class);
+                    if (estacion != null) {
+                        EstacionDao.currentEstacion = estacion;
+                    }
+                }
+            });
+        }
+        Intent intent = new Intent(PistaActivity.this, ListPistasActivity.class);
+        startActivity(intent);
     }
 }

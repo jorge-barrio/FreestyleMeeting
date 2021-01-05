@@ -153,6 +153,7 @@
         android:layout_below="@+id/text_title_avisos_PistaDescripcion"
         android:layout_alignLeft="@+id/text_title_disponible_PistaDescripcion"
         android:layout_marginTop="10dp"
+        android:layout_marginRight="60dp"
         android:text="..."
         android:textSize="16sp"/>
 

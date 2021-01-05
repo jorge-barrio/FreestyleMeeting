@@ -67,6 +67,7 @@ public class ListPistasActivity extends AppCompatActivity {
         mMainList.setAdapter(pistaAdapter);
 
         // Mostramos primero las pistas cacheadas mientras se actualizan
+        pistas.removeAll(pistas);
         pistas.addAll(EstacionDao.currentEstacion.getPistas());
 
         Estacion estacion;

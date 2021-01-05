@@ -125,4 +125,16 @@ public class Estacion {
         map.put("emailTienda",emailTienda);
         return map;
     }
+
+    public ArrayList<Reserva> getReservasActualesAAntiguas() {
+        ArrayList<Reserva> reservasOrdenada = (ArrayList<Reserva>) reservas.clone();
+        Collections.sort(reservasOrdenada, new Comparator<Reserva>() {
+            @Override
+            public int compare(Reserva r1, Reserva r2) {
+                return r2.getFechaRecogida().compareTo(r1.getFechaRecogida());
+            }
+        });
+
+        return reservasOrdenada;
+    }
 }

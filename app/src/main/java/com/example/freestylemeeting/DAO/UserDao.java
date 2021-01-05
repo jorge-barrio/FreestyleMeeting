@@ -264,7 +264,7 @@ public class UserDao {
                                                 }
                                                 if(idPistas.size()!=1){
                                                     String pistaAntigua = idPistas.get(idPistas.size()-2);
-                                                    if (pistaclave.get("nombre").equals(pistaAntigua)) {
+                                                    if (pistaclave.get("nombre").equals(pistaAntigua) && !pistaAntigua.equals(pista)) {
                                                         usuariosActivosPre = (List<String>) pistaclave.get("usuariosActivos");
                                                         usuariosActivosPre.remove(userLogged.getEmail());
                                                         ind2 = pistas.indexOf(pistaclave);

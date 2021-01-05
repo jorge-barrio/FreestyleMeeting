@@ -90,6 +90,11 @@ public class StarterActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        // No hacer nada
+    }
+
     private void goToListPistas(){
         startActivity(new Intent(StarterActivity.this, ListPistasActivity.class));
         finish();

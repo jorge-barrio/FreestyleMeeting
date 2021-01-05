@@ -42,7 +42,7 @@ public class ListMisReservasEstacion extends AppCompatActivity {
                         @Override
                         public void onSuccess(DocumentSnapshot documentSnapshot) {
                             Estacion estacion = documentSnapshot.toObject(Estacion.class);
-                            ArrayList<Reserva> reservas = estacion.getReservas();
+                            ArrayList<Reserva> reservas = estacion.getReservasActualesAAntiguas();
                             MisReservasAdapter misreservasAdapter;
                             RecyclerView mMainList;
 
