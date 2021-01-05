@@ -39,8 +39,14 @@ public class StarterActivity extends AppCompatActivity {
                                     Estacion estacion = documentSnapshot.toObject(Estacion.class);
                                     if (estacion != null) {
                                         EstacionDao.currentEstacion = estacion;
+                                        if(cliente.isEntrenamientoActivo()){
+                                            goToListPistas();
+                                        } else {
+                                            goToNavegationDrawer();
+                                        }
+                                    } else {
+                                        goToNavegationDrawer();
                                     }
-                                    goToNavegationDrawer();
                                 }
                             });
                         } else {
@@ -82,6 +88,11 @@ public class StarterActivity extends AppCompatActivity {
             startActivity(new Intent(StarterActivity.this, authActivity.class));
             finish();
         }
+    }
+
+    private void goToListPistas(){
+        startActivity(new Intent(StarterActivity.this, ListPistasActivity.class));
+        finish();
     }
 
     private void goToNavegationDrawer(){

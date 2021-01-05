@@ -1,9 +1,11 @@
 package com.example.freestylemeeting;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -32,6 +34,8 @@ public class ListPistasActivity extends AppCompatActivity {
     private PistaAdapter pistaAdapter;
     RecyclerView mMainList;
 
+    Client cliente = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,23 +53,7 @@ public class ListPistasActivity extends AppCompatActivity {
         closeTraining.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                UserDao.closeTraining(new myCallback(){
-                    @Override
-                    public void onCallback(boolean status) {
-                        if (status){
-                            Toast.makeText(ListPistasActivity.this, "Entrenamiento finalizado con exito", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(ListPistasActivity.this, NavegationDrawerActivity.class);
-                            startActivity(intent);
-                        }else{
-                            Toast.makeText(ListPistasActivity.this, "No se puede guardar un entrenamiento vacío", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(ListPistasActivity.this, NavegationDrawerActivity.class);
-                            startActivity(intent);
-                        }
-
-                    }
-
-                });
-
+                finalizarEntrenamiento();
             }
         });
 
@@ -86,11 +74,11 @@ public class ListPistasActivity extends AppCompatActivity {
         UserDao.getUsersCollection().document(UserDao.getCurrentUser().getUid()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
-                Client cliente = documentSnapshot.toObject(Client.class);
+                cliente = documentSnapshot.toObject(Client.class);
                 if (cliente != null) {
                     if(cliente.isEntrenamientoActivo()){
                         closeTraining.setVisibility(View.VISIBLE);
-                        titulo.setText("Selecciona tus pistas:\n-------------------------");
+                        titulo.setText("¿Que pista vas a esquiar?\n-------------------------");
                     }
                     EstacionDao.getEstacionesCollection().document(cliente.getCurrentEstacion()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                         @Override
@@ -135,9 +123,48 @@ public class ListPistasActivity extends AppCompatActivity {
         });
     }
 
+    private void finalizarEntrenamiento() {
+        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which) {
+                    case DialogInterface.BUTTON_POSITIVE:
+                        UserDao.closeTraining(new myCallback(){
+                            @Override
+                            public void onCallback(boolean status) {
+                                if (status){
+                                    Toast.makeText(ListPistasActivity.this, "Entrenamiento finalizado con exito", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(ListPistasActivity.this, NavegationDrawerActivity.class);
+                                    startActivity(intent);
+                                }else{
+                                    Toast.makeText(ListPistasActivity.this, "No se puede guardar un entrenamiento vacio", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(ListPistasActivity.this, NavegationDrawerActivity.class);
+                                    startActivity(intent);
+                                }
+
+                            }
+
+                        });
+                        break;
+
+                    case DialogInterface.BUTTON_NEGATIVE:
+                        //No hacer nada
+                        break;
+                }
+            }
+        };
+        AlertDialog.Builder builder = new AlertDialog.Builder(ListPistasActivity.this);
+        builder.setMessage("¿Quieres finalizar el entrenamiento?").setPositiveButton("Si", dialogClickListener)
+                .setNegativeButton("No", dialogClickListener).show();
+    }
+
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(ListPistasActivity.this, NavegationDrawerActivity.class);
-        startActivity(intent);
+        if(cliente != null && cliente.isEntrenamientoActivo()){
+            finalizarEntrenamiento();
+        } else {
+            Intent intent = new Intent(ListPistasActivity.this, NavegationDrawerActivity.class);
+            startActivity(intent);
+        }
     }
 }
