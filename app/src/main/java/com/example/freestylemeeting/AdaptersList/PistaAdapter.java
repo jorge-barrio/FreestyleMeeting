@@ -42,7 +42,23 @@ public class PistaAdapter extends RecyclerView.Adapter<PistaAdapter.ViewHolder> 
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Pista pista = pistasList.get(position);
         holder.nametext.setText(pista.getNombre());
+
+        switch (pista.getDificultad()){
+            case "Verde":
+                holder.dificultadtext.setTextColor(Color.rgb(76,175,80));
+                break;
+            case "Azul":
+                holder.dificultadtext.setTextColor(Color.rgb(23,137,255));
+                break;
+            case "Rojo":
+                holder.dificultadtext.setTextColor(Color.rgb(223,0,0));
+                break;
+            case "Negro":
+                holder.dificultadtext.setTextColor(Color.rgb(0,0,0));
+                break;
+        }
         holder.dificultadtext.setText(pista.getDificultad());
+
         if(pista.getDisponible()){
             holder.disponibleText.setText("Disponible");
             holder.disponibleText.setTextColor(Color.rgb(76,175,80));

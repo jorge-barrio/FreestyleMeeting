@@ -46,7 +46,23 @@ public class PistaActivity extends AppCompatActivity {
         FloatingActionButton addPistaToTraining = findViewById(R.id.add_pista_training_button);
         nombreText.setText(pista.getNombre());
         //idText.setText(pista.getId());
+
+        switch (pista.getDificultad()){
+            case "Verde":
+                dificultadText.setTextColor(Color.rgb(76,175,80));
+                break;
+            case "Azul":
+                dificultadText.setTextColor(Color.rgb(23,137,255));
+                break;
+            case "Rojo":
+                dificultadText.setTextColor(Color.rgb(223,0,0));
+                break;
+            case "Negro":
+                dificultadText.setTextColor(Color.rgb(0,0,0));
+                break;
+        }
         dificultadText.setText(pista.getDificultad());
+
         System.out.println("ARRAY:" + pista.getUsuariosActivos().size());
         usuariosText.setText("" + pista.getUsuariosActivos().size());
         if (pista.getDisponible()) {
