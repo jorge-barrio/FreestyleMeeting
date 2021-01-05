@@ -87,6 +87,7 @@ public class ListPistasActivity extends AppCompatActivity {
                             if (estacion != null) {
                                 pistas.removeAll(pistas);
                                 pistas.addAll(estacion.getPistas());
+                                EstacionDao.currentEstacion = estacion;
                                 pistaAdapter.notifyDataSetChanged();
                             }
                         }
@@ -104,6 +105,7 @@ public class ListPistasActivity extends AppCompatActivity {
                                         if (estacion != null) {
                                             pistas.removeAll(pistas);
                                             pistas.addAll(estacion.getPistas());
+                                            EstacionDao.currentEstacion = estacion;
                                             pistaAdapter.notifyDataSetChanged();
                                         }
                                     }
