@@ -231,6 +231,9 @@ public class EstacionDao {
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         Estacion estacion = documentSnapshot.toObject(Estacion.class);
                         ArrayList<Reserva> reservas = estacion.getReservas();
+                        if (reservas == null) {
+                            reservas = new ArrayList<Reserva>();
+                        }
                         if (estacion != null) {
                             reservas.add(reserva);
                             Map<String, Object> map = new HashMap<>();
